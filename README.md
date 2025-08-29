@@ -105,26 +105,35 @@ The deployment uses Hetzner Cloud volumes. Adjust storage sizes in:
 
 ## 🚢 CI/CD Pipeline
 
-The repository includes a complete GitHub Actions workflow that:
+The repository includes a complete GitHub Actions workflow with automated secret management and validation.
 
-1. **Validates** k3s manifests with kubeval
-2. **Security scans** with kubesec and Trivy
-3. **Builds** Docker image and pushes to GitHub Container Registry
-4. **Tests** application health
-5. **Deploys** to staging (develop branch)
-6. **Deploys** to production (main branch)
+### Features
 
-### Setup CI/CD
+1. **Automated Secret Setup**: Interactive script for configuration
+2. **Secret Validation**: Weekly validation with detailed reports
+3. **Pre-flight Checks**: Comprehensive validation before deployment
+4. **Clear Error Messages**: Specific fix instructions for all failures
+5. **Auto-deployment**: Push to main branch triggers production deployment
 
-1. Set GitHub repository secrets:
-   - `KUBECONFIG_STAGING`: Base64-encoded kubeconfig for staging
-   - `KUBECONFIG_PRODUCTION`: Base64-encoded kubeconfig for production
+### Quick Setup
 
-2. Push to trigger deployment:
-   ```bash
-   git push origin develop  # Deploy to staging
-   git push origin main     # Deploy to production
-   ```
+```bash
+# 1. Configure secrets (one-time setup)
+bash scripts/setup-github-secrets.sh
+
+# 2. Validate configuration
+gh workflow run validate-secrets.yml --repo jakenelwood/espocrm-standalone
+
+# 3. Deploy automatically
+git push origin main  # Triggers production deployment
+```
+
+### Documentation
+
+- 📖 [**Secret Management Guide**](docs/secret-management-guide.md) - Complete secrets and validation guide
+- 🚀 [**CI/CD Setup Guide**](docs/cicd-auto-deployment-setup.md) - Full deployment configuration
+- 🔧 [**Scripts Documentation**](scripts/README.md) - Automation scripts reference
+- 📊 [**CI/CD Improvements**](docs/cicd-improvements-summary.md) - Recent enhancements
 
 ## 📊 Monitoring
 
