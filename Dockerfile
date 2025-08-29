@@ -62,6 +62,13 @@ COPY --chown=www-data:www-data apache-espocrm.conf /etc/apache2/sites-available/
 # Copy EspoCRM application files
 COPY --chown=www-data:www-data . /var/www/html
 
+# Create required directories first
+RUN mkdir -p /var/www/html/data \
+    && mkdir -p /var/www/html/custom \
+    && mkdir -p /var/www/html/upload \
+    && mkdir -p /var/www/html/application/Espo/Modules \
+    && mkdir -p /var/www/html/client/custom
+
 # Set proper permissions
 RUN find /var/www/html -type d -exec chmod 755 {} \; \
     && find /var/www/html -type f -exec chmod 644 {} \; \
