@@ -74,10 +74,8 @@ data:
     max_connections = 151
     max_allowed_packet = 64M
     
-    # Query cache
-    query_cache_type = 1
-    query_cache_size = 64M
-    query_cache_limit = 2M
+    # Query cache removed in MySQL 8.0
+    # Use ProxySQL or application-level caching instead
     
     # Character set
     character-set-server = utf8mb4

@@ -7,8 +7,8 @@ metadata:
     environment: production
     app.kubernetes.io/name: espocrm
     app.kubernetes.io/part-of: espocrm-standalone
-    # Pod Security Standards
-    pod-security.kubernetes.io/enforce: restricted
+    # Pod Security Standards - using baseline for MySQL compatibility
+    pod-security.kubernetes.io/enforce: baseline
     pod-security.kubernetes.io/audit: restricted
     pod-security.kubernetes.io/warn: restricted
 ---
