@@ -38,20 +38,12 @@ RUN pecl install imagick && docker-php-ext-enable imagick
 # Production image
 FROM php:8.1-apache
 
-# Install runtime dependencies
+# Install runtime dependencies - let apt resolve versions
 RUN apt-get update && apt-get install -y \
-    libzip4 \
-    libpng16-16 \
-    libjpeg62-turbo \
-    libfreetype6 \
-    libonig5 \
-    libxml2 \
-    libldap-2.5-0 \
-    libicu72 \
-    libmagickwand-6.q16-6 \
     curl \
     cron \
     supervisor \
+    imagemagick \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy PHP extensions from builder
