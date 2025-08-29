@@ -237,6 +237,24 @@ jobs:
       with:
         version: 'v1.28.0'
     
+    - name: Verify kubectl installation
+      run: |
+        echo "Verifying kubectl installation..."
+        echo "PATH: $PATH"
+        which kubectl || echo "kubectl not in PATH"
+        ls -la /usr/local/bin/kubectl || echo "Not in /usr/local/bin"
+        ls -la $HOME/.local/bin/kubectl || echo "Not in $HOME/.local/bin"
+        # Try to find kubectl
+        find /opt -name kubectl 2>/dev/null || true
+        find $HOME -name kubectl 2>/dev/null || true
+        # Set kubectl alias if needed
+        if ! command -v kubectl &> /dev/null; then
+          if [ -f "$HOME/.local/bin/kubectl" ]; then
+            echo "export PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
+          fi
+        fi
+        kubectl version --client --short || echo "kubectl still not working"
+    
     - name: Pre-flight Checks
       id: preflight
       run: |
@@ -291,14 +309,41 @@ jobs:
         # Check 4: Validate YAML syntax
         echo ""
         echo "4️⃣ Validating YAML syntax..."
+        # First verify kubectl is available
+        if ! command -v kubectl &> /dev/null; then
+          echo "   ⚠️  kubectl command not found in PATH"
+          echo "   PATH: $PATH"
+        else
+          echo "   ℹ️  Using kubectl: $(which kubectl)"
+          echo "   ℹ️  kubectl version: $(kubectl version --client --short 2>/dev/null || echo 'version check failed')"
+        fi
+        
+        YAML_VALIDATION_PASSED=true
         for manifest in k3s/*.yaml k3s/mysql/*.yaml; do
           if [ -f "$manifest" ]; then
-            if ! kubectl apply --dry-run=client -f "$manifest" &> /dev/null; then
-              echo "   ⚠️  Invalid YAML in: $manifest"
-              kubectl apply --dry-run=client -f "$manifest" 2>&1 | grep -E "error|Error" | head -2
+            # Capture both stdout and stderr
+            OUTPUT=$(kubectl apply --dry-run=client -f "$manifest" 2>&1)
+            EXIT_CODE=$?
+            
+            if [ $EXIT_CODE -ne 0 ]; then
+              echo "   ⚠️  Invalid YAML in: $manifest (exit code: $EXIT_CODE)"
+              echo "$OUTPUT" | grep -E "error|Error|Warning" | head -3
+              YAML_VALIDATION_PASSED=false
+            else
+              # Check if there are any warnings in successful output
+              if echo "$OUTPUT" | grep -qE "Warning|warning"; then
+                echo "   ⚠️  Warnings in: $manifest"
+                echo "$OUTPUT" | grep -E "Warning|warning" | head -2
+              fi
             fi
           fi
         done
+        
+        if [ "$YAML_VALIDATION_PASSED" = true ]; then
+          echo "   ✅ All YAML files validated successfully"
+        else
+          echo "   ⚠️  Some YAML files have validation issues (non-blocking)"
+        fi
         
         # Check 5: Environment readiness
         echo ""
