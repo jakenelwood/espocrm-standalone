@@ -1,0 +1,46 @@
+================================================================================
+GITHUB ACTIONS FAILED BUILDS LOG
+Repository: jakenelwood/espocrm-standalone
+Date: 2025-08-29
+================================================================================
+
+SUMMARY OF FAILURES
+--------------------------------------------------------------------------------
+Build #1: fix: MySQL readiness and liveness probes (2025-08-29T05:38:07Z)
+Build #2: fix: Critical deployment issues resolved (2025-08-29T05:34:01Z)
+Build #3: docs: Add comprehensive operations runbook (2025-08-29T05:22:48Z)
+
+All three builds failed during the "Build and Test" and "Validate Manifests" stages.
+
+================================================================================
+DETAILED LOGS
+================================================================================
+
+Note: Full detailed logs are available in the following files:
+- build_1_mysql_probes_full.txt
+- build_2_critical_deployment_full.txt  
+- build_3_docs_runbook_full.txt
+
+Each build contains:
+1. Build and Test stage logs
+2. Validate Manifests stage logs
+3. System logs for each stage
+
+The logs have been extracted from the GitHub Actions API and stored locally
+for analysis. All builds were attempting to deploy to the main branch.
+
+================================================================================
+FILES CREATED
+================================================================================
+
+1. GitHub Actions Logs:
+   - github_actions_failed_builds_consolidated.txt (this file)
+   - build_1_mysql_probes_full.txt
+   - build_2_critical_deployment_full.txt
+   - build_3_docs_runbook_full.txt
+   - build1/, build2/, build3/ directories with extracted logs
+
+2. K3s Environment Specs:
+   - k3s_environment_specs.txt
+
+================================================================================

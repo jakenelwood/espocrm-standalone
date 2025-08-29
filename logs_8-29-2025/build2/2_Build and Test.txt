@@ -1,0 +1,1878 @@
+﻿2025-08-29T05:34:14.5378915Z Current runner version: '2.328.0'
+2025-08-29T05:34:14.5413724Z ##[group]Runner Image Provisioner
+2025-08-29T05:34:14.5415022Z Hosted Compute Agent
+2025-08-29T05:34:14.5416168Z Version: 20250821.380
+2025-08-29T05:34:14.5417149Z Commit: 438d12cb4fe092871db9867344e3bc0bc5319035
+2025-08-29T05:34:14.5418359Z Build Date: 2025-08-21T20:49:43Z
+2025-08-29T05:34:14.5419283Z ##[endgroup]
+2025-08-29T05:34:14.5420105Z ##[group]Operating System
+2025-08-29T05:34:14.5421104Z Ubuntu
+2025-08-29T05:34:14.5421782Z 24.04.3
+2025-08-29T05:34:14.5422479Z LTS
+2025-08-29T05:34:14.5423373Z ##[endgroup]
+2025-08-29T05:34:14.5424123Z ##[group]Runner Image
+2025-08-29T05:34:14.5424957Z Image: ubuntu-24.04
+2025-08-29T05:34:14.5425790Z Version: 20250824.1.0
+2025-08-29T05:34:14.5427813Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250824.1/images/ubuntu/Ubuntu2404-Readme.md
+2025-08-29T05:34:14.5430491Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250824.1
+2025-08-29T05:34:14.5432162Z ##[endgroup]
+2025-08-29T05:34:14.5434212Z ##[group]GITHUB_TOKEN Permissions
+2025-08-29T05:34:14.5437355Z Contents: read
+2025-08-29T05:34:14.5438153Z Metadata: read
+2025-08-29T05:34:14.5439587Z Packages: write
+2025-08-29T05:34:14.5440460Z SecurityEvents: write
+2025-08-29T05:34:14.5441283Z ##[endgroup]
+2025-08-29T05:34:14.5444621Z Secret source: Actions
+2025-08-29T05:34:14.5446253Z Prepare workflow directory
+2025-08-29T05:34:14.6183182Z Prepare all required actions
+2025-08-29T05:34:14.6239317Z Getting action download info
+2025-08-29T05:34:14.9543872Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-08-29T05:34:15.2810550Z Download action repository 'docker/setup-buildx-action@v3' (SHA:e468171a9de216ec08956ac3ada2f0791b6bd435)
+2025-08-29T05:34:15.5979662Z Download action repository 'docker/login-action@v3' (SHA:184bdaa0721073962dff0199f1fb9940f07167d1)
+2025-08-29T05:34:15.9296913Z Download action repository 'docker/metadata-action@v5' (SHA:c1e51972afc2121e065aed6d45c65596fe445f3f)
+2025-08-29T05:34:16.3652675Z Download action repository 'docker/build-push-action@v5' (SHA:ca052bb54ab0790a636c9b5f226502c73d547a25)
+2025-08-29T05:34:16.7251927Z Download action repository 'aquasecurity/trivy-action@master' (SHA:f9424c10c36e288d5fa79bd3dfd1aeb2d6eae808)
+2025-08-29T05:34:16.8644972Z Download action repository 'github/codeql-action@v3' (SHA:3c3833e0f8c1c83d449a7478aa59c036a9165498)
+2025-08-29T05:34:21.9152538Z Getting action download info
+2025-08-29T05:34:22.0449542Z Download action repository 'aquasecurity/setup-trivy@ff1b8b060f23b650436d419b5e13f67f5d4c3087' (SHA:ff1b8b060f23b650436d419b5e13f67f5d4c3087)
+2025-08-29T05:34:22.1919325Z Download action repository 'actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809' (SHA:0400d5f644dc74513175e3cd8d07132dd4860809)
+2025-08-29T05:34:22.2913708Z Getting action download info
+2025-08-29T05:34:22.4108179Z Download action repository 'actions/cache@v4' (SHA:0400d5f644dc74513175e3cd8d07132dd4860809)
+2025-08-29T05:34:22.5498646Z Complete job name: Build and Test
+2025-08-29T05:34:22.6088493Z ##[group]Run actions/checkout@v4
+2025-08-29T05:34:22.6089161Z with:
+2025-08-29T05:34:22.6089404Z   repository: jakenelwood/espocrm-standalone
+2025-08-29T05:34:22.6089905Z   token: ***
+2025-08-29T05:34:22.6090087Z   ssh-strict: true
+2025-08-29T05:34:22.6090276Z   ssh-user: git
+2025-08-29T05:34:22.6090471Z   persist-credentials: true
+2025-08-29T05:34:22.6090690Z   clean: true
+2025-08-29T05:34:22.6090879Z   sparse-checkout-cone-mode: true
+2025-08-29T05:34:22.6091117Z   fetch-depth: 1
+2025-08-29T05:34:22.6091288Z   fetch-tags: false
+2025-08-29T05:34:22.6091478Z   show-progress: true
+2025-08-29T05:34:22.6091659Z   lfs: false
+2025-08-29T05:34:22.6091825Z   submodules: false
+2025-08-29T05:34:22.6092003Z   set-safe-directory: true
+2025-08-29T05:34:22.6092438Z env:
+2025-08-29T05:34:22.6092632Z   REGISTRY: ghcr.io
+2025-08-29T05:34:22.6092891Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:34:22.6093155Z   APP_NAME: espocrm
+2025-08-29T05:34:22.6093672Z ##[endgroup]
+2025-08-29T05:34:22.7176665Z Syncing repository: jakenelwood/espocrm-standalone
+2025-08-29T05:34:22.7178588Z ##[group]Getting Git version info
+2025-08-29T05:34:22.7179156Z Working directory is '/home/runner/work/espocrm-standalone/espocrm-standalone'
+2025-08-29T05:34:22.7180030Z [command]/usr/bin/git version
+2025-08-29T05:34:22.7209584Z git version 2.51.0
+2025-08-29T05:34:22.7236722Z ##[endgroup]
+2025-08-29T05:34:22.7251453Z Temporarily overriding HOME='/home/runner/work/_temp/006a84a8-bd3e-4fd8-aab0-71dcf5a6cb44' before making global git config changes
+2025-08-29T05:34:22.7252389Z Adding repository directory to the temporary git global config as a safe directory
+2025-08-29T05:34:22.7266264Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/espocrm-standalone/espocrm-standalone
+2025-08-29T05:34:22.7305479Z Deleting the contents of '/home/runner/work/espocrm-standalone/espocrm-standalone'
+2025-08-29T05:34:22.7310231Z ##[group]Initializing the repository
+2025-08-29T05:34:22.7315178Z [command]/usr/bin/git init /home/runner/work/espocrm-standalone/espocrm-standalone
+2025-08-29T05:34:22.7379747Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-08-29T05:34:22.7382319Z hint: is subject to change. To configure the initial branch name to use in all
+2025-08-29T05:34:22.7383027Z hint: of your new repositories, which will suppress this warning, call:
+2025-08-29T05:34:22.7383444Z hint:
+2025-08-29T05:34:22.7383922Z hint: 	git config --global init.defaultBranch <name>
+2025-08-29T05:34:22.7384346Z hint:
+2025-08-29T05:34:22.7384764Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-08-29T05:34:22.7385416Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-08-29T05:34:22.7386088Z hint:
+2025-08-29T05:34:22.7386393Z hint: 	git branch -m <name>
+2025-08-29T05:34:22.7386761Z hint:
+2025-08-29T05:34:22.7387204Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-08-29T05:34:22.7388453Z Initialized empty Git repository in /home/runner/work/espocrm-standalone/espocrm-standalone/.git/
+2025-08-29T05:34:22.7393805Z [command]/usr/bin/git remote add origin https://github.com/jakenelwood/espocrm-standalone
+2025-08-29T05:34:22.7453283Z ##[endgroup]
+2025-08-29T05:34:22.7453958Z ##[group]Disabling automatic garbage collection
+2025-08-29T05:34:22.7454586Z [command]/usr/bin/git config --local gc.auto 0
+2025-08-29T05:34:22.7466171Z ##[endgroup]
+2025-08-29T05:34:22.7466699Z ##[group]Setting up auth
+2025-08-29T05:34:22.7474297Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-08-29T05:34:22.7506333Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-08-29T05:34:22.7772378Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-08-29T05:34:22.7805232Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-08-29T05:34:22.8032229Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-08-29T05:34:22.8068063Z ##[endgroup]
+2025-08-29T05:34:22.8068790Z ##[group]Fetching the repository
+2025-08-29T05:34:22.8086266Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +93f766e8979f44d4941628828d31b1b886c3c032:refs/remotes/origin/main
+2025-08-29T05:34:24.0090992Z From https://github.com/jakenelwood/espocrm-standalone
+2025-08-29T05:34:24.0092039Z  * [new ref]           93f766e8979f44d4941628828d31b1b886c3c032 -> origin/main
+2025-08-29T05:34:24.0123930Z ##[endgroup]
+2025-08-29T05:34:24.0124377Z ##[group]Determining the checkout info
+2025-08-29T05:34:24.0126576Z ##[endgroup]
+2025-08-29T05:34:24.0131560Z [command]/usr/bin/git sparse-checkout disable
+2025-08-29T05:34:24.0175516Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-08-29T05:34:24.0205843Z ##[group]Checking out the ref
+2025-08-29T05:34:24.0209990Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-08-29T05:34:24.9676163Z Switched to a new branch 'main'
+2025-08-29T05:34:24.9707773Z branch 'main' set up to track 'origin/main'.
+2025-08-29T05:34:24.9709146Z ##[endgroup]
+2025-08-29T05:34:24.9770243Z [command]/usr/bin/git log -1 --format=%H
+2025-08-29T05:34:24.9795465Z 93f766e8979f44d4941628828d31b1b886c3c032
+2025-08-29T05:34:24.9995652Z ##[group]Run docker/setup-buildx-action@v3
+2025-08-29T05:34:24.9996206Z with:
+2025-08-29T05:34:24.9996385Z   driver: docker-container
+2025-08-29T05:34:24.9996605Z   install: false
+2025-08-29T05:34:24.9996773Z   use: true
+2025-08-29T05:34:24.9996951Z   keep-state: false
+2025-08-29T05:34:24.9997135Z   cache-binary: true
+2025-08-29T05:34:24.9997316Z   cleanup: true
+2025-08-29T05:34:24.9997506Z env:
+2025-08-29T05:34:24.9997657Z   REGISTRY: ghcr.io
+2025-08-29T05:34:24.9997880Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:34:24.9998131Z   APP_NAME: espocrm
+2025-08-29T05:34:24.9998307Z ##[endgroup]
+2025-08-29T05:34:25.2889074Z ##[group]Docker info
+2025-08-29T05:34:25.2924110Z [command]/usr/bin/docker version
+2025-08-29T05:34:25.3741534Z Client: Docker Engine - Community
+2025-08-29T05:34:25.3742487Z  Version:           28.0.4
+2025-08-29T05:34:25.3743110Z  API version:       1.48
+2025-08-29T05:34:25.3743670Z  Go version:        go1.23.7
+2025-08-29T05:34:25.3748555Z  Git commit:        b8034c0
+2025-08-29T05:34:25.3748958Z  Built:             Tue Mar 25 15:07:16 2025
+2025-08-29T05:34:25.3749376Z  OS/Arch:           linux/amd64
+2025-08-29T05:34:25.3749729Z  Context:           default
+2025-08-29T05:34:25.3749959Z 
+2025-08-29T05:34:25.3750114Z Server: Docker Engine - Community
+2025-08-29T05:34:25.3750493Z  Engine:
+2025-08-29T05:34:25.3750763Z   Version:          28.0.4
+2025-08-29T05:34:25.3751157Z   API version:      1.48 (minimum version 1.24)
+2025-08-29T05:34:25.3751590Z   Go version:       go1.23.7
+2025-08-29T05:34:25.3751939Z   Git commit:       6430e49
+2025-08-29T05:34:25.3752299Z   Built:            Tue Mar 25 15:07:16 2025
+2025-08-29T05:34:25.3752703Z   OS/Arch:          linux/amd64
+2025-08-29T05:34:25.3753038Z   Experimental:     false
+2025-08-29T05:34:25.3753381Z  containerd:
+2025-08-29T05:34:25.3753691Z   Version:          1.7.27
+2025-08-29T05:34:25.3754127Z   GitCommit:        05044ec0a9a75232cad458027ca83437aae3f4da
+2025-08-29T05:34:25.3754607Z  runc:
+2025-08-29T05:34:25.3754883Z   Version:          1.2.5
+2025-08-29T05:34:25.3755226Z   GitCommit:        v1.2.5-0-g59923ef
+2025-08-29T05:34:25.3755603Z  docker-init:
+2025-08-29T05:34:25.3755838Z   Version:          0.19.0
+2025-08-29T05:34:25.3756269Z   GitCommit:        de40ad0
+2025-08-29T05:34:25.3806623Z [command]/usr/bin/docker info
+2025-08-29T05:34:25.6099241Z Client: Docker Engine - Community
+2025-08-29T05:34:25.6100055Z  Version:    28.0.4
+2025-08-29T05:34:25.6100374Z  Context:    default
+2025-08-29T05:34:25.6100685Z  Debug Mode: false
+2025-08-29T05:34:25.6100975Z  Plugins:
+2025-08-29T05:34:25.6101276Z   buildx: Docker Buildx (Docker Inc.)
+2025-08-29T05:34:25.6101674Z     Version:  v0.27.0
+2025-08-29T05:34:25.6102089Z     Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+2025-08-29T05:34:25.6102602Z   compose: Docker Compose (Docker Inc.)
+2025-08-29T05:34:25.6102991Z     Version:  v2.38.2
+2025-08-29T05:34:25.6103389Z     Path:     /usr/libexec/docker/cli-plugins/docker-compose
+2025-08-29T05:34:25.6103748Z 
+2025-08-29T05:34:25.6103874Z Server:
+2025-08-29T05:34:25.6104123Z  Containers: 0
+2025-08-29T05:34:25.6104394Z   Running: 0
+2025-08-29T05:34:25.6104661Z   Paused: 0
+2025-08-29T05:34:25.6104909Z   Stopped: 0
+2025-08-29T05:34:25.6105160Z  Images: 0
+2025-08-29T05:34:25.6105430Z  Server Version: 28.0.4
+2025-08-29T05:34:25.6105753Z  Storage Driver: overlay2
+2025-08-29T05:34:25.6106346Z   Backing Filesystem: extfs
+2025-08-29T05:34:25.6106984Z   Supports d_type: true
+2025-08-29T05:34:25.6107282Z   Using metacopy: false
+2025-08-29T05:34:25.6107606Z   Native Overlay Diff: false
+2025-08-29T05:34:25.6107940Z   userxattr: false
+2025-08-29T05:34:25.6108224Z  Logging Driver: json-file
+2025-08-29T05:34:25.6108553Z  Cgroup Driver: systemd
+2025-08-29T05:34:25.6108859Z  Cgroup Version: 2
+2025-08-29T05:34:25.6109130Z  Plugins:
+2025-08-29T05:34:25.6109446Z   Volume: local
+2025-08-29T05:34:25.6109796Z   Network: bridge host ipvlan macvlan null overlay
+2025-08-29T05:34:25.6110659Z   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+2025-08-29T05:34:25.6111226Z  Swarm: inactive
+2025-08-29T05:34:25.6111552Z  Runtimes: io.containerd.runc.v2 runc
+2025-08-29T05:34:25.6111943Z  Default Runtime: runc
+2025-08-29T05:34:25.6112262Z  Init Binary: docker-init
+2025-08-29T05:34:25.6112715Z  containerd version: 05044ec0a9a75232cad458027ca83437aae3f4da
+2025-08-29T05:34:25.6113224Z  runc version: v1.2.5-0-g59923ef
+2025-08-29T05:34:25.6113604Z  init version: de40ad0
+2025-08-29T05:34:25.6113887Z  Security Options:
+2025-08-29T05:34:25.6114159Z   apparmor
+2025-08-29T05:34:25.6114417Z   seccomp
+2025-08-29T05:34:25.6114691Z    Profile: builtin
+2025-08-29T05:34:25.6115463Z   cgroupns
+2025-08-29T05:34:25.6115793Z  Kernel Version: 6.11.0-1018-azure
+2025-08-29T05:34:25.6116352Z  Operating System: Ubuntu 24.04.3 LTS
+2025-08-29T05:34:25.6116758Z  OSType: linux
+2025-08-29T05:34:25.6117072Z  Architecture: x86_64
+2025-08-29T05:34:25.6117419Z  CPUs: 4
+2025-08-29T05:34:25.6117717Z  Total Memory: 15.62GiB
+2025-08-29T05:34:25.6118072Z  Name: pkrvmccyg1gnepe
+2025-08-29T05:34:25.6118471Z  ID: 1acf8ebc-766d-4eb7-bec2-c07f6b4097da
+2025-08-29T05:34:25.6118910Z  Docker Root Dir: /var/lib/docker
+2025-08-29T05:34:25.6119281Z  Debug Mode: false
+2025-08-29T05:34:25.6119586Z  Username: githubactions
+2025-08-29T05:34:25.6119901Z  Experimental: false
+2025-08-29T05:34:25.6120187Z  Insecure Registries:
+2025-08-29T05:34:25.6126097Z   ::1/128
+2025-08-29T05:34:25.6126412Z   127.0.0.0/8
+2025-08-29T05:34:25.6126732Z  Live Restore Enabled: false
+2025-08-29T05:34:25.6126976Z 
+2025-08-29T05:34:25.6127791Z ##[endgroup]
+2025-08-29T05:34:25.8746805Z ##[group]Buildx version
+2025-08-29T05:34:25.8774471Z [command]/usr/bin/docker buildx version
+2025-08-29T05:34:25.9411148Z github.com/docker/buildx v0.27.0 bac71def78b077ee6a2607119f88e291861b18ac
+2025-08-29T05:34:25.9444251Z ##[endgroup]
+2025-08-29T05:34:25.9603859Z ##[group]Inspecting default docker context
+2025-08-29T05:34:25.9756312Z [
+2025-08-29T05:34:25.9756666Z   {
+2025-08-29T05:34:25.9756920Z     "Name": "default",
+2025-08-29T05:34:25.9757314Z     "Metadata": {},
+2025-08-29T05:34:25.9757565Z     "Endpoints": {
+2025-08-29T05:34:25.9757751Z       "docker": {
+2025-08-29T05:34:25.9757965Z         "Host": "unix:///var/run/docker.sock",
+2025-08-29T05:34:25.9758246Z         "SkipTLSVerify": false
+2025-08-29T05:34:25.9758458Z       }
+2025-08-29T05:34:25.9758607Z     },
+2025-08-29T05:34:25.9758770Z     "TLSMaterial": {},
+2025-08-29T05:34:25.9758964Z     "Storage": {
+2025-08-29T05:34:25.9759160Z       "MetadataPath": "<IN MEMORY>",
+2025-08-29T05:34:25.9759395Z       "TLSPath": "<IN MEMORY>"
+2025-08-29T05:34:25.9759594Z     }
+2025-08-29T05:34:25.9759733Z   }
+2025-08-29T05:34:25.9759873Z ]
+2025-08-29T05:34:25.9760444Z ##[endgroup]
+2025-08-29T05:34:25.9760779Z ##[group]Creating a new builder instance
+2025-08-29T05:34:26.1045678Z [command]/usr/bin/docker buildx create --name builder-b7a02428-6e6f-458e-81bc-51f48f0837f3 --driver docker-container --buildkitd-flags --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host --use
+2025-08-29T05:34:26.1643156Z builder-b7a02428-6e6f-458e-81bc-51f48f0837f3
+2025-08-29T05:34:26.1678746Z ##[endgroup]
+2025-08-29T05:34:26.1679111Z ##[group]Booting builder
+2025-08-29T05:34:26.1714018Z [command]/usr/bin/docker buildx inspect --bootstrap --builder builder-b7a02428-6e6f-458e-81bc-51f48f0837f3
+2025-08-29T05:34:26.2262808Z #1 [internal] booting buildkit
+2025-08-29T05:34:26.3770688Z #1 pulling image moby/buildkit:buildx-stable-1
+2025-08-29T05:34:28.5658693Z #1 pulling image moby/buildkit:buildx-stable-1 2.3s done
+2025-08-29T05:34:28.7178754Z #1 creating container buildx_buildkit_builder-b7a02428-6e6f-458e-81bc-51f48f0837f30
+2025-08-29T05:34:28.8246651Z #1 creating container buildx_buildkit_builder-b7a02428-6e6f-458e-81bc-51f48f0837f30 0.3s done
+2025-08-29T05:34:28.8304135Z #1 DONE 2.6s
+2025-08-29T05:34:28.8598887Z Name:          builder-b7a02428-6e6f-458e-81bc-51f48f0837f3
+2025-08-29T05:34:28.8599438Z Driver:        docker-container
+2025-08-29T05:34:28.8600384Z Last Activity: 2025-08-29 05:34:26 +0000 UTC
+2025-08-29T05:34:28.8600729Z 
+2025-08-29T05:34:28.8600849Z Nodes:
+2025-08-29T05:34:28.8601279Z Name:                  builder-b7a02428-6e6f-458e-81bc-51f48f0837f30
+2025-08-29T05:34:28.8601827Z Endpoint:              unix:///var/run/docker.sock
+2025-08-29T05:34:28.8602307Z Status:                running
+2025-08-29T05:34:28.8602982Z BuildKit daemon flags: --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host
+2025-08-29T05:34:28.8603629Z BuildKit version:      v0.23.2
+2025-08-29T05:34:28.8603943Z Platforms:             linux/amd64, linux/amd64/v2, linux/amd64/v3, linux/386
+2025-08-29T05:34:28.8604270Z Labels:
+2025-08-29T05:34:28.8604495Z  org.mobyproject.buildkit.worker.executor:         oci
+2025-08-29T05:34:28.8604870Z  org.mobyproject.buildkit.worker.hostname:         092151a2e8c6
+2025-08-29T05:34:28.8605231Z  org.mobyproject.buildkit.worker.network:          host
+2025-08-29T05:34:28.8605590Z  org.mobyproject.buildkit.worker.oci.process-mode: sandbox
+2025-08-29T05:34:28.8606234Z  org.mobyproject.buildkit.worker.selinux.enabled:  false
+2025-08-29T05:34:28.8606619Z  org.mobyproject.buildkit.worker.snapshotter:      overlayfs
+2025-08-29T05:34:28.8606921Z GC Policy rule#0:
+2025-08-29T05:34:28.8607092Z  All:            false
+2025-08-29T05:34:28.8607394Z  Filters:        type==source.local,type==exec.cachemount,type==source.git.checkout
+2025-08-29T05:34:28.8607755Z  Keep Duration:  48h0m0s
+2025-08-29T05:34:28.8607954Z  Max Used Space: 488.3MiB
+2025-08-29T05:34:28.8608153Z GC Policy rule#1:
+2025-08-29T05:34:28.8608326Z  All:            false
+2025-08-29T05:34:28.8608522Z  Keep Duration:  1440h0m0s
+2025-08-29T05:34:28.8608872Z  Reserved Space: 7.451GiB
+2025-08-29T05:34:28.8609192Z  Max Used Space: 54.02GiB
+2025-08-29T05:34:28.8609521Z  Min Free Space: 13.97GiB
+2025-08-29T05:34:28.8609837Z GC Policy rule#2:
+2025-08-29T05:34:28.8610123Z  All:            false
+2025-08-29T05:34:28.8610409Z  Reserved Space: 7.451GiB
+2025-08-29T05:34:28.8610600Z  Max Used Space: 54.02GiB
+2025-08-29T05:34:28.8610818Z  Min Free Space: 13.97GiB
+2025-08-29T05:34:28.8611004Z GC Policy rule#3:
+2025-08-29T05:34:28.8611167Z  All:            true
+2025-08-29T05:34:28.8611339Z  Reserved Space: 7.451GiB
+2025-08-29T05:34:28.8611528Z  Max Used Space: 54.02GiB
+2025-08-29T05:34:28.8611706Z  Min Free Space: 13.97GiB
+2025-08-29T05:34:28.8649121Z ##[endgroup]
+2025-08-29T05:34:28.9622711Z ##[group]Inspect builder
+2025-08-29T05:34:28.9625115Z {
+2025-08-29T05:34:28.9626856Z   "nodes": [
+2025-08-29T05:34:28.9627202Z     {
+2025-08-29T05:34:28.9627615Z       "name": "builder-b7a02428-6e6f-458e-81bc-51f48f0837f30",
+2025-08-29T05:34:28.9628202Z       "endpoint": "unix:///var/run/docker.sock",
+2025-08-29T05:34:28.9628678Z       "status": "running",
+2025-08-29T05:34:28.9629531Z       "buildkitd-flags": "--allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host",
+2025-08-29T05:34:28.9630436Z       "buildkit": "v0.23.2",
+2025-08-29T05:34:28.9630996Z       "platforms": "linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386",
+2025-08-29T05:34:28.9631584Z       "features": {
+2025-08-29T05:34:28.9632109Z         "Automatically load images to the Docker Engine image store": true,
+2025-08-29T05:34:28.9632728Z         "Cache export": true,
+2025-08-29T05:34:28.9633122Z         "Direct push": true,
+2025-08-29T05:34:28.9633496Z         "Docker exporter": true,
+2025-08-29T05:34:28.9633900Z         "Multi-platform build": true,
+2025-08-29T05:34:28.9634635Z         "OCI exporter": true
+2025-08-29T05:34:28.9634954Z       },
+2025-08-29T05:34:28.9635186Z       "labels": {
+2025-08-29T05:34:28.9635539Z         "org.mobyproject.buildkit.worker.executor": "oci",
+2025-08-29T05:34:28.9637003Z         "org.mobyproject.buildkit.worker.hostname": "092151a2e8c6",
+2025-08-29T05:34:28.9637598Z         "org.mobyproject.buildkit.worker.network": "host",
+2025-08-29T05:34:28.9638229Z         "org.mobyproject.buildkit.worker.oci.process-mode": "sandbox",
+2025-08-29T05:34:28.9639245Z         "org.mobyproject.buildkit.worker.selinux.enabled": "false",
+2025-08-29T05:34:28.9639939Z         "org.mobyproject.buildkit.worker.snapshotter": "overlayfs"
+2025-08-29T05:34:28.9640468Z       },
+2025-08-29T05:34:28.9640713Z       "gcPolicy": [
+2025-08-29T05:34:28.9640986Z         {
+2025-08-29T05:34:28.9641240Z           "all": false,
+2025-08-29T05:34:28.9641528Z           "filter": [
+2025-08-29T05:34:28.9641835Z             "type==source.local",
+2025-08-29T05:34:28.9642202Z             "type==exec.cachemount",
+2025-08-29T05:34:28.9642581Z             "type==source.git.checkout"
+2025-08-29T05:34:28.9642939Z           ],
+2025-08-29T05:34:28.9643214Z           "keepDuration": "48h0m0s",
+2025-08-29T05:34:28.9643583Z           "maxUsedSpace": "488.3MiB"
+2025-08-29T05:34:28.9643926Z         },
+2025-08-29T05:34:28.9644165Z         {
+2025-08-29T05:34:28.9644416Z           "all": false,
+2025-08-29T05:34:28.9644836Z           "keepDuration": "1440h0m0s",
+2025-08-29T05:34:28.9645224Z           "reservedSpace": "7.451GiB",
+2025-08-29T05:34:28.9645616Z           "maxUsedSpace": "54.02GiB",
+2025-08-29T05:34:28.9646167Z           "minFreeSpace": "13.97GiB"
+2025-08-29T05:34:28.9646533Z         },
+2025-08-29T05:34:28.9646776Z         {
+2025-08-29T05:34:28.9647028Z           "all": false,
+2025-08-29T05:34:28.9647349Z           "reservedSpace": "7.451GiB",
+2025-08-29T05:34:28.9647737Z           "maxUsedSpace": "54.02GiB",
+2025-08-29T05:34:28.9648107Z           "minFreeSpace": "13.97GiB"
+2025-08-29T05:34:28.9648467Z         },
+2025-08-29T05:34:28.9648700Z         {
+2025-08-29T05:34:28.9648947Z           "all": true,
+2025-08-29T05:34:28.9649266Z           "reservedSpace": "7.451GiB",
+2025-08-29T05:34:28.9649642Z           "maxUsedSpace": "54.02GiB",
+2025-08-29T05:34:28.9650014Z           "minFreeSpace": "13.97GiB"
+2025-08-29T05:34:28.9650342Z         }
+2025-08-29T05:34:28.9650590Z       ]
+2025-08-29T05:34:28.9650810Z     }
+2025-08-29T05:34:28.9651044Z   ],
+2025-08-29T05:34:28.9651373Z   "name": "builder-b7a02428-6e6f-458e-81bc-51f48f0837f3",
+2025-08-29T05:34:28.9651858Z   "driver": "docker-container",
+2025-08-29T05:34:28.9652223Z   "lastActivity": "2025-08-29T05:34:26.000Z"
+2025-08-29T05:34:28.9652592Z }
+2025-08-29T05:34:28.9653247Z ##[endgroup]
+2025-08-29T05:34:28.9653753Z ##[group]BuildKit version
+2025-08-29T05:34:28.9654164Z builder-b7a02428-6e6f-458e-81bc-51f48f0837f30: v0.23.2
+2025-08-29T05:34:28.9654824Z ##[endgroup]
+2025-08-29T05:34:28.9762866Z ##[group]Run docker/login-action@v3
+2025-08-29T05:34:28.9763143Z with:
+2025-08-29T05:34:28.9763311Z   registry: ghcr.io
+2025-08-29T05:34:28.9763501Z   username: jakenelwood
+2025-08-29T05:34:28.9764064Z   password: ***
+2025-08-29T05:34:28.9764252Z   ecr: auto
+2025-08-29T05:34:28.9764416Z   logout: true
+2025-08-29T05:34:28.9764577Z env:
+2025-08-29T05:34:28.9764734Z   REGISTRY: ghcr.io
+2025-08-29T05:34:28.9764946Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:34:28.9765194Z   APP_NAME: espocrm
+2025-08-29T05:34:28.9765366Z ##[endgroup]
+2025-08-29T05:34:29.3238460Z Logging into ghcr.io...
+2025-08-29T05:34:29.4788681Z Login Succeeded!
+2025-08-29T05:34:29.4951235Z ##[group]Run docker/metadata-action@v5
+2025-08-29T05:34:29.4951513Z with:
+2025-08-29T05:34:29.4951716Z   images: ghcr.io/jakenelwood/espocrm-standalone
+2025-08-29T05:34:29.4952473Z   tags: type=ref,event=branch
+type=ref,event=pr
+type=semver,pattern={{version}}
+type=semver,pattern={{major}}.{{minor}}
+type=sha,prefix={{branch}}-
+type=raw,value=latest,enable={{is_default_branch}}
+
+2025-08-29T05:34:29.4953388Z   context: workflow
+2025-08-29T05:34:29.4953691Z   github-token: ***
+2025-08-29T05:34:29.4953878Z env:
+2025-08-29T05:34:29.4954029Z   REGISTRY: ghcr.io
+2025-08-29T05:34:29.4954238Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:34:29.4954484Z   APP_NAME: espocrm
+2025-08-29T05:34:29.4954660Z ##[endgroup]
+2025-08-29T05:34:30.0167600Z ##[group]Context info
+2025-08-29T05:34:30.0167986Z eventName: push
+2025-08-29T05:34:30.0168306Z sha: 93f766e8979f44d4941628828d31b1b886c3c032
+2025-08-29T05:34:30.0168724Z ref: refs/heads/main
+2025-08-29T05:34:30.0169175Z workflow: Deploy EspoCRM to k3s
+2025-08-29T05:34:30.0169525Z action: meta
+2025-08-29T05:34:30.0169815Z actor: jakenelwood
+2025-08-29T05:34:30.0170114Z runNumber: 7
+2025-08-29T05:34:30.0170416Z runId: 17315608446
+2025-08-29T05:34:30.0171220Z commitDate: Fri Aug 29 2025 05:33:51 GMT+0000 (Coordinated Universal Time)
+2025-08-29T05:34:30.0172426Z ##[endgroup]
+2025-08-29T05:34:30.0180232Z ##[group]Processing images input
+2025-08-29T05:34:30.0182257Z name=ghcr.io/jakenelwood/espocrm-standalone,enable=true
+2025-08-29T05:34:30.0185249Z ##[endgroup]
+2025-08-29T05:34:30.0205289Z ##[group]Processing tags input
+2025-08-29T05:34:30.0208915Z type=semver,pattern={{version}},value=,match=,enable=true,priority=900
+2025-08-29T05:34:30.0210073Z type=semver,pattern={{major}}.{{minor}},value=,match=,enable=true,priority=900
+2025-08-29T05:34:30.0211169Z type=ref,event=branch,enable=true,priority=600
+2025-08-29T05:34:30.0212103Z type=ref,event=pr,prefix=pr-,enable=true,priority=600
+2025-08-29T05:34:30.0213186Z type=raw,value=latest,enable={{is_default_branch}},priority=200
+2025-08-29T05:34:30.0214490Z type=sha,prefix={{branch}}-,format=short,enable=true,priority=100
+2025-08-29T05:34:30.0215629Z ##[endgroup]
+2025-08-29T05:34:30.0216676Z ##[group]Processing flavor input
+2025-08-29T05:34:30.0217294Z latest=auto
+2025-08-29T05:34:30.0237698Z prefix=
+2025-08-29T05:34:30.0238016Z prefixLatest=false
+2025-08-29T05:34:30.0238334Z suffix=
+2025-08-29T05:34:30.0238626Z suffixLatest=false
+2025-08-29T05:34:30.0239201Z ##[endgroup]
+2025-08-29T05:34:30.0307883Z ##[group]Docker image version
+2025-08-29T05:34:30.0311682Z main
+2025-08-29T05:34:30.0312245Z ##[endgroup]
+2025-08-29T05:34:30.0314812Z ##[group]Docker tags
+2025-08-29T05:34:30.0315838Z ghcr.io/jakenelwood/espocrm-standalone:main
+2025-08-29T05:34:30.0317618Z ghcr.io/jakenelwood/espocrm-standalone:latest
+2025-08-29T05:34:30.0318782Z ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:34:30.0319913Z ##[endgroup]
+2025-08-29T05:34:30.0399975Z ##[group]Docker labels
+2025-08-29T05:34:30.0400622Z org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+2025-08-29T05:34:30.0401217Z org.opencontainers.image.description=
+2025-08-29T05:34:30.0401719Z org.opencontainers.image.licenses=AGPL-3.0
+2025-08-29T05:34:30.0402407Z org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+2025-08-29T05:34:30.0403382Z org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+2025-08-29T05:34:30.0404242Z org.opencontainers.image.title=espocrm-standalone
+2025-08-29T05:34:30.0404999Z org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+2025-08-29T05:34:30.0405765Z org.opencontainers.image.version=main
+2025-08-29T05:34:30.0406712Z ##[endgroup]
+2025-08-29T05:34:30.0407658Z ##[group]Annotations
+2025-08-29T05:34:30.0408209Z manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+2025-08-29T05:34:30.0416557Z manifest:org.opencontainers.image.description=
+2025-08-29T05:34:30.0428479Z manifest:org.opencontainers.image.licenses=AGPL-3.0
+2025-08-29T05:34:30.0429619Z manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+2025-08-29T05:34:30.0430720Z manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+2025-08-29T05:34:30.0431646Z manifest:org.opencontainers.image.title=espocrm-standalone
+2025-08-29T05:34:30.0432509Z manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+2025-08-29T05:34:30.0433622Z manifest:org.opencontainers.image.version=main
+2025-08-29T05:34:30.0434379Z ##[endgroup]
+2025-08-29T05:34:30.0434927Z ##[group]JSON output
+2025-08-29T05:34:30.0435219Z {
+2025-08-29T05:34:30.0435455Z   "tags": [
+2025-08-29T05:34:30.0438213Z     "ghcr.io/jakenelwood/espocrm-standalone:main",
+2025-08-29T05:34:30.0438756Z     "ghcr.io/jakenelwood/espocrm-standalone:latest",
+2025-08-29T05:34:30.0439269Z     "ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"
+2025-08-29T05:34:30.0439718Z   ],
+2025-08-29T05:34:30.0439962Z   "labels": {
+2025-08-29T05:34:30.0455319Z     "org.opencontainers.image.created": "2025-08-29T05:34:30.020Z",
+2025-08-29T05:34:30.0455788Z     "org.opencontainers.image.description": "",
+2025-08-29T05:34:30.0456461Z     "org.opencontainers.image.licenses": "AGPL-3.0",
+2025-08-29T05:34:30.0457096Z     "org.opencontainers.image.revision": "93f766e8979f44d4941628828d31b1b886c3c032",
+2025-08-29T05:34:30.0457978Z     "org.opencontainers.image.source": "https://github.com/jakenelwood/espocrm-standalone",
+2025-08-29T05:34:30.0458823Z     "org.opencontainers.image.title": "espocrm-standalone",
+2025-08-29T05:34:30.0459581Z     "org.opencontainers.image.url": "https://github.com/jakenelwood/espocrm-standalone",
+2025-08-29T05:34:30.0460393Z     "org.opencontainers.image.version": "main"
+2025-08-29T05:34:30.0460859Z   },
+2025-08-29T05:34:30.0461133Z   "annotations": [
+2025-08-29T05:34:30.0461654Z     "manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z",
+2025-08-29T05:34:30.0462329Z     "manifest:org.opencontainers.image.description=",
+2025-08-29T05:34:30.0462962Z     "manifest:org.opencontainers.image.licenses=AGPL-3.0",
+2025-08-29T05:34:30.0463753Z     "manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032",
+2025-08-29T05:34:30.0464824Z     "manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone",
+2025-08-29T05:34:30.0465756Z     "manifest:org.opencontainers.image.title=espocrm-standalone",
+2025-08-29T05:34:30.0466836Z     "manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone",
+2025-08-29T05:34:30.0467683Z     "manifest:org.opencontainers.image.version=main"
+2025-08-29T05:34:30.0468133Z   ]
+2025-08-29T05:34:30.0468378Z }
+2025-08-29T05:34:30.0468886Z ##[endgroup]
+2025-08-29T05:34:30.0469441Z ##[group]Bake file definition (tags)
+2025-08-29T05:34:30.0469862Z {
+2025-08-29T05:34:30.0470110Z   "target": {
+2025-08-29T05:34:30.0470437Z     "docker-metadata-action": {
+2025-08-29T05:34:30.0470817Z       "tags": [
+2025-08-29T05:34:30.0471196Z         "ghcr.io/jakenelwood/espocrm-standalone:main",
+2025-08-29T05:34:30.0471782Z         "ghcr.io/jakenelwood/espocrm-standalone:latest",
+2025-08-29T05:34:30.0472379Z         "ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"
+2025-08-29T05:34:30.0472876Z       ],
+2025-08-29T05:34:30.0473134Z       "args": {
+2025-08-29T05:34:30.0473593Z         "DOCKER_META_IMAGES": "ghcr.io/jakenelwood/espocrm-standalone",
+2025-08-29T05:34:30.0474184Z         "DOCKER_META_VERSION": "main"
+2025-08-29T05:34:30.0474625Z       }
+2025-08-29T05:34:30.0474908Z     }
+2025-08-29T05:34:30.0475124Z   }
+2025-08-29T05:34:30.0475367Z }
+2025-08-29T05:34:30.0476062Z ##[endgroup]
+2025-08-29T05:34:30.0476606Z ##[group]Bake file definition (labels)
+2025-08-29T05:34:30.0476863Z {
+2025-08-29T05:34:30.0477006Z   "target": {
+2025-08-29T05:34:30.0477194Z     "docker-metadata-action": {
+2025-08-29T05:34:30.0477405Z       "labels": {
+2025-08-29T05:34:30.0477675Z         "org.opencontainers.image.created": "2025-08-29T05:34:30.020Z",
+2025-08-29T05:34:30.0478269Z         "org.opencontainers.image.description": "",
+2025-08-29T05:34:30.0478608Z         "org.opencontainers.image.licenses": "AGPL-3.0",
+2025-08-29T05:34:30.0479012Z         "org.opencontainers.image.revision": "93f766e8979f44d4941628828d31b1b886c3c032",
+2025-08-29T05:34:30.0479544Z         "org.opencontainers.image.source": "https://github.com/jakenelwood/espocrm-standalone",
+2025-08-29T05:34:30.0480156Z         "org.opencontainers.image.title": "espocrm-standalone",
+2025-08-29T05:34:30.0480588Z         "org.opencontainers.image.url": "https://github.com/jakenelwood/espocrm-standalone",
+2025-08-29T05:34:30.0481002Z         "org.opencontainers.image.version": "main"
+2025-08-29T05:34:30.0481253Z       }
+2025-08-29T05:34:30.0481410Z     }
+2025-08-29T05:34:30.0481561Z   }
+2025-08-29T05:34:30.0481699Z }
+2025-08-29T05:34:30.0481983Z ##[endgroup]
+2025-08-29T05:34:30.0482304Z ##[group]Bake file definition (annotations)
+2025-08-29T05:34:30.0482562Z {
+2025-08-29T05:34:30.0482706Z   "target": {
+2025-08-29T05:34:30.0482887Z     "docker-metadata-action": {
+2025-08-29T05:34:30.0483112Z       "annotations": [
+2025-08-29T05:34:30.0483400Z         "manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z",
+2025-08-29T05:34:30.0483790Z         "manifest:org.opencontainers.image.description=",
+2025-08-29T05:34:30.0484134Z         "manifest:org.opencontainers.image.licenses=AGPL-3.0",
+2025-08-29T05:34:30.0484566Z         "manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032",
+2025-08-29T05:34:30.0485145Z         "manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone",
+2025-08-29T05:34:30.0485645Z         "manifest:org.opencontainers.image.title=espocrm-standalone",
+2025-08-29T05:34:30.0486348Z         "manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone",
+2025-08-29T05:34:30.0486799Z         "manifest:org.opencontainers.image.version=main"
+2025-08-29T05:34:30.0487055Z       ]
+2025-08-29T05:34:30.0487203Z     }
+2025-08-29T05:34:30.0487347Z   }
+2025-08-29T05:34:30.0487488Z }
+2025-08-29T05:34:30.0487752Z ##[endgroup]
+2025-08-29T05:34:30.1135132Z ##[group]Run docker/build-push-action@v5
+2025-08-29T05:34:30.1135409Z with:
+2025-08-29T05:34:30.1135560Z   context: .
+2025-08-29T05:34:30.1135725Z   push: false
+2025-08-29T05:34:30.1136030Z   load: true
+2025-08-29T05:34:30.1136586Z   tags: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:34:30.1138684Z   labels: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:34:30.1140380Z   cache-from: type=gha
+2025-08-29T05:34:30.1140581Z   cache-to: type=gha,mode=max
+2025-08-29T05:34:30.1140996Z   build-args: VERSION=93f766e8979f44d4941628828d31b1b886c3c032
+BUILD_DATE=2025-08-29T00:33:51-05:00
+
+2025-08-29T05:34:30.1141409Z   no-cache: false
+2025-08-29T05:34:30.1141582Z   pull: false
+2025-08-29T05:34:30.1141868Z   github-token: ***
+2025-08-29T05:34:30.1142045Z env:
+2025-08-29T05:34:30.1142198Z   REGISTRY: ghcr.io
+2025-08-29T05:34:30.1142401Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:34:30.1142646Z   APP_NAME: espocrm
+2025-08-29T05:34:30.1142836Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:34:30.1143507Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:34:30.1145742Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:34:30.1149390Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:34:30.1155605Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:34:30.1160533Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:34:30.1161376Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:34:30.1162271Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:34:30.1163143Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:34:30.1163628Z ##[endgroup]
+2025-08-29T05:34:30.3396910Z ##[group]GitHub Actions runtime token ACs
+2025-08-29T05:34:30.3408217Z refs/heads/main: read/write
+2025-08-29T05:34:30.3409274Z ##[endgroup]
+2025-08-29T05:34:30.3410270Z ##[group]Docker info
+2025-08-29T05:34:30.3451656Z [command]/usr/bin/docker version
+2025-08-29T05:34:30.3657670Z Client: Docker Engine - Community
+2025-08-29T05:34:30.3658493Z  Version:           28.0.4
+2025-08-29T05:34:30.3659123Z  API version:       1.48
+2025-08-29T05:34:30.3661079Z  Go version:        go1.23.7
+2025-08-29T05:34:30.3661479Z  Git commit:        b8034c0
+2025-08-29T05:34:30.3661841Z  Built:             Tue Mar 25 15:07:16 2025
+2025-08-29T05:34:30.3662243Z  OS/Arch:           linux/amd64
+2025-08-29T05:34:30.3662591Z  Context:           default
+2025-08-29T05:34:30.3662800Z 
+2025-08-29T05:34:30.3662950Z Server: Docker Engine - Community
+2025-08-29T05:34:30.3663301Z  Engine:
+2025-08-29T05:34:30.3663569Z   Version:          28.0.4
+2025-08-29T05:34:30.3663939Z   API version:      1.48 (minimum version 1.24)
+2025-08-29T05:34:30.3664296Z   Go version:       go1.23.7
+2025-08-29T05:34:30.3664512Z   Git commit:       6430e49
+2025-08-29T05:34:30.3664748Z   Built:            Tue Mar 25 15:07:16 2025
+2025-08-29T05:34:30.3665003Z   OS/Arch:          linux/amd64
+2025-08-29T05:34:30.3665221Z   Experimental:     false
+2025-08-29T05:34:30.3665425Z  containerd:
+2025-08-29T05:34:30.3665589Z   Version:          1.7.27
+2025-08-29T05:34:30.3665836Z   GitCommit:        05044ec0a9a75232cad458027ca83437aae3f4da
+2025-08-29T05:34:30.3666346Z  runc:
+2025-08-29T05:34:30.3666817Z   Version:          1.2.5
+2025-08-29T05:34:30.3667016Z   GitCommit:        v1.2.5-0-g59923ef
+2025-08-29T05:34:30.3667251Z  docker-init:
+2025-08-29T05:34:30.3667419Z   Version:          0.19.0
+2025-08-29T05:34:30.3667623Z   GitCommit:        de40ad0
+2025-08-29T05:34:30.3709202Z [command]/usr/bin/docker info
+2025-08-29T05:34:30.4194180Z Client: Docker Engine - Community
+2025-08-29T05:34:30.4194971Z  Version:    28.0.4
+2025-08-29T05:34:30.4195380Z  Context:    default
+2025-08-29T05:34:30.4196604Z  Debug Mode: false
+2025-08-29T05:34:30.4196992Z  Plugins:
+2025-08-29T05:34:30.4197303Z   buildx: Docker Buildx (Docker Inc.)
+2025-08-29T05:34:30.4197699Z     Version:  v0.27.0
+2025-08-29T05:34:30.4198136Z     Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+2025-08-29T05:34:30.4198468Z   compose: Docker Compose (Docker Inc.)
+2025-08-29T05:34:30.4198712Z     Version:  v2.38.2
+2025-08-29T05:34:30.4198973Z     Path:     /usr/libexec/docker/cli-plugins/docker-compose
+2025-08-29T05:34:30.4199205Z 
+2025-08-29T05:34:30.4199276Z Server:
+2025-08-29T05:34:30.4199431Z  Containers: 1
+2025-08-29T05:34:30.4199598Z   Running: 1
+2025-08-29T05:34:30.4199753Z   Paused: 0
+2025-08-29T05:34:30.4199912Z   Stopped: 0
+2025-08-29T05:34:30.4200064Z  Images: 1
+2025-08-29T05:34:30.4200227Z  Server Version: 28.0.4
+2025-08-29T05:34:30.4200422Z  Storage Driver: overlay2
+2025-08-29T05:34:30.4200630Z   Backing Filesystem: extfs
+2025-08-29T05:34:30.4200843Z   Supports d_type: true
+2025-08-29T05:34:30.4201029Z   Using metacopy: false
+2025-08-29T05:34:30.4201226Z   Native Overlay Diff: false
+2025-08-29T05:34:30.4201425Z   userxattr: false
+2025-08-29T05:34:30.4201612Z  Logging Driver: json-file
+2025-08-29T05:34:30.4202150Z  Cgroup Driver: systemd
+2025-08-29T05:34:30.4202349Z  Cgroup Version: 2
+2025-08-29T05:34:30.4202515Z  Plugins:
+2025-08-29T05:34:30.4202675Z   Volume: local
+2025-08-29T05:34:30.4202881Z   Network: bridge host ipvlan macvlan null overlay
+2025-08-29T05:34:30.4203278Z   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+2025-08-29T05:34:30.4203618Z  Swarm: inactive
+2025-08-29T05:34:30.4203818Z  Runtimes: io.containerd.runc.v2 runc
+2025-08-29T05:34:30.4204059Z  Default Runtime: runc
+2025-08-29T05:34:30.4204251Z  Init Binary: docker-init
+2025-08-29T05:34:30.4204521Z  containerd version: 05044ec0a9a75232cad458027ca83437aae3f4da
+2025-08-29T05:34:30.4204833Z  runc version: v1.2.5-0-g59923ef
+2025-08-29T05:34:30.4205056Z  init version: de40ad0
+2025-08-29T05:34:30.4205239Z  Security Options:
+2025-08-29T05:34:30.4205415Z   apparmor
+2025-08-29T05:34:30.4205564Z   seccomp
+2025-08-29T05:34:30.4205725Z    Profile: builtin
+2025-08-29T05:34:30.4206203Z   cgroupns
+2025-08-29T05:34:30.4206394Z  Kernel Version: 6.11.0-1018-azure
+2025-08-29T05:34:30.4206639Z  Operating System: Ubuntu 24.04.3 LTS
+2025-08-29T05:34:30.4206859Z  OSType: linux
+2025-08-29T05:34:30.4207035Z  Architecture: x86_64
+2025-08-29T05:34:30.4207211Z  CPUs: 4
+2025-08-29T05:34:30.4207372Z  Total Memory: 15.62GiB
+2025-08-29T05:34:30.4207560Z  Name: pkrvmccyg1gnepe
+2025-08-29T05:34:30.4207774Z  ID: 1acf8ebc-766d-4eb7-bec2-c07f6b4097da
+2025-08-29T05:34:30.4208021Z  Docker Root Dir: /var/lib/docker
+2025-08-29T05:34:30.4208234Z  Debug Mode: false
+2025-08-29T05:34:30.4208408Z  Username: githubactions
+2025-08-29T05:34:30.4208624Z  Experimental: false
+2025-08-29T05:34:30.4209116Z  Insecure Registries:
+2025-08-29T05:34:30.4209357Z   ::1/128
+2025-08-29T05:34:30.4209504Z   127.0.0.0/8
+2025-08-29T05:34:30.4209849Z  Live Restore Enabled: false
+2025-08-29T05:34:30.4209993Z 
+2025-08-29T05:34:30.4213744Z ##[endgroup]
+2025-08-29T05:34:30.4214269Z ##[group]Proxy configuration
+2025-08-29T05:34:30.4217867Z No proxy configuration found
+2025-08-29T05:34:30.4218519Z ##[endgroup]
+2025-08-29T05:34:30.4797796Z ##[group]Buildx version
+2025-08-29T05:34:30.4820254Z [command]/usr/bin/docker buildx version
+2025-08-29T05:34:30.5290302Z github.com/docker/buildx v0.27.0 bac71def78b077ee6a2607119f88e291861b18ac
+2025-08-29T05:34:30.5325279Z ##[endgroup]
+2025-08-29T05:34:30.5326094Z ##[group]Builder info
+2025-08-29T05:34:30.6284005Z {
+2025-08-29T05:34:30.6284446Z   "nodes": [
+2025-08-29T05:34:30.6286842Z     {
+2025-08-29T05:34:30.6288088Z       "name": "builder-b7a02428-6e6f-458e-81bc-51f48f0837f30",
+2025-08-29T05:34:30.6288754Z       "endpoint": "unix:///var/run/docker.sock",
+2025-08-29T05:34:30.6289262Z       "status": "running",
+2025-08-29T05:34:30.6290093Z       "buildkitd-flags": "--allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host",
+2025-08-29T05:34:30.6290913Z       "buildkit": "v0.23.2",
+2025-08-29T05:34:30.6292420Z       "platforms": "linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386",
+2025-08-29T05:34:30.6293001Z       "features": {
+2025-08-29T05:34:30.6293537Z         "Automatically load images to the Docker Engine image store": true,
+2025-08-29T05:34:30.6294167Z         "Cache export": true,
+2025-08-29T05:34:30.6294535Z         "Direct push": true,
+2025-08-29T05:34:30.6294906Z         "Docker exporter": true,
+2025-08-29T05:34:30.6295273Z         "Multi-platform build": true,
+2025-08-29T05:34:30.6295714Z         "OCI exporter": true
+2025-08-29T05:34:30.6296522Z       },
+2025-08-29T05:34:30.6296763Z       "labels": {
+2025-08-29T05:34:30.6297154Z         "org.mobyproject.buildkit.worker.executor": "oci",
+2025-08-29T05:34:30.6297803Z         "org.mobyproject.buildkit.worker.hostname": "092151a2e8c6",
+2025-08-29T05:34:30.6298430Z         "org.mobyproject.buildkit.worker.network": "host",
+2025-08-29T05:34:30.6299114Z         "org.mobyproject.buildkit.worker.oci.process-mode": "sandbox",
+2025-08-29T05:34:30.6299883Z         "org.mobyproject.buildkit.worker.selinux.enabled": "false",
+2025-08-29T05:34:30.6300984Z         "org.mobyproject.buildkit.worker.snapshotter": "overlayfs"
+2025-08-29T05:34:30.6301584Z       },
+2025-08-29T05:34:30.6301859Z       "gcPolicy": [
+2025-08-29T05:34:30.6302172Z         {
+2025-08-29T05:34:30.6302435Z           "all": false,
+2025-08-29T05:34:30.6302760Z           "filter": [
+2025-08-29T05:34:30.6303091Z             "type==source.local",
+2025-08-29T05:34:30.6303493Z             "type==exec.cachemount",
+2025-08-29T05:34:30.6303899Z             "type==source.git.checkout"
+2025-08-29T05:34:30.6304313Z           ],
+2025-08-29T05:34:30.6304631Z           "keepDuration": "48h0m0s"
+2025-08-29T05:34:30.6305018Z         },
+2025-08-29T05:34:30.6305284Z         {
+2025-08-29T05:34:30.6305550Z           "all": false,
+2025-08-29T05:34:30.6306827Z           "keepDuration": "1440h0m0s"
+2025-08-29T05:34:30.6307274Z         },
+2025-08-29T05:34:30.6307565Z         {
+2025-08-29T05:34:30.6307835Z           "all": false
+2025-08-29T05:34:30.6308154Z         },
+2025-08-29T05:34:30.6308414Z         {
+2025-08-29T05:34:30.6308688Z           "all": true
+2025-08-29T05:34:30.6308997Z         }
+2025-08-29T05:34:30.6309260Z       ]
+2025-08-29T05:34:30.6309524Z     }
+2025-08-29T05:34:30.6309774Z   ],
+2025-08-29T05:34:30.6310145Z   "name": "builder-b7a02428-6e6f-458e-81bc-51f48f0837f3",
+2025-08-29T05:34:30.6310693Z   "driver": "docker-container",
+2025-08-29T05:34:30.6311137Z   "lastActivity": "2025-08-29T05:34:26.000Z"
+2025-08-29T05:34:30.6311543Z }
+2025-08-29T05:34:30.6312182Z ##[endgroup]
+2025-08-29T05:34:30.7974839Z [command]/usr/bin/docker buildx build --build-arg VERSION=93f766e8979f44d4941628828d31b1b886c3c032 --build-arg BUILD_DATE=2025-08-29T00:33:51-05:00 --cache-from type=gha --cache-to type=gha,mode=max --iidfile /home/runner/work/_temp/docker-actions-toolkit-3T5xSO/build-iidfile-008e7a069e.txt --label org.opencontainers.image.created=2025-08-29T05:34:30.020Z --label org.opencontainers.image.description= --label org.opencontainers.image.licenses=AGPL-3.0 --label org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032 --label org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone --label org.opencontainers.image.title=espocrm-standalone --label org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone --label org.opencontainers.image.version=main --tag ghcr.io/jakenelwood/espocrm-standalone:main --tag ghcr.io/jakenelwood/espocrm-standalone:latest --tag ghcr.io/jakenelwood/espocrm-standalone:main-93f766e --load --metadata-file /home/runner/work/_temp/docker-actions-toolkit-3T5xSO/build-metadata-0df55db951.json .
+2025-08-29T05:34:31.1118522Z #0 building with "builder-b7a02428-6e6f-458e-81bc-51f48f0837f3" instance using docker-container driver
+2025-08-29T05:34:31.1119282Z 
+2025-08-29T05:34:31.1119479Z #1 [internal] load build definition from Dockerfile
+2025-08-29T05:34:31.1119890Z #1 transferring dockerfile: 3.19kB done
+2025-08-29T05:34:31.1120182Z #1 DONE 0.0s
+2025-08-29T05:34:31.1120305Z 
+2025-08-29T05:34:31.1120468Z #2 [auth] library/php:pull token for registry-1.docker.io
+2025-08-29T05:34:31.1120825Z #2 DONE 0.0s
+2025-08-29T05:34:31.1120941Z 
+2025-08-29T05:34:31.1121115Z #3 [internal] load metadata for docker.io/library/php:8.1-apache
+2025-08-29T05:34:31.2105239Z #3 DONE 0.3s
+2025-08-29T05:34:31.4077992Z 
+2025-08-29T05:34:31.4079854Z #4 [internal] load .dockerignore
+2025-08-29T05:34:31.4081503Z #4 transferring context: 2B done
+2025-08-29T05:34:31.4088741Z #4 DONE 0.0s
+2025-08-29T05:34:31.4088940Z 
+2025-08-29T05:34:31.4093587Z #5 [builder 1/4] FROM docker.io/library/php:8.1-apache@sha256:8ef6d301cf7bc8db84966e6d6e9ae129e9aad8b9caf8b9bcdaa83f0c7593234f
+2025-08-29T05:34:31.4095070Z #5 resolve docker.io/library/php:8.1-apache@sha256:8ef6d301cf7bc8db84966e6d6e9ae129e9aad8b9caf8b9bcdaa83f0c7593234f done
+2025-08-29T05:34:31.4096202Z #5 DONE 0.0s
+2025-08-29T05:34:31.4096391Z 
+2025-08-29T05:34:31.4096612Z #6 importing cache manifest from gha:3418824624048396093
+2025-08-29T05:34:31.4097077Z #6 DONE 0.1s
+2025-08-29T05:34:31.4097252Z 
+2025-08-29T05:34:31.4097398Z #7 [internal] load build context
+2025-08-29T05:34:34.4662795Z #7 transferring context: 140.22MB 3.0s done
+2025-08-29T05:34:34.4663376Z #7 DONE 3.0s
+2025-08-29T05:34:34.4665618Z 
+2025-08-29T05:34:34.4668342Z #8 [builder 3/4] RUN docker-php-ext-configure gd --with-freetype --with-jpeg     && docker-php-ext-install -j$(nproc)     pdo_mysql     mysqli     zip     gd     mbstring     xml     bcmath     soap     intl     ldap     opcache     exif
+2025-08-29T05:34:34.4669660Z #8 CACHED
+2025-08-29T05:34:34.4669821Z 
+2025-08-29T05:34:34.4670121Z #9 [stage-1  6/16] RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+2025-08-29T05:34:34.4670658Z #9 CACHED
+2025-08-29T05:34:34.4670814Z 
+2025-08-29T05:34:34.4671369Z #10 [stage-1  2/16] RUN apt-get update && apt-get install -y     curl     cron     supervisor     imagemagick     && rm -rf /var/lib/apt/lists/*
+2025-08-29T05:34:34.4672170Z #10 CACHED
+2025-08-29T05:34:34.4672334Z 
+2025-08-29T05:34:34.4673458Z #11 [builder 2/4] RUN apt-get update && apt-get install -y     git     unzip     libzip-dev     libpng-dev     libjpeg-dev     libfreetype6-dev     libonig-dev     libxml2-dev     libldap2-dev     libicu-dev     libmagickwand-dev     && rm -rf /var/lib/apt/lists/*
+2025-08-29T05:34:34.4674668Z #11 CACHED
+2025-08-29T05:34:34.4674835Z 
+2025-08-29T05:34:34.4675281Z #12 [stage-1  3/16] COPY --from=builder /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
+2025-08-29T05:34:34.4676278Z #12 CACHED
+2025-08-29T05:34:34.4676448Z 
+2025-08-29T05:34:34.4676752Z #13 [builder 4/4] RUN pecl install imagick && docker-php-ext-enable imagick
+2025-08-29T05:34:34.4677320Z #13 CACHED
+2025-08-29T05:34:34.4677478Z 
+2025-08-29T05:34:34.4677869Z #14 [stage-1  4/16] COPY --from=builder /usr/local/etc/php/conf.d/ /usr/local/etc/php/conf.d/
+2025-08-29T05:34:34.4678355Z #14 CACHED
+2025-08-29T05:34:34.4678516Z 
+2025-08-29T05:34:34.4678769Z #15 [stage-1  5/16] RUN a2enmod rewrite headers expires deflate
+2025-08-29T05:34:34.4679245Z #15 CACHED
+2025-08-29T05:34:34.4679413Z 
+2025-08-29T05:34:34.4679926Z #16 [stage-1  7/16] COPY --chown=www-data:www-data apache-espocrm.conf /etc/apache2/sites-available/000-default.conf
+2025-08-29T05:34:34.4680684Z #16 CACHED
+2025-08-29T05:34:34.5722975Z 
+2025-08-29T05:34:34.5724191Z #16 [stage-1  7/16] COPY --chown=www-data:www-data apache-espocrm.conf /etc/apache2/sites-available/000-default.conf
+2025-08-29T05:34:34.5726073Z #16 sha256:1984807dd7e8b50f161a4d383fc7b02b222907b400ceeff42d832dd2f977c909 914B / 914B 0.0s done
+2025-08-29T05:34:34.5727230Z #16 sha256:9b8746131f08ba1830b915ff88706fd34466e5b2d670fc19b550be5f76735c83 377B / 377B 0.0s done
+2025-08-29T05:34:34.5728630Z #16 sha256:cc795f38c7db1f8458cd7af5c372120067f6de1580085f3e3a8e2aacca61a42f 502B / 502B 0.0s done
+2025-08-29T05:34:34.5729633Z #16 sha256:9e084cab35fe1d69b20cc2aa4fe4edc602a25ec3b931e882fbc9c4c2b8b8acd8 3.15kB / 3.15kB 0.0s done
+2025-08-29T05:34:34.5730480Z #16 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 32B / 32B 0.0s done
+2025-08-29T05:34:34.5731130Z #16 sha256:542fd0eb6017cd06f6f679bb3cc2364ad8b35c666e52ff1b77c66a9d725f893c 890B / 890B 0.0s done
+2025-08-29T05:34:34.5732239Z #16 sha256:8bab73504dae173f4840b5e7a62f6215414b76ebf6c84b79dd4c8fdc70186bc9 251B / 251B 0.0s done
+2025-08-29T05:34:34.7338863Z #16 sha256:3120a5d5c7ca2143ec1c73ffb9c4fd76b1ad527363be8703b8555ea9f38d5eda 2.21MB / 2.21MB 0.1s done
+2025-08-29T05:34:34.7340301Z #16 sha256:af1186712bb8b6c7d243b66591bd53be31b4706f424598fb4f202324c45c4db5 247B / 247B 0.0s done
+2025-08-29T05:34:34.7341645Z #16 sha256:b92673f6a50e2a12cebf6331b9420626f9db55266647b0b2a4fbc384eba4f450 2.46kB / 2.46kB 0.0s done
+2025-08-29T05:34:34.7342589Z #16 sha256:679f900a4b042b008687ea648ea533bbeabe25b126be1ae0b1b1ae065fc33498 488B / 488B 0.1s done
+2025-08-29T05:34:34.7343456Z #16 sha256:045ba203c964116fa751f926da2c6f9235b1b4996f71bb9b6ea2189742ad190d 480B / 480B done
+2025-08-29T05:34:34.7344324Z #16 sha256:098ec1ba2947b3caf404ac51eec6cb4fb800cd9985165b0713bfd6b2c731883a 427B / 427B 0.0s done
+2025-08-29T05:34:34.7346218Z #16 sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 2.10MB / 77.47MB 0.2s
+2025-08-29T05:34:34.7347231Z #16 sha256:b69cca7f5351581df1a81818c3f7e192b6aeec479667420678a729e556cae587 3.15MB / 11.19MB 0.2s
+2025-08-29T05:34:34.8785822Z #16 sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 8.39MB / 77.47MB 0.3s
+2025-08-29T05:34:34.8788861Z #16 sha256:8c6189d09db06b81eb86c1459a5f857e785223ea4b44fa1f40855628e5c157b7 3.15MB / 12.06MB 0.2s
+2025-08-29T05:34:34.8789820Z #16 sha256:59832f155231a8c2507d44aaa64103eb004e834ac24191d623771d1bbc55dfc4 4.22MB / 4.22MB 0.2s done
+2025-08-29T05:34:34.9949451Z #16 sha256:b69cca7f5351581df1a81818c3f7e192b6aeec479667420678a729e556cae587 11.19MB / 11.19MB 0.4s done
+2025-08-29T05:34:34.9950597Z #16 sha256:8c6189d09db06b81eb86c1459a5f857e785223ea4b44fa1f40855628e5c157b7 12.06MB / 12.06MB 0.4s done
+2025-08-29T05:34:34.9952030Z #16 sha256:3cd8f9f20842f393e08e772125daf467f9823e52f0b1ef98f4e4af1e48090cca 225B / 225B done
+2025-08-29T05:34:34.9952869Z #16 sha256:18823e68c7efee2c501967c9167f23b1fd758a9c04467a02b18eb643ad424cb9 225B / 225B 0.0s done
+2025-08-29T05:34:35.1038632Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 5.24MB / 117.83MB 0.2s
+2025-08-29T05:34:35.1040042Z #16 sha256:396b1da7636e2dcd10565cb4f2f952cbb4a8a38b58d3b86a2cacb172fb70117c 3.15MB / 29.77MB 0.2s
+2025-08-29T05:34:35.2540745Z #16 sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 15.73MB / 77.47MB 0.6s
+2025-08-29T05:34:35.2542185Z #16 sha256:396b1da7636e2dcd10565cb4f2f952cbb4a8a38b58d3b86a2cacb172fb70117c 9.44MB / 29.77MB 0.3s
+2025-08-29T05:34:35.4038217Z #16 sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 23.07MB / 77.47MB 0.8s
+2025-08-29T05:34:35.4039445Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 17.83MB / 117.83MB 0.5s
+2025-08-29T05:34:35.4040638Z #16 sha256:396b1da7636e2dcd10565cb4f2f952cbb4a8a38b58d3b86a2cacb172fb70117c 14.68MB / 29.77MB 0.5s
+2025-08-29T05:34:35.5537231Z #16 sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 28.31MB / 77.47MB 0.9s
+2025-08-29T05:34:35.5538554Z #16 sha256:396b1da7636e2dcd10565cb4f2f952cbb4a8a38b58d3b86a2cacb172fb70117c 19.92MB / 29.77MB 0.6s
+2025-08-29T05:34:35.7038532Z #16 sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 33.55MB / 77.47MB 1.1s
+2025-08-29T05:34:35.7039615Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 27.26MB / 117.83MB 0.8s
+2025-08-29T05:34:35.7040369Z #16 sha256:396b1da7636e2dcd10565cb4f2f952cbb4a8a38b58d3b86a2cacb172fb70117c 26.21MB / 29.77MB 0.8s
+2025-08-29T05:34:35.8676639Z #16 sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 42.99MB / 77.47MB 1.4s
+2025-08-29T05:34:35.8677812Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 34.60MB / 117.83MB 0.9s
+2025-08-29T05:34:35.8678932Z #16 sha256:396b1da7636e2dcd10565cb4f2f952cbb4a8a38b58d3b86a2cacb172fb70117c 29.77MB / 29.77MB 0.8s done
+2025-08-29T05:34:35.8680018Z #16 extracting sha256:396b1da7636e2dcd10565cb4f2f952cbb4a8a38b58d3b86a2cacb172fb70117c
+2025-08-29T05:34:36.0178081Z #16 sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 49.28MB / 77.47MB 1.5s
+2025-08-29T05:34:36.1675273Z #16 sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 54.53MB / 77.47MB 1.7s
+2025-08-29T05:34:36.1676342Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 47.19MB / 117.83MB 1.2s
+2025-08-29T05:34:36.3174567Z #16 sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 61.87MB / 77.47MB 1.8s
+2025-08-29T05:34:36.3175720Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 53.48MB / 117.83MB 1.4s
+2025-08-29T05:34:36.4681346Z #16 sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 67.11MB / 77.47MB 2.0s
+2025-08-29T05:34:36.4682523Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 59.77MB / 117.83MB 1.5s
+2025-08-29T05:34:36.6177680Z #16 sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 74.45MB / 77.47MB 2.1s
+2025-08-29T05:34:36.6178643Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 66.06MB / 117.83MB 1.7s
+2025-08-29T05:34:36.6179502Z #16 extracting sha256:396b1da7636e2dcd10565cb4f2f952cbb4a8a38b58d3b86a2cacb172fb70117c 0.7s done
+2025-08-29T05:34:36.6180325Z #16 extracting sha256:18823e68c7efee2c501967c9167f23b1fd758a9c04467a02b18eb643ad424cb9 done
+2025-08-29T05:34:36.8373310Z #16 sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 77.47MB / 77.47MB 2.2s done
+2025-08-29T05:34:36.8374471Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 76.55MB / 117.83MB 2.0s
+2025-08-29T05:34:36.9876505Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 82.84MB / 117.83MB 2.1s
+2025-08-29T05:34:37.1381132Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 89.13MB / 117.83MB 2.3s
+2025-08-29T05:34:37.2874426Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 95.42MB / 117.83MB 2.4s
+2025-08-29T05:34:37.4381783Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 102.76MB / 117.83MB 2.6s
+2025-08-29T05:34:37.7377073Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 114.29MB / 117.83MB 2.9s
+2025-08-29T05:34:38.0487411Z #16 sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 117.83MB / 117.83MB 3.0s done
+2025-08-29T05:34:38.0488354Z #16 extracting sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553
+2025-08-29T05:34:40.1084900Z #16 extracting sha256:5672e0f66141d82d6d6a8543f54747dfa2f634bd453cbbb4d47dda4d7a1ea553 2.2s done
+2025-08-29T05:34:40.1086145Z #16 DONE 5.8s
+2025-08-29T05:34:40.2544966Z 
+2025-08-29T05:34:40.2546092Z #16 [stage-1  7/16] COPY --chown=www-data:www-data apache-espocrm.conf /etc/apache2/sites-available/000-default.conf
+2025-08-29T05:34:40.2547472Z #16 extracting sha256:3cd8f9f20842f393e08e772125daf467f9823e52f0b1ef98f4e4af1e48090cca done
+2025-08-29T05:34:40.2548627Z #16 extracting sha256:59832f155231a8c2507d44aaa64103eb004e834ac24191d623771d1bbc55dfc4 0.1s done
+2025-08-29T05:34:40.2549318Z #16 DONE 5.9s
+2025-08-29T05:34:40.4582344Z 
+2025-08-29T05:34:40.4583211Z #16 [stage-1  7/16] COPY --chown=www-data:www-data apache-espocrm.conf /etc/apache2/sites-available/000-default.conf
+2025-08-29T05:34:40.4584630Z #16 extracting sha256:098ec1ba2947b3caf404ac51eec6cb4fb800cd9985165b0713bfd6b2c731883a done
+2025-08-29T05:34:40.4585591Z #16 extracting sha256:045ba203c964116fa751f926da2c6f9235b1b4996f71bb9b6ea2189742ad190d done
+2025-08-29T05:34:40.4586731Z #16 extracting sha256:8c6189d09db06b81eb86c1459a5f857e785223ea4b44fa1f40855628e5c157b7 0.0s done
+2025-08-29T05:34:40.4587313Z #16 extracting sha256:679f900a4b042b008687ea648ea533bbeabe25b126be1ae0b1b1ae065fc33498 done
+2025-08-29T05:34:40.4587856Z #16 extracting sha256:b69cca7f5351581df1a81818c3f7e192b6aeec479667420678a729e556cae587
+2025-08-29T05:34:40.5448061Z #16 extracting sha256:b69cca7f5351581df1a81818c3f7e192b6aeec479667420678a729e556cae587 0.2s done
+2025-08-29T05:34:40.5448862Z #16 DONE 6.2s
+2025-08-29T05:34:40.7188858Z 
+2025-08-29T05:34:40.7189619Z #16 [stage-1  7/16] COPY --chown=www-data:www-data apache-espocrm.conf /etc/apache2/sites-available/000-default.conf
+2025-08-29T05:34:40.7191185Z #16 extracting sha256:b92673f6a50e2a12cebf6331b9420626f9db55266647b0b2a4fbc384eba4f450 done
+2025-08-29T05:34:40.7193012Z #16 extracting sha256:8bab73504dae173f4840b5e7a62f6215414b76ebf6c84b79dd4c8fdc70186bc9 done
+2025-08-29T05:34:40.7193991Z #16 extracting sha256:af1186712bb8b6c7d243b66591bd53be31b4706f424598fb4f202324c45c4db5 done
+2025-08-29T05:34:40.7194973Z #16 extracting sha256:542fd0eb6017cd06f6f679bb3cc2364ad8b35c666e52ff1b77c66a9d725f893c done
+2025-08-29T05:34:40.7196172Z #16 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done
+2025-08-29T05:34:40.7197216Z #16 extracting sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff
+2025-08-29T05:34:42.2589804Z #16 extracting sha256:79f412244cd1439c4ba16c1c49f014e0d9652c5b30727bae471ba893f4d777ff 1.7s done
+2025-08-29T05:34:42.2590395Z #16 DONE 7.9s
+2025-08-29T05:34:42.4579423Z 
+2025-08-29T05:34:42.4580253Z #16 [stage-1  7/16] COPY --chown=www-data:www-data apache-espocrm.conf /etc/apache2/sites-available/000-default.conf
+2025-08-29T05:34:42.4581416Z #16 extracting sha256:3120a5d5c7ca2143ec1c73ffb9c4fd76b1ad527363be8703b8555ea9f38d5eda 0.0s done
+2025-08-29T05:34:42.4582170Z #16 extracting sha256:cc795f38c7db1f8458cd7af5c372120067f6de1580085f3e3a8e2aacca61a42f done
+2025-08-29T05:34:42.4582736Z #16 extracting sha256:9b8746131f08ba1830b915ff88706fd34466e5b2d670fc19b550be5f76735c83 done
+2025-08-29T05:34:42.4583293Z #16 extracting sha256:9e084cab35fe1d69b20cc2aa4fe4edc602a25ec3b931e882fbc9c4c2b8b8acd8 done
+2025-08-29T05:34:42.4583835Z #16 extracting sha256:1984807dd7e8b50f161a4d383fc7b02b222907b400ceeff42d832dd2f977c909 done
+2025-08-29T05:34:42.4584202Z #16 DONE 8.0s
+2025-08-29T05:34:42.4584313Z 
+2025-08-29T05:34:42.4584471Z #17 [stage-1  8/16] COPY --chown=www-data:www-data . /var/www/html
+2025-08-29T05:34:46.5239293Z #17 DONE 4.2s
+2025-08-29T05:34:46.6754989Z 
+2025-08-29T05:34:46.6756697Z #18 [stage-1  9/16] RUN mkdir -p /var/www/html/data     && mkdir -p /var/www/html/custom     && mkdir -p /var/www/html/upload     && mkdir -p /var/www/html/application/Espo/Modules     && mkdir -p /var/www/html/client/custom
+2025-08-29T05:34:46.7154899Z #18 DONE 0.2s
+2025-08-29T05:34:46.8671727Z 
+2025-08-29T05:34:46.8673062Z #19 [stage-1 10/16] RUN find /var/www/html -type d -exec chmod 755 {} ;     && find /var/www/html -type f -exec chmod 644 {} ;     && chmod 775 /var/www/html/data     && chmod 775 /var/www/html/custom     && chmod 775 /var/www/html/upload     && chmod 775 /var/www/html/application/Espo/Modules     && chmod 775 /var/www/html/client/custom
+2025-08-29T05:35:10.7393533Z #19 DONE 24.0s
+2025-08-29T05:35:10.8905580Z 
+2025-08-29T05:35:10.8907355Z #20 [stage-1 11/16] RUN mkdir -p /var/www/html/data/logs     && mkdir -p /var/www/html/data/cache     && mkdir -p /var/www/html/data/upload     && chown -R www-data:www-data /var/www/html/data
+2025-08-29T05:35:10.9229516Z #20 DONE 0.2s
+2025-08-29T05:35:11.0473996Z 
+2025-08-29T05:35:11.0476068Z #21 [stage-1 12/16] COPY php.ini /usr/local/etc/php/conf.d/espocrm.ini
+2025-08-29T05:35:11.0476700Z #21 DONE 0.1s
+2025-08-29T05:35:11.0477185Z 
+2025-08-29T05:35:11.0477444Z #22 [stage-1 13/16] COPY docker-entrypoint.sh /usr/local/bin/
+2025-08-29T05:35:11.0477946Z #22 DONE 0.0s
+2025-08-29T05:35:11.0478122Z 
+2025-08-29T05:35:11.0478397Z #23 [stage-1 14/16] RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+2025-08-29T05:35:11.0478926Z #23 DONE 0.1s
+2025-08-29T05:35:11.2799804Z 
+2025-08-29T05:35:11.2801094Z #24 [stage-1 15/16] RUN echo "* * * * * www-data cd /var/www/html && php cron.php > /dev/null 2>&1" > /etc/cron.d/espocrm     && chmod 0644 /etc/cron.d/espocrm     && crontab /etc/cron.d/espocrm
+2025-08-29T05:35:11.2802162Z #24 DONE 0.1s
+2025-08-29T05:35:11.2802339Z 
+2025-08-29T05:35:11.2802519Z #25 [stage-1 16/16] WORKDIR /var/www/html
+2025-08-29T05:35:11.2802927Z #25 DONE 0.0s
+2025-08-29T05:35:11.2803092Z 
+2025-08-29T05:35:11.2803247Z #26 exporting to docker image format
+2025-08-29T05:35:11.2803589Z #26 exporting layers
+2025-08-29T05:35:15.8579436Z #26 exporting layers 4.7s done
+2025-08-29T05:35:16.0157125Z #26 exporting manifest sha256:9940f9e6e2f8a3dc14abcdcb2b45ed3c636856049a231173610ed0eaeb362446 done
+2025-08-29T05:35:16.0159644Z #26 exporting config sha256:1f0bb03d04ee220182aabb03479e7e3907a1e261a09021463f7ef2fbb79c4501 done
+2025-08-29T05:35:16.0160400Z #26 sending tarball
+2025-08-29T05:35:17.3646014Z #26 ...
+2025-08-29T05:35:17.3650834Z 
+2025-08-29T05:35:17.3651137Z #27 importing to docker
+2025-08-29T05:35:17.5156543Z #27 loading layer e6a3842ebc7f 327.68kB / 29.77MB
+2025-08-29T05:35:18.2367669Z #27 loading layer 998327a6d82e 225B / 225B
+2025-08-29T05:35:19.0803835Z #27 loading layer 313544dc5026 557.06kB / 117.83MB
+2025-08-29T05:35:21.0923887Z #27 loading layer 313544dc5026 86.90MB / 117.83MB 2.0s
+2025-08-29T05:35:22.6260480Z #27 loading layer 82e0bb42f084 225B / 225B
+2025-08-29T05:35:22.7869131Z #27 loading layer 31f6ede2b934 65.54kB / 4.22MB
+2025-08-29T05:35:22.8980484Z #27 loading layer 1275cb110b35 427B / 427B
+2025-08-29T05:35:23.0037686Z #27 loading layer b2d3b4f8a6a5 480B / 480B
+2025-08-29T05:35:23.0038243Z #27 loading layer 3985da805f06 131.07kB / 12.06MB
+2025-08-29T05:35:23.0038638Z #27 loading layer 21a36427dc5c 488B / 488B
+2025-08-29T05:35:23.0039007Z #27 loading layer f2089ee2aa12 131.07kB / 11.19MB
+2025-08-29T05:35:23.3861649Z #27 loading layer 8253d7a430e4 2.46kB / 2.46kB
+2025-08-29T05:35:23.5151613Z #27 loading layer 54b8967ec591 251B / 251B
+2025-08-29T05:35:23.5152119Z #27 loading layer c4910549debb 247B / 247B
+2025-08-29T05:35:23.5152542Z #27 loading layer 5f7eb69b3172 890B / 890B
+2025-08-29T05:35:23.5152958Z #27 loading layer 5f70bf18a086 32B / 32B
+2025-08-29T05:35:23.5153406Z #27 loading layer 1d6161afba5e 557.06kB / 77.47MB
+2025-08-29T05:35:25.5882439Z #27 loading layer 1d6161afba5e 72.42MB / 77.47MB 2.1s
+2025-08-29T05:35:26.2769562Z #27 loading layer 591e15a62c45 32.77kB / 2.21MB
+2025-08-29T05:35:26.3790532Z #27 loading layer b57a531ce58a 502B / 502B
+2025-08-29T05:35:26.3791466Z #27 loading layer 7d36cb100d79 377B / 377B
+2025-08-29T05:35:26.3792362Z #27 loading layer 02d234f0c4fb 3.15kB / 3.15kB
+2025-08-29T05:35:26.3792779Z #27 loading layer 2a748805edf0 914B / 914B
+2025-08-29T05:35:26.5510380Z #27 loading layer 2092d409c746 557.06kB / 54.01MB
+2025-08-29T05:35:28.5825114Z #27 loading layer 2092d409c746 40.67MB / 54.01MB 2.2s
+2025-08-29T05:35:30.6408695Z #27 loading layer 2092d409c746 52.92MB / 54.01MB 4.2s
+2025-08-29T05:35:31.2182201Z #27 loading layer 5f138efa248c 167B / 167B
+2025-08-29T05:35:31.3562780Z #27 loading layer 743ce455fb57 294.91kB / 28.07MB
+2025-08-29T05:35:31.3563314Z #27 loading layer 084693f5d9a8 214B / 214B
+2025-08-29T05:35:31.4659670Z #27 loading layer 21a36427dc5c 488B / 488B 8.5s done
+2025-08-29T05:35:31.4660321Z #27 loading layer 5f70bf18a086 32B / 32B 8.0s
+2025-08-29T05:35:31.4660934Z #27 loading layer 04c2c2a1c9d0 777B / 777B
+2025-08-29T05:35:31.4661534Z #27 loading layer 0763ffe152e5 1.31kB / 1.31kB
+2025-08-29T05:35:31.4662129Z #27 loading layer 48a8ba0527bd 463B / 463B
+2025-08-29T05:35:31.6181555Z #27 loading layer e6a3842ebc7f 29.77MB / 29.77MB 14.1s done
+2025-08-29T05:35:31.6182533Z #27 loading layer 998327a6d82e 225B / 225B 13.2s done
+2025-08-29T05:35:31.6182872Z #27 loading layer 313544dc5026 117.83MB / 117.83MB 12.4s done
+2025-08-29T05:35:31.6183197Z #27 loading layer 82e0bb42f084 225B / 225B 8.8s done
+2025-08-29T05:35:31.6183600Z #27 loading layer 31f6ede2b934 4.22MB / 4.22MB 8.8s done
+2025-08-29T05:35:31.6184078Z #27 loading layer 1275cb110b35 427B / 427B 8.6s done
+2025-08-29T05:35:31.6184573Z #27 loading layer b2d3b4f8a6a5 480B / 480B 8.6s done
+2025-08-29T05:35:31.6185045Z #27 loading layer 3985da805f06 12.06MB / 12.06MB 8.5s done
+2025-08-29T05:35:31.6185571Z #27 loading layer f2089ee2aa12 11.19MB / 11.19MB 8.5s done
+2025-08-29T05:35:31.6186227Z #27 loading layer 8253d7a430e4 2.46kB / 2.46kB 8.1s done
+2025-08-29T05:35:31.6186536Z #27 loading layer 54b8967ec591 251B / 251B 8.1s done
+2025-08-29T05:35:31.6186821Z #27 loading layer c4910549debb 247B / 247B 8.1s done
+2025-08-29T05:35:31.6187121Z #27 loading layer 5f7eb69b3172 890B / 890B 8.1s done
+2025-08-29T05:35:31.6187419Z #27 loading layer 5f70bf18a086 32B / 32B 8.0s done
+2025-08-29T05:35:31.6187748Z #27 loading layer 1d6161afba5e 77.47MB / 77.47MB 8.0s done
+2025-08-29T05:35:31.6188078Z #27 loading layer 591e15a62c45 2.21MB / 2.21MB 5.2s done
+2025-08-29T05:35:31.6188392Z #27 loading layer b57a531ce58a 502B / 502B 5.1s done
+2025-08-29T05:35:31.6188696Z #27 loading layer 7d36cb100d79 377B / 377B 5.1s done
+2025-08-29T05:35:31.6189006Z #27 loading layer 02d234f0c4fb 3.15kB / 3.15kB 5.1s done
+2025-08-29T05:35:31.6189320Z #27 loading layer 2a748805edf0 914B / 914B 5.1s done
+2025-08-29T05:35:31.6189634Z #27 loading layer 2092d409c746 54.01MB / 54.01MB 5.1s done
+2025-08-29T05:35:31.6190143Z #27 loading layer 5f138efa248c 167B / 167B 0.2s done
+2025-08-29T05:35:31.6190464Z #27 loading layer 743ce455fb57 28.07MB / 28.07MB 0.2s done
+2025-08-29T05:35:31.6190783Z #27 loading layer 084693f5d9a8 214B / 214B 0.1s done
+2025-08-29T05:35:31.6191079Z #27 loading layer 04c2c2a1c9d0 777B / 777B 0.1s done
+2025-08-29T05:35:31.6191397Z #27 loading layer 0763ffe152e5 1.31kB / 1.31kB 0.1s done
+2025-08-29T05:35:31.6191722Z #27 loading layer 48a8ba0527bd 463B / 463B 0.1s done
+2025-08-29T05:35:31.6192001Z #27 DONE 14.1s
+2025-08-29T05:35:31.6192113Z 
+2025-08-29T05:35:31.6192214Z #26 exporting to docker image format
+2025-08-29T05:35:31.6192475Z #26 sending tarball 15.6s done
+2025-08-29T05:35:31.6192704Z #26 DONE 20.3s
+2025-08-29T05:35:31.6192812Z 
+2025-08-29T05:35:31.6192906Z #28 exporting to GitHub Actions Cache
+2025-08-29T05:35:31.6193186Z #28 preparing build cache for export
+2025-08-29T05:35:31.7540664Z #28 writing layer sha256:0cf7e0f7611ef4dafad3c440d58fb67c33c8e72e71b096f41210a4f08e30e3f4
+2025-08-29T05:35:32.9330260Z #28 writing layer sha256:0cf7e0f7611ef4dafad3c440d58fb67c33c8e72e71b096f41210a4f08e30e3f4 1.2s done
+2025-08-29T05:35:33.0413477Z #28 writing layer sha256:363c9157491b49cb62896e33d443ee9a0f7fe4e4456bbf598eb2f7c32297b267 0.1s done
+2025-08-29T05:35:33.2314401Z #28 writing layer sha256:43104ad46e34d2c956f273756f4737adaeff12be5859c591733f3bc23c2ec69e
+2025-08-29T05:35:35.6723248Z #28 writing layer sha256:43104ad46e34d2c956f273756f4737adaeff12be5859c591733f3bc23c2ec69e 2.6s done
+2025-08-29T05:35:35.8271115Z #28 writing layer sha256:470aeb5a51248e264ab798f8162230e5e5a6bcb423c3c6316206c3191c041f1c 0.1s done
+2025-08-29T05:35:35.8272052Z #28 writing layer sha256:5e7f9fa33444f3d99f5b4cf97cc5311b169ab47dd63ec2d850287cf8f7f1b005
+2025-08-29T05:35:35.9857762Z #28 writing layer sha256:5e7f9fa33444f3d99f5b4cf97cc5311b169ab47dd63ec2d850287cf8f7f1b005 0.1s done
+2025-08-29T05:35:35.9858888Z #28 writing layer sha256:9e7545a510ddf45891738fa5b4707f058971a23fa9ee01b57005b77e506481b4
+2025-08-29T05:35:36.1383954Z #28 writing layer sha256:9e7545a510ddf45891738fa5b4707f058971a23fa9ee01b57005b77e506481b4 0.1s done
+2025-08-29T05:35:36.1385019Z #28 writing layer sha256:f12bf514b42a9eab35eaa2c62e353f0591f3afd4705a67f4a4e28404b1b503b8
+2025-08-29T05:35:36.2837818Z #28 preparing build cache for export 4.8s done
+2025-08-29T05:35:36.2841881Z #28 writing layer sha256:f12bf514b42a9eab35eaa2c62e353f0591f3afd4705a67f4a4e28404b1b503b8 0.1s done
+2025-08-29T05:35:36.2847604Z #28 DONE 4.8s
+2025-08-29T05:35:36.3138120Z 
+2025-08-29T05:35:36.3138512Z #29 resolving provenance for metadata file
+2025-08-29T05:35:36.3138879Z #29 DONE 0.0s
+2025-08-29T05:35:36.3210987Z ##[group]ImageID
+2025-08-29T05:35:36.3211503Z sha256:1f0bb03d04ee220182aabb03479e7e3907a1e261a09021463f7ef2fbb79c4501
+2025-08-29T05:35:36.3213133Z ##[endgroup]
+2025-08-29T05:35:36.3213759Z ##[group]Digest
+2025-08-29T05:35:36.3214322Z sha256:9940f9e6e2f8a3dc14abcdcb2b45ed3c636856049a231173610ed0eaeb362446
+2025-08-29T05:35:36.3215160Z ##[endgroup]
+2025-08-29T05:35:36.3217139Z ##[group]Metadata
+2025-08-29T05:35:36.3217509Z {
+2025-08-29T05:35:36.3217856Z   "buildx.build.provenance": {
+2025-08-29T05:35:36.3218261Z     "builder": {
+2025-08-29T05:35:36.3218566Z       "id": ""
+2025-08-29T05:35:36.3218847Z     },
+2025-08-29T05:35:36.3219223Z     "buildType": "https://mobyproject.org/buildkit@v1",
+2025-08-29T05:35:36.3219656Z     "materials": [
+2025-08-29T05:35:36.3219932Z       {
+2025-08-29T05:35:36.3220277Z         "uri": "pkg:docker/php@8.1-apache?platform=linux%2Famd64",
+2025-08-29T05:35:36.3220745Z         "digest": {
+2025-08-29T05:35:36.3221230Z           "sha256": "8ef6d301cf7bc8db84966e6d6e9ae129e9aad8b9caf8b9bcdaa83f0c7593234f"
+2025-08-29T05:35:36.3221804Z         }
+2025-08-29T05:35:36.3222046Z       }
+2025-08-29T05:35:36.3222273Z     ],
+2025-08-29T05:35:36.3222518Z     "invocation": {
+2025-08-29T05:35:36.3222794Z       "configSource": {},
+2025-08-29T05:35:36.3223121Z       "parameters": {
+2025-08-29T05:35:36.3223450Z         "frontend": "dockerfile.v0",
+2025-08-29T05:35:36.3223820Z         "args": {
+2025-08-29T05:35:36.3224402Z           "build-arg:BUILD_DATE": "2025-08-29T00:33:51-05:00",
+2025-08-29T05:35:36.3224997Z           "build-arg:VERSION": "93f766e8979f44d4941628828d31b1b886c3c032",
+2025-08-29T05:35:36.3225653Z           "label:org.opencontainers.image.created": "2025-08-29T05:34:30.020Z",
+2025-08-29T05:35:36.3226455Z           "label:org.opencontainers.image.description": "",
+2025-08-29T05:35:36.3227034Z           "label:org.opencontainers.image.licenses": "AGPL-3.0",
+2025-08-29T05:35:36.3227751Z           "label:org.opencontainers.image.revision": "93f766e8979f44d4941628828d31b1b886c3c032",
+2025-08-29T05:35:36.3242003Z           "label:org.opencontainers.image.source": "https://github.com/jakenelwood/espocrm-standalone",
+2025-08-29T05:35:36.3242982Z           "label:org.opencontainers.image.title": "espocrm-standalone",
+2025-08-29T05:35:36.3243809Z           "label:org.opencontainers.image.url": "https://github.com/jakenelwood/espocrm-standalone",
+2025-08-29T05:35:36.3244593Z           "label:org.opencontainers.image.version": "main"
+2025-08-29T05:35:36.3245043Z         },
+2025-08-29T05:35:36.3245277Z         "locals": [
+2025-08-29T05:35:36.3245539Z           {
+2025-08-29T05:35:36.3245776Z             "name": "context"
+2025-08-29T05:35:36.3246227Z           },
+2025-08-29T05:35:36.3246485Z           {
+2025-08-29T05:35:36.3246758Z             "name": "dockerfile"
+2025-08-29T05:35:36.3247092Z           }
+2025-08-29T05:35:36.3247346Z         ]
+2025-08-29T05:35:36.3247595Z       },
+2025-08-29T05:35:36.3247842Z       "environment": {
+2025-08-29T05:35:36.3248152Z         "platform": "linux/amd64"
+2025-08-29T05:35:36.3248496Z       }
+2025-08-29T05:35:36.3248737Z     }
+2025-08-29T05:35:36.3248966Z   },
+2025-08-29T05:35:36.3249799Z   "buildx.build.ref": "builder-b7a02428-6e6f-458e-81bc-51f48f0837f3/builder-b7a02428-6e6f-458e-81bc-51f48f0837f30/23lxqhmuy4ayd4t1nbjuvdg3s",
+2025-08-29T05:35:36.3251061Z   "containerimage.config.digest": "sha256:1f0bb03d04ee220182aabb03479e7e3907a1e261a09021463f7ef2fbb79c4501",
+2025-08-29T05:35:36.3251916Z   "containerimage.descriptor": {
+2025-08-29T05:35:36.3252448Z     "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+2025-08-29T05:35:36.3253188Z     "digest": "sha256:9940f9e6e2f8a3dc14abcdcb2b45ed3c636856049a231173610ed0eaeb362446",
+2025-08-29T05:35:36.3253790Z     "size": 6170,
+2025-08-29T05:35:36.3254289Z     "annotations": {
+2025-08-29T05:35:36.3254701Z       "org.opencontainers.image.created": "2025-08-29T05:35:15Z"
+2025-08-29T05:35:36.3255170Z     },
+2025-08-29T05:35:36.3255384Z     "platform": {
+2025-08-29T05:35:36.3255646Z       "architecture": "amd64",
+2025-08-29T05:35:36.3256163Z       "os": "linux"
+2025-08-29T05:35:36.3256420Z     }
+2025-08-29T05:35:36.3256638Z   },
+2025-08-29T05:35:36.3257208Z   "containerimage.digest": "sha256:9940f9e6e2f8a3dc14abcdcb2b45ed3c636856049a231173610ed0eaeb362446",
+2025-08-29T05:35:36.3258507Z   "image.name": "ghcr.io/jakenelwood/espocrm-standalone:main,ghcr.io/jakenelwood/espocrm-standalone:latest,ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"
+2025-08-29T05:35:36.3259612Z }
+2025-08-29T05:35:36.3260060Z ##[endgroup]
+2025-08-29T05:35:36.3330144Z ##[group]Run echo "🧪 Running application tests..."
+2025-08-29T05:35:36.3330566Z [36;1mecho "🧪 Running application tests..."[0m
+2025-08-29T05:35:36.3330862Z [36;1m# Get first tag from the list[0m
+2025-08-29T05:35:36.3331216Z [36;1mIMAGE_TAG=$(echo "ghcr.io/jakenelwood/espocrm-standalone:main[0m
+2025-08-29T05:35:36.3331583Z [36;1mghcr.io/jakenelwood/espocrm-standalone:latest[0m
+2025-08-29T05:35:36.3331978Z [36;1mghcr.io/jakenelwood/espocrm-standalone:main-93f766e" | head -n1)[0m
+2025-08-29T05:35:36.3332335Z [36;1mecho "Testing image: $IMAGE_TAG"[0m
+2025-08-29T05:35:36.3332555Z [36;1m[0m
+2025-08-29T05:35:36.3332722Z [36;1m# Start container for testing[0m
+2025-08-29T05:35:36.3332974Z [36;1mdocker run -d --name espocrm-test \[0m
+2025-08-29T05:35:36.3333258Z [36;1m  -e ESPOCRM_DATABASE_HOST=localhost \[0m
+2025-08-29T05:35:36.3333521Z [36;1m  -e ESPOCRM_DATABASE_NAME=test \[0m
+2025-08-29T05:35:36.3333772Z [36;1m  -e ESPOCRM_DATABASE_USER=test \[0m
+2025-08-29T05:35:36.3334056Z [36;1m  -e ESPOCRM_DATABASE_PASSWORD=test \[0m
+2025-08-29T05:35:36.3334295Z [36;1m  $IMAGE_TAG[0m
+2025-08-29T05:35:36.3334470Z [36;1m[0m
+2025-08-29T05:35:36.3334637Z [36;1m# Wait for application to start[0m
+2025-08-29T05:35:36.3334874Z [36;1msleep 30[0m
+2025-08-29T05:35:36.3335033Z [36;1m[0m
+2025-08-29T05:35:36.3335211Z [36;1m# Show container logs for debugging[0m
+2025-08-29T05:35:36.3335455Z [36;1mecho "Container logs:"[0m
+2025-08-29T05:35:36.3335676Z [36;1mdocker logs espocrm-test || true[0m
+2025-08-29T05:35:36.3336125Z [36;1m[0m
+2025-08-29T05:35:36.3336377Z [36;1m# Check if application is healthy (continue even if fails for now)[0m
+2025-08-29T05:35:36.3336970Z [36;1mdocker exec espocrm-test curl -f http://localhost/api/v1/App/health || echo "Health check failed, continuing"[0m
+2025-08-29T05:35:36.3337424Z [36;1m[0m
+2025-08-29T05:35:36.3337578Z [36;1m# Clean up[0m
+2025-08-29T05:35:36.3337774Z [36;1mdocker stop espocrm-test || true[0m
+2025-08-29T05:35:36.3338019Z [36;1mdocker rm espocrm-test || true[0m
+2025-08-29T05:35:36.3386562Z shell: /usr/bin/bash -e {0}
+2025-08-29T05:35:36.3386803Z env:
+2025-08-29T05:35:36.3386962Z   REGISTRY: ghcr.io
+2025-08-29T05:35:36.3387184Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:35:36.3387454Z   APP_NAME: espocrm
+2025-08-29T05:35:36.3387655Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:35:36.3388352Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:35:36.3390578Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:35:36.3394118Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:35:36.3400631Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:35:36.3405273Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:35:36.3406262Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:35:36.3407159Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:35:36.3407996Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:35:36.3408484Z ##[endgroup]
+2025-08-29T05:35:36.3475332Z 🧪 Running application tests...
+2025-08-29T05:35:36.3499361Z Testing image: ghcr.io/jakenelwood/espocrm-standalone:main
+2025-08-29T05:35:36.3775326Z fc3a95d1522e755771a0d34eb355b2b2a04cac9d68465bd4735e355738523d5f
+2025-08-29T05:36:06.4803562Z Container logs:
+2025-08-29T05:36:06.4927154Z exec /usr/local/bin/docker-entrypoint.sh: no such file or directory
+2025-08-29T05:36:06.5056550Z Error response from daemon: container fc3a95d1522e755771a0d34eb355b2b2a04cac9d68465bd4735e355738523d5f is not running
+2025-08-29T05:36:06.5068617Z Health check failed, continuing
+2025-08-29T05:36:06.5171344Z espocrm-test
+2025-08-29T05:36:06.5317884Z espocrm-test
+2025-08-29T05:36:06.5446208Z ##[group]Run aquasecurity/trivy-action@master
+2025-08-29T05:36:06.5446501Z with:
+2025-08-29T05:36:06.5447060Z   image-ref: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:06.5447677Z   format: sarif
+2025-08-29T05:36:06.5447861Z   output: trivy-results.sarif
+2025-08-29T05:36:06.5448071Z   severity: CRITICAL,HIGH
+2025-08-29T05:36:06.5448263Z   scan-type: image
+2025-08-29T05:36:06.5448427Z   scan-ref: .
+2025-08-29T05:36:06.5448593Z   ignore-unfixed: false
+2025-08-29T05:36:06.5448775Z   vuln-type: os,library
+2025-08-29T05:36:06.5449097Z   cache-dir: /home/runner/work/espocrm-standalone/espocrm-standalone/.cache/trivy
+2025-08-29T05:36:06.5449456Z   list-all-pkgs: false
+2025-08-29T05:36:06.5449643Z   version: v0.65.0
+2025-08-29T05:36:06.5449806Z   cache: true
+2025-08-29T05:36:06.5449973Z   skip-setup-trivy: false
+2025-08-29T05:36:06.5450326Z   token-setup-trivy: ***
+2025-08-29T05:36:06.5450752Z env:
+2025-08-29T05:36:06.5450900Z   REGISTRY: ghcr.io
+2025-08-29T05:36:06.5451118Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:06.5451365Z   APP_NAME: espocrm
+2025-08-29T05:36:06.5451555Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:06.5452229Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:06.5454430Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:06.5458177Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:06.5464087Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:06.5468860Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:06.5469863Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:06.5470756Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:06.5471597Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:06.5472082Z ##[endgroup]
+2025-08-29T05:36:06.5592683Z ##[group]Run aquasecurity/setup-trivy@ff1b8b060f23b650436d419b5e13f67f5d4c3087
+2025-08-29T05:36:06.5593031Z with:
+2025-08-29T05:36:06.5593183Z   version: v0.65.0
+2025-08-29T05:36:06.5593353Z   cache: true
+2025-08-29T05:36:06.5593620Z   token: ***
+2025-08-29T05:36:06.5593794Z   path: $HOME/.local/bin
+2025-08-29T05:36:06.5593983Z env:
+2025-08-29T05:36:06.5594130Z   REGISTRY: ghcr.io
+2025-08-29T05:36:06.5594348Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:06.5594767Z   APP_NAME: espocrm
+2025-08-29T05:36:06.5594967Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:06.5595654Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:06.5598018Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:06.5601594Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:06.5607693Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:06.5612291Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:06.5613136Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:06.5614177Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:06.5615028Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:06.5615509Z ##[endgroup]
+2025-08-29T05:36:06.5630424Z ##[group]Run echo "dir=$HOME/.local/bin/trivy-bin" >> $GITHUB_OUTPUT
+2025-08-29T05:36:06.5630814Z [36;1mecho "dir=$HOME/.local/bin/trivy-bin" >> $GITHUB_OUTPUT[0m
+2025-08-29T05:36:06.5661226Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-08-29T05:36:06.5661530Z env:
+2025-08-29T05:36:06.5661684Z   REGISTRY: ghcr.io
+2025-08-29T05:36:06.5661900Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:06.5662151Z   APP_NAME: espocrm
+2025-08-29T05:36:06.5662348Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:06.5663047Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:06.5665404Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:06.5669077Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:06.5675022Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:06.5679715Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:06.5680551Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:06.5681439Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:06.5682405Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:06.5682897Z ##[endgroup]
+2025-08-29T05:36:06.5777603Z ##[group]Run actions/cache@v4
+2025-08-29T05:36:06.5777811Z with:
+2025-08-29T05:36:06.5777994Z   path: /home/runner/.local/bin/trivy-bin
+2025-08-29T05:36:06.5778252Z   key: trivy-binary-v0.65.0-Linux-X64
+2025-08-29T05:36:06.5778497Z   enableCrossOsArchive: false
+2025-08-29T05:36:06.5778712Z   fail-on-cache-miss: false
+2025-08-29T05:36:06.5778916Z   lookup-only: false
+2025-08-29T05:36:06.5779093Z   save-always: false
+2025-08-29T05:36:06.5779261Z env:
+2025-08-29T05:36:06.5779408Z   REGISTRY: ghcr.io
+2025-08-29T05:36:06.5779619Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:06.5779859Z   APP_NAME: espocrm
+2025-08-29T05:36:06.5780050Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:06.5780739Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:06.5783075Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:06.5786786Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:06.5792725Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:06.5797561Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:06.5798396Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:06.5799283Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:06.5800252Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:06.5800745Z ##[endgroup]
+2025-08-29T05:36:06.7900960Z Cache not found for input keys: trivy-binary-v0.65.0-Linux-X64
+2025-08-29T05:36:06.7998759Z ##[group]Run actions/checkout@v4
+2025-08-29T05:36:06.7998989Z with:
+2025-08-29T05:36:06.7999166Z   repository: aquasecurity/trivy
+2025-08-29T05:36:06.7999389Z   sparse-checkout: contrib
+
+2025-08-29T05:36:06.7999599Z   path: trivy
+2025-08-29T05:36:06.7999767Z   fetch-depth: 1
+2025-08-29T05:36:06.7999973Z   github-server-url: https://github.com
+2025-08-29T05:36:06.8000370Z   token: ***
+2025-08-29T05:36:06.8000556Z   ssh-strict: true
+2025-08-29T05:36:06.8000736Z   ssh-user: git
+2025-08-29T05:36:06.8000920Z   persist-credentials: true
+2025-08-29T05:36:06.8001131Z   clean: true
+2025-08-29T05:36:06.8001310Z   sparse-checkout-cone-mode: true
+2025-08-29T05:36:06.8016629Z   fetch-tags: false
+2025-08-29T05:36:06.8017065Z   show-progress: true
+2025-08-29T05:36:06.8017379Z   lfs: false
+2025-08-29T05:36:06.8017646Z   submodules: false
+2025-08-29T05:36:06.8018134Z   set-safe-directory: true
+2025-08-29T05:36:06.8018347Z env:
+2025-08-29T05:36:06.8018504Z   REGISTRY: ghcr.io
+2025-08-29T05:36:06.8018736Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:06.8018993Z   APP_NAME: espocrm
+2025-08-29T05:36:06.8019191Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:06.8019888Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:06.8022143Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:06.8025719Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:06.8031976Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:06.8036965Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:06.8037840Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:06.8038750Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:06.8039595Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:06.8040082Z ##[endgroup]
+2025-08-29T05:36:06.8955758Z Syncing repository: aquasecurity/trivy
+2025-08-29T05:36:06.8962533Z ##[group]Getting Git version info
+2025-08-29T05:36:06.8964325Z Working directory is '/home/runner/work/espocrm-standalone/espocrm-standalone/trivy'
+2025-08-29T05:36:06.9006545Z [command]/usr/bin/git version
+2025-08-29T05:36:06.9043650Z git version 2.51.0
+2025-08-29T05:36:06.9068899Z ##[endgroup]
+2025-08-29T05:36:06.9089787Z Temporarily overriding HOME='/home/runner/work/_temp/e7e9c8f6-d279-406f-afb9-990beae5f0b4' before making global git config changes
+2025-08-29T05:36:06.9091297Z Adding repository directory to the temporary git global config as a safe directory
+2025-08-29T05:36:06.9095626Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/espocrm-standalone/espocrm-standalone/trivy
+2025-08-29T05:36:06.9128438Z ##[group]Initializing the repository
+2025-08-29T05:36:06.9133587Z [command]/usr/bin/git init /home/runner/work/espocrm-standalone/espocrm-standalone/trivy
+2025-08-29T05:36:06.9170751Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-08-29T05:36:06.9171956Z hint: is subject to change. To configure the initial branch name to use in all
+2025-08-29T05:36:06.9172937Z hint: of your new repositories, which will suppress this warning, call:
+2025-08-29T05:36:06.9173489Z hint:
+2025-08-29T05:36:06.9173864Z hint: 	git config --global init.defaultBranch <name>
+2025-08-29T05:36:06.9174342Z hint:
+2025-08-29T05:36:06.9174635Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-08-29T05:36:06.9175088Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-08-29T05:36:06.9175424Z hint:
+2025-08-29T05:36:06.9175593Z hint: 	git branch -m <name>
+2025-08-29T05:36:06.9175780Z hint:
+2025-08-29T05:36:06.9176400Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-08-29T05:36:06.9177013Z Initialized empty Git repository in /home/runner/work/espocrm-standalone/espocrm-standalone/trivy/.git/
+2025-08-29T05:36:06.9183273Z [command]/usr/bin/git remote add origin https://github.com/aquasecurity/trivy
+2025-08-29T05:36:06.9214077Z ##[endgroup]
+2025-08-29T05:36:06.9214642Z ##[group]Disabling automatic garbage collection
+2025-08-29T05:36:06.9219522Z [command]/usr/bin/git config --local gc.auto 0
+2025-08-29T05:36:06.9248484Z ##[endgroup]
+2025-08-29T05:36:06.9248849Z ##[group]Setting up auth
+2025-08-29T05:36:06.9255379Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-08-29T05:36:06.9284294Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-08-29T05:36:06.9508506Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-08-29T05:36:06.9539037Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-08-29T05:36:06.9766756Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-08-29T05:36:06.9812167Z ##[endgroup]
+2025-08-29T05:36:06.9812715Z ##[group]Determining the default branch
+2025-08-29T05:36:06.9815659Z Retrieving the default branch name
+2025-08-29T05:36:07.2095466Z Default branch 'main'
+2025-08-29T05:36:07.2097341Z ##[endgroup]
+2025-08-29T05:36:07.2098322Z ##[group]Fetching the repository
+2025-08-29T05:36:07.2106024Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +refs/heads/main:refs/remotes/origin/main
+2025-08-29T05:36:07.4589651Z From https://github.com/aquasecurity/trivy
+2025-08-29T05:36:07.4590224Z  * [new branch]      main       -> origin/main
+2025-08-29T05:36:07.4618887Z ##[endgroup]
+2025-08-29T05:36:07.4619358Z ##[group]Determining the checkout info
+2025-08-29T05:36:07.4620926Z ##[endgroup]
+2025-08-29T05:36:07.4625844Z ##[group]Setting up sparse checkout
+2025-08-29T05:36:07.4626409Z [command]/usr/bin/git sparse-checkout set contrib
+2025-08-29T05:36:07.4657404Z ##[endgroup]
+2025-08-29T05:36:07.4657948Z ##[group]Checking out the ref
+2025-08-29T05:36:07.4661970Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-08-29T05:36:07.6639105Z Switched to a new branch 'main'
+2025-08-29T05:36:07.6640088Z branch 'main' set up to track 'origin/main'.
+2025-08-29T05:36:07.6647627Z ##[endgroup]
+2025-08-29T05:36:07.6686073Z [command]/usr/bin/git log -1 --format=%H
+2025-08-29T05:36:07.6709192Z d1de58a7dc603695be006b7d4cc65b727fc3b28b
+2025-08-29T05:36:07.6814073Z ##[group]Run echo "installing Trivy binary"
+2025-08-29T05:36:07.6814362Z [36;1mecho "installing Trivy binary"[0m
+2025-08-29T05:36:07.6814744Z [36;1mbash ./trivy/contrib/install.sh -b /home/runner/.local/bin/trivy-bin v0.65.0[0m
+2025-08-29T05:36:07.6815226Z [36;1mcp -r ./trivy/contrib /home/runner/.local/bin/trivy-bin/contrib[0m
+2025-08-29T05:36:07.6815546Z [36;1mrm -rf ./trivy[0m
+2025-08-29T05:36:07.6845164Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-08-29T05:36:07.6845468Z env:
+2025-08-29T05:36:07.6845624Z   REGISTRY: ghcr.io
+2025-08-29T05:36:07.6845841Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:07.6846396Z   APP_NAME: espocrm
+2025-08-29T05:36:07.6846599Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:07.6847317Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:07.6849534Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:07.6853062Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:07.6859322Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:07.6863963Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:07.6864811Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:07.6865706Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:07.6866914Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:07.6867402Z ##[endgroup]
+2025-08-29T05:36:07.6912504Z installing Trivy binary
+2025-08-29T05:36:07.7037976Z aquasecurity/trivy info checking GitHub for tag 'v0.65.0'
+2025-08-29T05:36:07.8603161Z aquasecurity/trivy info found version: 0.65.0 for v0.65.0/Linux/64bit
+2025-08-29T05:36:09.3623865Z aquasecurity/trivy info installed /home/runner/.local/bin/trivy-bin/trivy
+2025-08-29T05:36:09.4095132Z ##[group]Run echo /home/runner/.local/bin/trivy-bin >> $GITHUB_PATH
+2025-08-29T05:36:09.4095551Z [36;1mecho /home/runner/.local/bin/trivy-bin >> $GITHUB_PATH[0m
+2025-08-29T05:36:09.4124992Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-08-29T05:36:09.4125299Z env:
+2025-08-29T05:36:09.4125458Z   REGISTRY: ghcr.io
+2025-08-29T05:36:09.4125675Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:09.4128152Z   APP_NAME: espocrm
+2025-08-29T05:36:09.4128355Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:09.4129040Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:09.4131312Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:09.4134968Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:09.4141344Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:09.4146175Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:09.4147014Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:09.4148122Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:09.4148958Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:09.4149440Z ##[endgroup]
+2025-08-29T05:36:09.4223126Z ##[group]Run echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+2025-08-29T05:36:09.4223486Z [36;1mecho "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT[0m
+2025-08-29T05:36:09.4251911Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-08-29T05:36:09.4252212Z env:
+2025-08-29T05:36:09.4252373Z   REGISTRY: ghcr.io
+2025-08-29T05:36:09.4252590Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:09.4252846Z   APP_NAME: espocrm
+2025-08-29T05:36:09.4253032Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:09.4253729Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:09.4256134Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:09.4259683Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:09.4265709Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:09.4270387Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:09.4271230Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:09.4272116Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:09.4272952Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:09.4273559Z ##[endgroup]
+2025-08-29T05:36:09.4364010Z ##[group]Run actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809
+2025-08-29T05:36:09.4364307Z with:
+2025-08-29T05:36:09.4364595Z   path: /home/runner/work/espocrm-standalone/espocrm-standalone/.cache/trivy
+2025-08-29T05:36:09.4364943Z   key: cache-trivy-2025-08-29
+2025-08-29T05:36:09.4365163Z   restore-keys: cache-trivy-
+2025-08-29T05:36:09.4365376Z   enableCrossOsArchive: false
+2025-08-29T05:36:09.4365586Z   fail-on-cache-miss: false
+2025-08-29T05:36:09.4365781Z   lookup-only: false
+2025-08-29T05:36:09.4366227Z   save-always: false
+2025-08-29T05:36:09.4366395Z env:
+2025-08-29T05:36:09.4366547Z   REGISTRY: ghcr.io
+2025-08-29T05:36:09.4366756Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:09.4367002Z   APP_NAME: espocrm
+2025-08-29T05:36:09.4367198Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:09.4367885Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:09.4370101Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:09.4373602Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:09.4379877Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:09.4384453Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:09.4385293Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:09.4386391Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:09.4387371Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:09.4387853Z ##[endgroup]
+2025-08-29T05:36:09.6269822Z Cache not found for input keys: cache-trivy-2025-08-29, cache-trivy-
+2025-08-29T05:36:09.6340686Z ##[group]Run echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+2025-08-29T05:36:09.6341060Z [36;1mecho "$GITHUB_ACTION_PATH" >> $GITHUB_PATH[0m
+2025-08-29T05:36:09.6370533Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-08-29T05:36:09.6370827Z env:
+2025-08-29T05:36:09.6370983Z   REGISTRY: ghcr.io
+2025-08-29T05:36:09.6371194Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:09.6371448Z   APP_NAME: espocrm
+2025-08-29T05:36:09.6371633Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:09.6372328Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:09.6374554Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:09.6378342Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:09.6384407Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:09.6389104Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:09.6389945Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:09.6390822Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:09.6391660Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:09.6392407Z   GITHUB_ACTION_PATH: /home/runner/work/_actions/aquasecurity/trivy-action/master
+2025-08-29T05:36:09.6392747Z ##[endgroup]
+2025-08-29T05:36:09.6458130Z ##[group]Run rm -f trivy_envs.txt
+2025-08-29T05:36:09.6458377Z [36;1mrm -f trivy_envs.txt[0m
+2025-08-29T05:36:09.6458583Z [36;1mtouch trivy_envs.txt[0m
+2025-08-29T05:36:09.6484773Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-08-29T05:36:09.6485068Z env:
+2025-08-29T05:36:09.6485220Z   REGISTRY: ghcr.io
+2025-08-29T05:36:09.6485437Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:09.6485687Z   APP_NAME: espocrm
+2025-08-29T05:36:09.6486053Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:09.6486795Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:09.6489013Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:09.6492787Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:09.6498972Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:09.6503572Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:09.6504417Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:09.6505293Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:09.6506344Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:09.6506837Z ##[endgroup]
+2025-08-29T05:36:09.6590330Z ##[group]Run # Note: There is currently no way to distinguish between undefined variables and empty strings in GitHub Actions.
+2025-08-29T05:36:09.6591212Z [36;1m# Note: There is currently no way to distinguish between undefined variables and empty strings in GitHub Actions.[0m
+2025-08-29T05:36:09.6591777Z [36;1m# This limitation affects how we handle default values and empty inputs.[0m
+2025-08-29T05:36:09.6592253Z [36;1m# For more information, see: https://github.com/actions/runner/issues/924[0m
+2025-08-29T05:36:09.6592599Z [36;1m[0m
+2025-08-29T05:36:09.6592913Z [36;1m# The following logic implements the configuration priority described in the README:[0m
+2025-08-29T05:36:09.6593285Z [36;1m#[0m
+2025-08-29T05:36:09.6593441Z [36;1m# Inputs[0m
+2025-08-29T05:36:09.6593626Z [36;1m# Environment Variables[0m
+2025-08-29T05:36:09.6593848Z [36;1m# Config File[0m
+2025-08-29T05:36:09.6594037Z [36;1m# Defaults[0m
+2025-08-29T05:36:09.6594208Z [36;1m#[0m
+2025-08-29T05:36:09.6594571Z [36;1m# As noted above defaults are awkward to handle as GitHub Actions will inject those values as the input[0m
+2025-08-29T05:36:09.6595180Z [36;1m# if the caller doesn't provide them, thus if the input matches the default we don't set it as we[0m
+2025-08-29T05:36:09.6595758Z [36;1m# can't tell the difference.  Plus if we did set it when it was the default value then it could potentially [0m
+2025-08-29T05:36:09.6596649Z [36;1m# override an external environment variable, or something in the callers configuration file, which then wouldn't [0m
+2025-08-29T05:36:09.6597181Z [36;1m# match the configuration priority that is documented.[0m
+2025-08-29T05:36:09.6597482Z [36;1mset_env_var_if_provided() {[0m
+2025-08-29T05:36:09.6597718Z [36;1m  local var_name="$1"[0m
+2025-08-29T05:36:09.6597928Z [36;1m  local input_value="$2"[0m
+2025-08-29T05:36:09.6598154Z [36;1m  local default_value="$3"[0m
+2025-08-29T05:36:09.6598364Z [36;1m[0m
+2025-08-29T05:36:09.6598613Z [36;1m  if [ ! -z "$input_value" ] && [ "$input_value" != "$default_value" ]; then[0m
+2025-08-29T05:36:09.6599032Z [36;1m    # If action was provided with explicit input by the caller set that[0m
+2025-08-29T05:36:09.6599418Z [36;1m    echo "export $var_name=$input_value" >> trivy_envs.txt[0m
+2025-08-29T05:36:09.6599701Z [36;1m  fi[0m
+2025-08-29T05:36:09.6599854Z [36;1m}[0m
+2025-08-29T05:36:09.6600005Z [36;1m[0m
+2025-08-29T05:36:09.6600247Z [36;1m# Set environment variables, handling those with default values[0m
+2025-08-29T05:36:09.6600761Z [36;1m# cf. https://aquasecurity.github.io/trivy/latest/docs/configuration/#environment-variables[0m
+2025-08-29T05:36:09.6601245Z [36;1mset_env_var_if_provided "TRIVY_INPUT" "" ""[0m
+2025-08-29T05:36:09.6601554Z [36;1mset_env_var_if_provided "TRIVY_EXIT_CODE" "" ""[0m
+2025-08-29T05:36:09.6601906Z [36;1mset_env_var_if_provided "TRIVY_IGNORE_UNFIXED" "false" "false"[0m
+2025-08-29T05:36:09.6602315Z [36;1mset_env_var_if_provided "TRIVY_PKG_TYPES" "os,library" "os,library"[0m
+2025-08-29T05:36:09.6602940Z [36;1mset_env_var_if_provided "TRIVY_SEVERITY" "CRITICAL,HIGH" "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"[0m
+2025-08-29T05:36:09.6603414Z [36;1mset_env_var_if_provided "TRIVY_FORMAT" "sarif" "table"[0m
+2025-08-29T05:36:09.6603746Z [36;1mset_env_var_if_provided "TRIVY_TEMPLATE" "" ""[0m
+2025-08-29T05:36:09.6604099Z [36;1mset_env_var_if_provided "TRIVY_OUTPUT" "trivy-results.sarif" ""[0m
+2025-08-29T05:36:09.6604460Z [36;1mset_env_var_if_provided "TRIVY_SKIP_DIRS" "" ""[0m
+2025-08-29T05:36:09.6604774Z [36;1mset_env_var_if_provided "TRIVY_SKIP_FILES" "" ""[0m
+2025-08-29T05:36:09.6605078Z [36;1mset_env_var_if_provided "TRIVY_TIMEOUT" "" ""[0m
+2025-08-29T05:36:09.6605391Z [36;1mset_env_var_if_provided "TRIVY_IGNORE_POLICY" "" ""[0m
+2025-08-29T05:36:09.6605700Z [36;1mset_env_var_if_provided "TRIVY_QUIET" "" ""[0m
+2025-08-29T05:36:09.6606293Z [36;1mset_env_var_if_provided "TRIVY_LIST_ALL_PKGS" "false" "false"[0m
+2025-08-29T05:36:09.6606641Z [36;1mset_env_var_if_provided "TRIVY_SCANNERS" "" ""[0m
+2025-08-29T05:36:09.6606943Z [36;1mset_env_var_if_provided "TRIVY_CONFIG" "" ""[0m
+2025-08-29T05:36:09.6607362Z [36;1mset_env_var_if_provided "TRIVY_TF_VARS" "" ""[0m
+2025-08-29T05:36:09.6607671Z [36;1mset_env_var_if_provided "TRIVY_DOCKER_HOST" "" ""[0m
+2025-08-29T05:36:09.6634082Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-08-29T05:36:09.6634383Z env:
+2025-08-29T05:36:09.6634540Z   REGISTRY: ghcr.io
+2025-08-29T05:36:09.6634755Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:09.6635010Z   APP_NAME: espocrm
+2025-08-29T05:36:09.6635202Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:09.6636062Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:09.6638295Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:09.6641824Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:09.6648058Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:09.6652694Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:09.6653536Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:09.6654426Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:09.6655258Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:09.6655745Z ##[endgroup]
+2025-08-29T05:36:09.6735086Z ##[group]Run entrypoint.sh
+2025-08-29T05:36:09.6735309Z [36;1mentrypoint.sh[0m
+2025-08-29T05:36:09.6761555Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-08-29T05:36:09.6761998Z env:
+2025-08-29T05:36:09.6762153Z   REGISTRY: ghcr.io
+2025-08-29T05:36:09.6762372Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:09.6762615Z   APP_NAME: espocrm
+2025-08-29T05:36:09.6762807Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:09.6763486Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:09.6765687Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:09.6769409Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:09.6775337Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:09.6780093Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:09.6781079Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:09.6781989Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:09.6782836Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:09.6783362Z   INPUT_SCAN_TYPE: image
+2025-08-29T05:36:09.6783960Z   INPUT_IMAGE_REF: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:09.6784579Z   INPUT_SCAN_REF: .
+2025-08-29T05:36:09.6784758Z   INPUT_TRIVYIGNORES: 
+2025-08-29T05:36:09.6784939Z   INPUT_GITHUB_PAT: 
+2025-08-29T05:36:09.6785126Z   INPUT_LIMIT_SEVERITIES_FOR_SARIF: 
+2025-08-29T05:36:09.6785509Z   TRIVY_CACHE_DIR: /home/runner/work/espocrm-standalone/espocrm-standalone/.cache/trivy
+2025-08-29T05:36:09.6786173Z ##[endgroup]
+2025-08-29T05:36:09.6843956Z Building SARIF report with all severities
+2025-08-29T05:36:09.6844652Z Running Trivy with options: trivy image ghcr.io/jakenelwood/espocrm-standalone:main
+2025-08-29T05:36:09.6845368Z ghcr.io/jakenelwood/espocrm-standalone:latest
+2025-08-29T05:36:09.6846015Z ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:09.7422364Z 2025-08-29T05:36:09Z	INFO	[vulndb] Need to update DB
+2025-08-29T05:36:09.7422885Z 2025-08-29T05:36:09Z	INFO	[vulndb] Downloading vulnerability DB...
+2025-08-29T05:36:09.7423418Z 2025-08-29T05:36:09Z	INFO	[vulndb] Downloading artifact...	repo="mirror.gcr.io/aquasec/trivy-db:2"
+2025-08-29T05:36:12.8088358Z 55.09 MiB / 69.11 MiB [------------------------------------------------>____________] 79.72% ? p/s ?69.11 MiB / 69.11 MiB [----------------------------------------------------------->] 100.00% ? p/s ?69.11 MiB / 69.11 MiB [----------------------------------------------------------->] 100.00% ? p/s ?69.11 MiB / 69.11 MiB [---------------------------------------------->] 100.00% 23.35 MiB p/s ETA 0s69.11 MiB / 69.11 MiB [---------------------------------------------->] 100.00% 23.35 MiB p/s ETA 0s69.11 MiB / 69.11 MiB [---------------------------------------------->] 100.00% 23.35 MiB p/s ETA 0s69.11 MiB / 69.11 MiB [---------------------------------------------->] 100.00% 21.84 MiB p/s ETA 0s69.11 MiB / 69.11 MiB [---------------------------------------------->] 100.00% 21.84 MiB p/s ETA 0s69.11 MiB / 69.11 MiB [---------------------------------------------->] 100.00% 21.84 MiB p/s ETA 0s69.11 MiB / 69.11 MiB [---------------------------------------------->] 100.00% 20.43 MiB p/s ETA 0s69.11 MiB / 69.11 MiB [---------------------------------------------->] 100.00% 20.43 MiB p/s ETA 0s69.11 MiB / 69.11 MiB [-------------------------------------------------] 100.00% 34.20 MiB p/s 2.2s2025-08-29T05:36:12Z	INFO	[vulndb] Artifact successfully downloaded	repo="mirror.gcr.io/aquasec/trivy-db:2"
+2025-08-29T05:36:12.8092628Z 2025-08-29T05:36:12Z	INFO	[vuln] Vulnerability scanning is enabled
+2025-08-29T05:36:12.8093152Z 2025-08-29T05:36:12Z	INFO	[secret] Secret scanning is enabled
+2025-08-29T05:36:12.8093934Z 2025-08-29T05:36:12Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2025-08-29T05:36:12.8095163Z 2025-08-29T05:36:12Z	INFO	[secret] Please see also https://trivy.dev/v0.65/docs/scanner/secret#recommendation for faster secret detection
+2025-08-29T05:36:12.8109139Z 2025-08-29T05:36:12Z	FATAL	Fatal error	run error: image scan error: scan error: unable to initialize a scan service: unable to initialize an image scan service: failed to parse the image name: could not parse reference: ghcr.io/jakenelwood/espocrm-standalone:main
+2025-08-29T05:36:12.8112839Z ghcr.io/jakenelwood/espocrm-standalone:latest
+2025-08-29T05:36:12.8113391Z ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:12.8164640Z ##[error]Process completed with exit code 1.
+2025-08-29T05:36:12.8184629Z ##[group]Run rm -f trivy_envs.txt
+2025-08-29T05:36:12.8184893Z [36;1mrm -f trivy_envs.txt[0m
+2025-08-29T05:36:12.8214138Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-08-29T05:36:12.8214430Z env:
+2025-08-29T05:36:12.8214587Z   REGISTRY: ghcr.io
+2025-08-29T05:36:12.8214798Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:12.8215046Z   APP_NAME: espocrm
+2025-08-29T05:36:12.8215233Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:12.8216034Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:12.8218291Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:12.8222044Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:12.8228730Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:12.8233467Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:12.8234322Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:12.8235211Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:12.8236180Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:12.8236676Z ##[endgroup]
+2025-08-29T05:36:12.8358951Z ##[group]Run github/codeql-action/upload-sarif@v3
+2025-08-29T05:36:12.8359233Z with:
+2025-08-29T05:36:12.8359403Z   sarif_file: trivy-results.sarif
+2025-08-29T05:36:12.8359735Z   checkout_path: /home/runner/work/espocrm-standalone/espocrm-standalone
+2025-08-29T05:36:12.8360173Z   token: ***
+2025-08-29T05:36:12.8360341Z   matrix: null
+2025-08-29T05:36:12.8360772Z   wait-for-processing: true
+2025-08-29T05:36:12.8360974Z env:
+2025-08-29T05:36:12.8361125Z   REGISTRY: ghcr.io
+2025-08-29T05:36:12.8361327Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:36:12.8361574Z   APP_NAME: espocrm
+2025-08-29T05:36:12.8361768Z   DOCKER_METADATA_OUTPUT_VERSION: main
+2025-08-29T05:36:12.8362451Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/jakenelwood/espocrm-standalone:main
+ghcr.io/jakenelwood/espocrm-standalone:latest
+ghcr.io/jakenelwood/espocrm-standalone:main-93f766e
+2025-08-29T05:36:12.8364680Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=AGPL-3.0
+org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.title=espocrm-standalone
+org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+org.opencontainers.image.version=main
+2025-08-29T05:36:12.8368628Z   DOCKER_METADATA_OUTPUT_ANNOTATIONS: manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z
+manifest:org.opencontainers.image.description=
+manifest:org.opencontainers.image.licenses=AGPL-3.0
+manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032
+manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.title=espocrm-standalone
+manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone
+manifest:org.opencontainers.image.version=main
+2025-08-29T05:36:12.8374594Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/jakenelwood/espocrm-standalone:main","ghcr.io/jakenelwood/espocrm-standalone:latest","ghcr.io/jakenelwood/espocrm-standalone:main-93f766e"],"labels":{"org.opencontainers.image.created":"2025-08-29T05:34:30.020Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"AGPL-3.0","org.opencontainers.image.revision":"93f766e8979f44d4941628828d31b1b886c3c032","org.opencontainers.image.source":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.title":"espocrm-standalone","org.opencontainers.image.url":"https://github.com/jakenelwood/espocrm-standalone","org.opencontainers.image.version":"main"},"annotations":["manifest:org.opencontainers.image.created=2025-08-29T05:34:30.020Z","manifest:org.opencontainers.image.description=","manifest:org.opencontainers.image.licenses=AGPL-3.0","manifest:org.opencontainers.image.revision=93f766e8979f44d4941628828d31b1b886c3c032","manifest:org.opencontainers.image.source=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.title=espocrm-standalone","manifest:org.opencontainers.image.url=https://github.com/jakenelwood/espocrm-standalone","manifest:org.opencontainers.image.version=main"]}
+2025-08-29T05:36:12.8379433Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-tags.json
+2025-08-29T05:36:12.8380287Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_LABELS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-labels.json
+2025-08-29T05:36:12.8381175Z   DOCKER_METADATA_OUTPUT_BAKE_FILE_ANNOTATIONS: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake-annotations.json
+2025-08-29T05:36:12.8382012Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /home/runner/work/_temp/docker-actions-toolkit-4yTqfs/docker-metadata-action-bake.json
+2025-08-29T05:36:12.8382498Z ##[endgroup]
+2025-08-29T05:36:13.6319336Z ##[error]Path does not exist: trivy-results.sarif
+2025-08-29T05:36:13.7989794Z Post job cleanup.
+2025-08-29T05:36:14.1737268Z ##[group]Uploading combined SARIF debug artifact
+2025-08-29T05:36:14.1739653Z ##[endgroup]
+2025-08-29T05:36:14.1938162Z Post job cleanup.
+2025-08-29T05:36:14.1987660Z Post job cleanup.
+2025-08-29T05:36:14.2020371Z Post job cleanup.
+2025-08-29T05:36:14.3040316Z Post job cleanup.
+2025-08-29T05:36:14.5177866Z ##[group]Removing temp folder /home/runner/work/_temp/docker-actions-toolkit-3T5xSO
+2025-08-29T05:36:14.5190749Z ##[endgroup]
+2025-08-29T05:36:14.5191510Z ##[group]Post cache
+2025-08-29T05:36:14.5193646Z State not set
+2025-08-29T05:36:14.5194310Z ##[endgroup]
+2025-08-29T05:36:14.5293060Z Post job cleanup.
+2025-08-29T05:36:14.8564943Z [command]/usr/bin/docker logout ghcr.io
+2025-08-29T05:36:14.8699380Z Removing login credentials for ghcr.io
+2025-08-29T05:36:14.8733104Z ##[group]Post cache
+2025-08-29T05:36:14.8734548Z State not set
+2025-08-29T05:36:14.8736128Z ##[endgroup]
+2025-08-29T05:36:14.8863658Z Post job cleanup.
+2025-08-29T05:36:15.1623864Z ##[group]Removing builder
+2025-08-29T05:36:15.2793011Z [command]/usr/bin/docker buildx rm builder-b7a02428-6e6f-458e-81bc-51f48f0837f3
+2025-08-29T05:36:19.3926421Z builder-b7a02428-6e6f-458e-81bc-51f48f0837f3 removed
+2025-08-29T05:36:19.3963494Z ##[endgroup]
+2025-08-29T05:36:19.3964500Z ##[group]Cleaning up certificates
+2025-08-29T05:36:19.3970967Z ##[endgroup]
+2025-08-29T05:36:19.3971547Z ##[group]Post cache
+2025-08-29T05:36:19.3973964Z State not set
+2025-08-29T05:36:19.3974610Z ##[endgroup]
+2025-08-29T05:36:19.4093158Z Post job cleanup.
+2025-08-29T05:36:19.5017621Z [command]/usr/bin/git version
+2025-08-29T05:36:19.5052748Z git version 2.51.0
+2025-08-29T05:36:19.5095514Z Temporarily overriding HOME='/home/runner/work/_temp/538671ea-77d2-47ac-a358-5c0c4ed08f81' before making global git config changes
+2025-08-29T05:36:19.5097016Z Adding repository directory to the temporary git global config as a safe directory
+2025-08-29T05:36:19.5108796Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/espocrm-standalone/espocrm-standalone
+2025-08-29T05:36:19.5143533Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-08-29T05:36:19.5176198Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-08-29T05:36:19.5416501Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-08-29T05:36:19.5436733Z http.https://github.com/.extraheader
+2025-08-29T05:36:19.5449323Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-08-29T05:36:19.5479027Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-08-29T05:36:19.5813357Z Evaluate and set job outputs
+2025-08-29T05:36:19.5819018Z Set output 'image-tag'
+2025-08-29T05:36:19.5820715Z Set output 'image-digest'
+2025-08-29T05:36:19.5821738Z Cleaning up orphan processes

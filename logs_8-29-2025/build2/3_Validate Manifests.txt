@@ -1,0 +1,382 @@
+﻿2025-08-29T05:34:04.3664000Z Current runner version: '2.328.0'
+2025-08-29T05:34:04.3689553Z ##[group]Runner Image Provisioner
+2025-08-29T05:34:04.3690354Z Hosted Compute Agent
+2025-08-29T05:34:04.3691037Z Version: 20250821.380
+2025-08-29T05:34:04.3691622Z Commit: 438d12cb4fe092871db9867344e3bc0bc5319035
+2025-08-29T05:34:04.3692401Z Build Date: 2025-08-21T20:49:43Z
+2025-08-29T05:34:04.3692984Z ##[endgroup]
+2025-08-29T05:34:04.3693586Z ##[group]Operating System
+2025-08-29T05:34:04.3694129Z Ubuntu
+2025-08-29T05:34:04.3694710Z 24.04.3
+2025-08-29T05:34:04.3695162Z LTS
+2025-08-29T05:34:04.3695643Z ##[endgroup]
+2025-08-29T05:34:04.3696180Z ##[group]Runner Image
+2025-08-29T05:34:04.3696803Z Image: ubuntu-24.04
+2025-08-29T05:34:04.3697369Z Version: 20250824.1.0
+2025-08-29T05:34:04.3699048Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250824.1/images/ubuntu/Ubuntu2404-Readme.md
+2025-08-29T05:34:04.3700695Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250824.1
+2025-08-29T05:34:04.3701829Z ##[endgroup]
+2025-08-29T05:34:04.3702908Z ##[group]GITHUB_TOKEN Permissions
+2025-08-29T05:34:04.3705100Z Contents: read
+2025-08-29T05:34:04.3705633Z Metadata: read
+2025-08-29T05:34:04.3706128Z Packages: read
+2025-08-29T05:34:04.3706739Z ##[endgroup]
+2025-08-29T05:34:04.3709524Z Secret source: Actions
+2025-08-29T05:34:04.3710440Z Prepare workflow directory
+2025-08-29T05:34:04.4219350Z Prepare all required actions
+2025-08-29T05:34:04.4257035Z Getting action download info
+2025-08-29T05:34:04.6943461Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-08-29T05:34:04.8653522Z Complete job name: Validate Manifests
+2025-08-29T05:34:04.9389229Z ##[group]Run actions/checkout@v4
+2025-08-29T05:34:04.9390076Z with:
+2025-08-29T05:34:04.9390541Z   repository: jakenelwood/espocrm-standalone
+2025-08-29T05:34:04.9391283Z   token: ***
+2025-08-29T05:34:04.9391686Z   ssh-strict: true
+2025-08-29T05:34:04.9392102Z   ssh-user: git
+2025-08-29T05:34:04.9392516Z   persist-credentials: true
+2025-08-29T05:34:04.9392996Z   clean: true
+2025-08-29T05:34:04.9393410Z   sparse-checkout-cone-mode: true
+2025-08-29T05:34:04.9393904Z   fetch-depth: 1
+2025-08-29T05:34:04.9394306Z   fetch-tags: false
+2025-08-29T05:34:04.9394733Z   show-progress: true
+2025-08-29T05:34:04.9395150Z   lfs: false
+2025-08-29T05:34:04.9395530Z   submodules: false
+2025-08-29T05:34:04.9395942Z   set-safe-directory: true
+2025-08-29T05:34:04.9396592Z env:
+2025-08-29T05:34:04.9396968Z   REGISTRY: ghcr.io
+2025-08-29T05:34:04.9397610Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:34:04.9398171Z   APP_NAME: espocrm
+2025-08-29T05:34:04.9398574Z ##[endgroup]
+2025-08-29T05:34:05.0476972Z Syncing repository: jakenelwood/espocrm-standalone
+2025-08-29T05:34:05.0479867Z ##[group]Getting Git version info
+2025-08-29T05:34:05.0481252Z Working directory is '/home/runner/work/espocrm-standalone/espocrm-standalone'
+2025-08-29T05:34:05.0483249Z [command]/usr/bin/git version
+2025-08-29T05:34:05.0508002Z git version 2.51.0
+2025-08-29T05:34:05.0534847Z ##[endgroup]
+2025-08-29T05:34:05.0556466Z Temporarily overriding HOME='/home/runner/work/_temp/b67d9d29-dde8-416a-ac6c-5c77dc4b3991' before making global git config changes
+2025-08-29T05:34:05.0557999Z Adding repository directory to the temporary git global config as a safe directory
+2025-08-29T05:34:05.0561996Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/espocrm-standalone/espocrm-standalone
+2025-08-29T05:34:05.0596933Z Deleting the contents of '/home/runner/work/espocrm-standalone/espocrm-standalone'
+2025-08-29T05:34:05.0600678Z ##[group]Initializing the repository
+2025-08-29T05:34:05.0604575Z [command]/usr/bin/git init /home/runner/work/espocrm-standalone/espocrm-standalone
+2025-08-29T05:34:05.0661684Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-08-29T05:34:05.0663307Z hint: is subject to change. To configure the initial branch name to use in all
+2025-08-29T05:34:05.0664754Z hint: of your new repositories, which will suppress this warning, call:
+2025-08-29T05:34:05.0665920Z hint:
+2025-08-29T05:34:05.0666417Z hint: 	git config --global init.defaultBranch <name>
+2025-08-29T05:34:05.0666984Z hint:
+2025-08-29T05:34:05.0667737Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-08-29T05:34:05.0668628Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-08-29T05:34:05.0669465Z hint:
+2025-08-29T05:34:05.0670098Z hint: 	git branch -m <name>
+2025-08-29T05:34:05.0670741Z hint:
+2025-08-29T05:34:05.0671332Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-08-29T05:34:05.0672444Z Initialized empty Git repository in /home/runner/work/espocrm-standalone/espocrm-standalone/.git/
+2025-08-29T05:34:05.0675309Z [command]/usr/bin/git remote add origin https://github.com/jakenelwood/espocrm-standalone
+2025-08-29T05:34:05.0707150Z ##[endgroup]
+2025-08-29T05:34:05.0708132Z ##[group]Disabling automatic garbage collection
+2025-08-29T05:34:05.0711126Z [command]/usr/bin/git config --local gc.auto 0
+2025-08-29T05:34:05.0739953Z ##[endgroup]
+2025-08-29T05:34:05.0740658Z ##[group]Setting up auth
+2025-08-29T05:34:05.0746498Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-08-29T05:34:05.0776108Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-08-29T05:34:05.1029593Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-08-29T05:34:05.1060351Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-08-29T05:34:05.1281942Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-08-29T05:34:05.1320213Z ##[endgroup]
+2025-08-29T05:34:05.1321501Z ##[group]Fetching the repository
+2025-08-29T05:34:05.1331330Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +93f766e8979f44d4941628828d31b1b886c3c032:refs/remotes/origin/main
+2025-08-29T05:34:06.2766011Z From https://github.com/jakenelwood/espocrm-standalone
+2025-08-29T05:34:06.2768560Z  * [new ref]           93f766e8979f44d4941628828d31b1b886c3c032 -> origin/main
+2025-08-29T05:34:06.2803128Z ##[endgroup]
+2025-08-29T05:34:06.2804794Z ##[group]Determining the checkout info
+2025-08-29T05:34:06.2806512Z ##[endgroup]
+2025-08-29T05:34:06.2809069Z [command]/usr/bin/git sparse-checkout disable
+2025-08-29T05:34:06.2846023Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-08-29T05:34:06.2873232Z ##[group]Checking out the ref
+2025-08-29T05:34:06.2876441Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-08-29T05:34:07.2308764Z Switched to a new branch 'main'
+2025-08-29T05:34:07.2310512Z branch 'main' set up to track 'origin/main'.
+2025-08-29T05:34:07.2339446Z ##[endgroup]
+2025-08-29T05:34:07.2379041Z [command]/usr/bin/git log -1 --format=%H
+2025-08-29T05:34:07.2401401Z 93f766e8979f44d4941628828d31b1b886c3c032
+2025-08-29T05:34:07.2579186Z ##[group]Run # Install kubeval for manifest validation
+2025-08-29T05:34:07.2579713Z [36;1m# Install kubeval for manifest validation[0m
+2025-08-29T05:34:07.2580438Z [36;1mcurl -L https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz | tar xz[0m
+2025-08-29T05:34:07.2581017Z [36;1msudo mv kubeval /usr/local/bin/[0m
+2025-08-29T05:34:07.2581293Z [36;1m[0m
+2025-08-29T05:34:07.2581536Z [36;1m# Install kubesec for security scanning[0m
+2025-08-29T05:34:07.2582121Z [36;1mcurl -sSL https://github.com/controlplaneio/kubesec/releases/download/v2.13.0/kubesec_linux_amd64.tar.gz | tar xz[0m
+2025-08-29T05:34:07.2582696Z [36;1msudo mv kubesec /usr/local/bin/[0m
+2025-08-29T05:34:07.2631492Z shell: /usr/bin/bash -e {0}
+2025-08-29T05:34:07.2632006Z env:
+2025-08-29T05:34:07.2632219Z   REGISTRY: ghcr.io
+2025-08-29T05:34:07.2632477Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:34:07.2632785Z   APP_NAME: espocrm
+2025-08-29T05:34:07.2633038Z ##[endgroup]
+2025-08-29T05:34:07.2771421Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2025-08-29T05:34:07.2772223Z                                  Dload  Upload   Total   Spent    Left  Speed
+2025-08-29T05:34:07.2772637Z 
+2025-08-29T05:34:07.3880309Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2025-08-29T05:34:07.3881254Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2025-08-29T05:34:07.4532718Z 
+2025-08-29T05:34:07.4533398Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2025-08-29T05:34:07.5533329Z 
+2025-08-29T05:34:07.5533905Z 100 2814k  100 2814k    0     0   9.9M      0 --:--:-- --:--:-- --:--:--  9.9M
+2025-08-29T05:34:07.8215142Z ##[group]Run echo "📋 Validating Kubernetes manifests..."
+2025-08-29T05:34:07.8215573Z [36;1mecho "📋 Validating Kubernetes manifests..."[0m
+2025-08-29T05:34:07.8215901Z [36;1mfor file in k3s/*.yaml k3s/mysql/*.yaml; do[0m
+2025-08-29T05:34:07.8216167Z [36;1m  echo "Validating $file..."[0m
+2025-08-29T05:34:07.8216464Z [36;1m  kubeval --strict --ignore-missing-schemas $file[0m
+2025-08-29T05:34:07.8216734Z [36;1mdone[0m
+2025-08-29T05:34:07.8247167Z shell: /usr/bin/bash -e {0}
+2025-08-29T05:34:07.8247391Z env:
+2025-08-29T05:34:07.8247784Z   REGISTRY: ghcr.io
+2025-08-29T05:34:07.8248009Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:34:07.8248254Z   APP_NAME: espocrm
+2025-08-29T05:34:07.8248436Z ##[endgroup]
+2025-08-29T05:34:07.8294870Z 📋 Validating Kubernetes manifests...
+2025-08-29T05:34:07.8295372Z Validating k3s/configmap.yaml...
+2025-08-29T05:34:07.8318575Z WARN - Set to ignore missing schemas
+2025-08-29T05:34:07.9701252Z PASS - k3s/configmap.yaml contains a valid ConfigMap (espocrm.espocrm-config)
+2025-08-29T05:34:07.9709420Z Validating k3s/deployment.yaml...
+2025-08-29T05:34:07.9729318Z WARN - Set to ignore missing schemas
+2025-08-29T05:34:08.0756650Z PASS - k3s/deployment.yaml contains a valid Deployment (espocrm.espocrm)
+2025-08-29T05:34:08.0766000Z Validating k3s/ingress.yaml...
+2025-08-29T05:34:08.0788085Z WARN - Set to ignore missing schemas
+2025-08-29T05:34:08.2335275Z WARN - k3s/ingress.yaml containing a Ingress (espocrm.espocrm) was not validated against a schema
+2025-08-29T05:34:08.2343718Z Validating k3s/namespace.yaml...
+2025-08-29T05:34:08.2366448Z WARN - Set to ignore missing schemas
+2025-08-29T05:34:08.6649274Z PASS - k3s/namespace.yaml contains a valid Namespace (espocrm)
+2025-08-29T05:34:08.6656070Z Validating k3s/pvc.yaml...
+2025-08-29T05:34:08.6679543Z WARN - Set to ignore missing schemas
+2025-08-29T05:34:08.8056387Z PASS - k3s/pvc.yaml contains a valid PersistentVolumeClaim (espocrm.espocrm-data-pvc)
+2025-08-29T05:34:08.8063862Z Validating k3s/rbac.yaml...
+2025-08-29T05:34:08.8082535Z WARN - Set to ignore missing schemas
+2025-08-29T05:34:09.1820030Z PASS - k3s/rbac.yaml contains a valid ServiceAccount (espocrm.espocrm-sa)
+2025-08-29T05:34:09.1827161Z Validating k3s/secrets-example.yaml...
+2025-08-29T05:34:09.1852568Z WARN - Set to ignore missing schemas
+2025-08-29T05:34:09.2451815Z PASS - k3s/secrets-example.yaml contains a valid Secret (espocrm.espocrm-mysql-secret)
+2025-08-29T05:34:09.2457817Z Validating k3s/service.yaml...
+2025-08-29T05:34:09.2476983Z WARN - Set to ignore missing schemas
+2025-08-29T05:34:09.3575959Z PASS - k3s/service.yaml contains a valid Service (espocrm.espocrm)
+2025-08-29T05:34:09.3582560Z Validating k3s/mysql/service.yaml...
+2025-08-29T05:34:09.3605313Z WARN - Set to ignore missing schemas
+2025-08-29T05:34:09.4965995Z PASS - k3s/mysql/service.yaml contains a valid Service (espocrm.espocrm-mysql)
+2025-08-29T05:34:09.4972618Z Validating k3s/mysql/statefulset.yaml...
+2025-08-29T05:34:09.4994141Z WARN - Set to ignore missing schemas
+2025-08-29T05:34:09.5633954Z PASS - k3s/mysql/statefulset.yaml contains a valid StatefulSet (espocrm.espocrm-mysql)
+2025-08-29T05:34:09.5671366Z ##[group]Run echo "🔒 Security scanning manifests..."
+2025-08-29T05:34:09.5671783Z [36;1mecho "🔒 Security scanning manifests..."[0m
+2025-08-29T05:34:09.5672146Z [36;1mfor file in k3s/deployment.yaml k3s/mysql/statefulset.yaml; do[0m
+2025-08-29T05:34:09.5672472Z [36;1m  echo "Scanning $file..."[0m
+2025-08-29T05:34:09.5672741Z [36;1m  kubesec scan $file[0m
+2025-08-29T05:34:09.5672978Z [36;1mdone[0m
+2025-08-29T05:34:09.5703833Z shell: /usr/bin/bash -e {0}
+2025-08-29T05:34:09.5704068Z env:
+2025-08-29T05:34:09.5704231Z   REGISTRY: ghcr.io
+2025-08-29T05:34:09.5704458Z   IMAGE_NAME: jakenelwood/espocrm-standalone
+2025-08-29T05:34:09.5704906Z   APP_NAME: espocrm
+2025-08-29T05:34:09.5705277Z ##[endgroup]
+2025-08-29T05:34:09.5754367Z 🔒 Security scanning manifests...
+2025-08-29T05:34:09.5754905Z Scanning k3s/deployment.yaml...
+2025-08-29T05:34:09.6275285Z [
+2025-08-29T05:34:09.6275653Z   {
+2025-08-29T05:34:09.6276081Z     "object": "Deployment/espocrm.espocrm",
+2025-08-29T05:34:09.6276572Z     "valid": true,
+2025-08-29T05:34:09.6276823Z     "fileName": "k3s/deployment.yaml",
+2025-08-29T05:34:09.6277296Z     "message": "Passed with a score of 10 points",
+2025-08-29T05:34:09.6277911Z     "score": 10,
+2025-08-29T05:34:09.6278222Z     "scoring": {
+2025-08-29T05:34:09.6278505Z       "passed": [
+2025-08-29T05:34:09.6278800Z         {
+2025-08-29T05:34:09.6279091Z           "id": "ServiceAccountName",
+2025-08-29T05:34:09.6279531Z           "selector": ".spec .serviceAccountName",
+2025-08-29T05:34:09.6280303Z           "reason": "Service accounts restrict Kubernetes API access and should be configured with least privilege",
+2025-08-29T05:34:09.6281036Z           "points": 3
+2025-08-29T05:34:09.6281332Z         },
+2025-08-29T05:34:09.6281607Z         {
+2025-08-29T05:34:09.6281897Z           "id": "LimitsCPU",
+2025-08-29T05:34:09.6282325Z           "selector": "containers[] .resources .limits .cpu",
+2025-08-29T05:34:09.6282972Z           "reason": "Enforcing CPU limits prevents DOS via resource exhaustion",
+2025-08-29T05:34:09.6283309Z           "points": 1
+2025-08-29T05:34:09.6283497Z         },
+2025-08-29T05:34:09.6283641Z         {
+2025-08-29T05:34:09.6283809Z           "id": "LimitsMemory",
+2025-08-29T05:34:09.6284074Z           "selector": "containers[] .resources .limits .memory",
+2025-08-29T05:34:09.6284469Z           "reason": "Enforcing memory limits prevents DOS via resource exhaustion",
+2025-08-29T05:34:09.6284821Z           "points": 1
+2025-08-29T05:34:09.6285003Z         },
+2025-08-29T05:34:09.6285148Z         {
+2025-08-29T05:34:09.6285392Z           "id": "RequestsCPU",
+2025-08-29T05:34:09.6285840Z           "selector": "containers[] .resources .requests .cpu",
+2025-08-29T05:34:09.6286549Z           "reason": "Enforcing CPU requests aids a fair balancing of resources across the cluster",
+2025-08-29T05:34:09.6287125Z           "points": 1
+2025-08-29T05:34:09.6287297Z         },
+2025-08-29T05:34:09.6287623Z         {
+2025-08-29T05:34:09.6287831Z           "id": "RequestsMemory",
+2025-08-29T05:34:09.6288113Z           "selector": "containers[] .resources .requests .memory",
+2025-08-29T05:34:09.6288563Z           "reason": "Enforcing memory requests aids a fair balancing of resources across the cluster",
+2025-08-29T05:34:09.6288934Z           "points": 1
+2025-08-29T05:34:09.6289107Z         },
+2025-08-29T05:34:09.6289248Z         {
+2025-08-29T05:34:09.6289406Z           "id": "CapDropAny",
+2025-08-29T05:34:09.6289690Z           "selector": "containers[] .securityContext .capabilities .drop",
+2025-08-29T05:34:09.6290162Z           "reason": "Reducing kernel capabilities available to a container limits its attack surface",
+2025-08-29T05:34:09.6290539Z           "points": 1
+2025-08-29T05:34:09.6290709Z         },
+2025-08-29T05:34:09.6290848Z         {
+2025-08-29T05:34:09.6291010Z           "id": "CapDropAll",
+2025-08-29T05:34:09.6291345Z           "selector": "containers[] .securityContext .capabilities .drop | index(\"ALL\")",
+2025-08-29T05:34:09.6292339Z           "reason": "Drop all capabilities and add only those required to reduce syscall attack surface",
+2025-08-29T05:34:09.6292734Z           "points": 1
+2025-08-29T05:34:09.6292896Z         },
+2025-08-29T05:34:09.6293041Z         {
+2025-08-29T05:34:09.6293193Z           "id": "RunAsNonRoot",
+2025-08-29T05:34:09.6293489Z           "selector": "containers[] .securityContext .runAsNonRoot == true",
+2025-08-29T05:34:09.6293935Z           "reason": "Force the running image to run as a non-root user to ensure least privilege",
+2025-08-29T05:34:09.6294311Z           "points": 1
+2025-08-29T05:34:09.6294480Z         }
+2025-08-29T05:34:09.6294618Z       ],
+2025-08-29T05:34:09.6294765Z       "advise": [
+2025-08-29T05:34:09.6294921Z         {
+2025-08-29T05:34:09.6295082Z           "id": "ApparmorAny",
+2025-08-29T05:34:09.6295474Z           "selector": ".metadata .annotations .\"container.apparmor.security.beta.kubernetes.io/nginx\"",
+2025-08-29T05:34:09.6296176Z           "reason": "Well defined AppArmor policies may provide greater protection from unknown threats. WARNING: NOT PRODUCTION READY",
+2025-08-29T05:34:09.6296664Z           "points": 3
+2025-08-29T05:34:09.6296842Z         },
+2025-08-29T05:34:09.6297004Z         {
+2025-08-29T05:34:09.6297256Z           "id": "SeccompAny",
+2025-08-29T05:34:09.6298094Z           "selector": ".metadata .annotations .\"container.seccomp.security.alpha.kubernetes.io/pod\"",
+2025-08-29T05:34:09.6298678Z           "reason": "Seccomp profiles set minimum privilege and secure against unknown threats",
+2025-08-29T05:34:09.6299042Z           "points": 1
+2025-08-29T05:34:09.6299221Z         },
+2025-08-29T05:34:09.6299363Z         {
+2025-08-29T05:34:09.6299678Z           "id": "ReadOnlyRootFilesystem",
+2025-08-29T05:34:09.6300048Z           "selector": "containers[] .securityContext .readOnlyRootFilesystem == true",
+2025-08-29T05:34:09.6300672Z           "reason": "An immutable root filesystem can prevent malicious binaries being added to PATH and increase attack cost",
+2025-08-29T05:34:09.6301132Z           "points": 1
+2025-08-29T05:34:09.6301308Z         },
+2025-08-29T05:34:09.6301456Z         {
+2025-08-29T05:34:09.6301607Z           "id": "RunAsUser",
+2025-08-29T05:34:09.6301903Z           "selector": "containers[] .securityContext .runAsUser -gt 10000",
+2025-08-29T05:34:09.6302386Z           "reason": "Run as a high-UID user to avoid conflicts with the host's user table",
+2025-08-29T05:34:09.6302727Z           "points": 1
+2025-08-29T05:34:09.6302890Z         }
+2025-08-29T05:34:09.6303032Z       ]
+2025-08-29T05:34:09.6303171Z     }
+2025-08-29T05:34:09.6303316Z   }
+2025-08-29T05:34:09.6303450Z ]
+2025-08-29T05:34:09.6303651Z Scanning k3s/mysql/statefulset.yaml...
+2025-08-29T05:34:09.6970699Z [
+2025-08-29T05:34:09.6971028Z   {
+2025-08-29T05:34:09.6971279Z     "object": "StatefulSet/espocrm-mysql.espocrm",
+2025-08-29T05:34:09.6971582Z     "valid": true,
+2025-08-29T05:34:09.6971797Z     "fileName": "k3s/mysql/statefulset.yaml",
+2025-08-29T05:34:09.6972118Z     "message": "Passed with a score of 9 points",
+2025-08-29T05:34:09.6972384Z     "score": 9,
+2025-08-29T05:34:09.6972547Z     "scoring": {
+2025-08-29T05:34:09.6972719Z       "passed": [
+2025-08-29T05:34:09.6972887Z         {
+2025-08-29T05:34:09.6973057Z           "id": "ServiceAccountName",
+2025-08-29T05:34:09.6973314Z           "selector": ".spec .serviceAccountName",
+2025-08-29T05:34:09.6973771Z           "reason": "Service accounts restrict Kubernetes API access and should be configured with least privilege",
+2025-08-29T05:34:09.6974202Z           "points": 3
+2025-08-29T05:34:09.6974372Z         },
+2025-08-29T05:34:09.6974523Z         {
+2025-08-29T05:34:09.6974710Z           "id": "VolumeClaimAccessModeReadWriteOnce",
+2025-08-29T05:34:09.6975139Z           "selector": ".spec .volumeClaimTemplates[] .spec .accessModes | index(\"ReadWriteOnce\")",
+2025-08-29T05:34:09.6975832Z           "reason": "Setting the access mode of ReadWriteOnce on volumeClaimTemplates (if any exist) allows only one node to mount the persistentVolume",
+2025-08-29T05:34:09.6976715Z           "points": 1
+2025-08-29T05:34:09.6977045Z         },
+2025-08-29T05:34:09.6977196Z         {
+2025-08-29T05:34:09.6977383Z           "id": "VolumeClaimRequestsStorage",
+2025-08-29T05:34:09.6977912Z           "selector": ".spec .volumeClaimTemplates[] .spec .resources .requests .storage",
+2025-08-29T05:34:09.6978637Z           "reason": "Setting a storage request on volumeClaimTemplates (if any exist) allows for the StatefulSet's PVCs to be bound to appropriately sized PVs.",
+2025-08-29T05:34:09.6979278Z           "points": 1
+2025-08-29T05:34:09.6979449Z         },
+2025-08-29T05:34:09.6979604Z         {
+2025-08-29T05:34:09.6979764Z           "id": "LimitsCPU",
+2025-08-29T05:34:09.6980016Z           "selector": "containers[] .resources .limits .cpu",
+2025-08-29T05:34:09.6980391Z           "reason": "Enforcing CPU limits prevents DOS via resource exhaustion",
+2025-08-29T05:34:09.6980721Z           "points": 1
+2025-08-29T05:34:09.6981032Z         },
+2025-08-29T05:34:09.6981291Z         {
+2025-08-29T05:34:09.6981593Z           "id": "LimitsMemory",
+2025-08-29T05:34:09.6982031Z           "selector": "containers[] .resources .limits .memory",
+2025-08-29T05:34:09.6982636Z           "reason": "Enforcing memory limits prevents DOS via resource exhaustion",
+2025-08-29T05:34:09.6983204Z           "points": 1
+2025-08-29T05:34:09.6983501Z         },
+2025-08-29T05:34:09.6983647Z         {
+2025-08-29T05:34:09.6983808Z           "id": "RequestsCPU",
+2025-08-29T05:34:09.6984058Z           "selector": "containers[] .resources .requests .cpu",
+2025-08-29T05:34:09.6984480Z           "reason": "Enforcing CPU requests aids a fair balancing of resources across the cluster",
+2025-08-29T05:34:09.6984849Z           "points": 1
+2025-08-29T05:34:09.6985018Z         },
+2025-08-29T05:34:09.6985167Z         {
+2025-08-29T05:34:09.6985328Z           "id": "RequestsMemory",
+2025-08-29T05:34:09.6985598Z           "selector": "containers[] .resources .requests .memory",
+2025-08-29T05:34:09.6986038Z           "reason": "Enforcing memory requests aids a fair balancing of resources across the cluster",
+2025-08-29T05:34:09.6986415Z           "points": 1
+2025-08-29T05:34:09.6986578Z         }
+2025-08-29T05:34:09.6986728Z       ],
+2025-08-29T05:34:09.6986877Z       "advise": [
+2025-08-29T05:34:09.6987033Z         {
+2025-08-29T05:34:09.6987192Z           "id": "ApparmorAny",
+2025-08-29T05:34:09.6987721Z           "selector": ".metadata .annotations .\"container.apparmor.security.beta.kubernetes.io/nginx\"",
+2025-08-29T05:34:09.6988400Z           "reason": "Well defined AppArmor policies may provide greater protection from unknown threats. WARNING: NOT PRODUCTION READY",
+2025-08-29T05:34:09.6988880Z           "points": 3
+2025-08-29T05:34:09.6989049Z         },
+2025-08-29T05:34:09.6989188Z         {
+2025-08-29T05:34:09.6989347Z           "id": "SeccompAny",
+2025-08-29T05:34:09.6989726Z           "selector": ".metadata .annotations .\"container.seccomp.security.alpha.kubernetes.io/pod\"",
+2025-08-29T05:34:09.6990271Z           "reason": "Seccomp profiles set minimum privilege and secure against unknown threats",
+2025-08-29T05:34:09.6990630Z           "points": 1
+2025-08-29T05:34:09.6990793Z         },
+2025-08-29T05:34:09.6990940Z         {
+2025-08-29T05:34:09.6991092Z           "id": "CapDropAny",
+2025-08-29T05:34:09.6991385Z           "selector": "containers[] .securityContext .capabilities .drop",
+2025-08-29T05:34:09.6991849Z           "reason": "Reducing kernel capabilities available to a container limits its attack surface",
+2025-08-29T05:34:09.6992234Z           "points": 1
+2025-08-29T05:34:09.6992403Z         },
+2025-08-29T05:34:09.6992544Z         {
+2025-08-29T05:34:09.6992703Z           "id": "CapDropAll",
+2025-08-29T05:34:09.6993022Z           "selector": "containers[] .securityContext .capabilities .drop | index(\"ALL\")",
+2025-08-29T05:34:09.6993531Z           "reason": "Drop all capabilities and add only those required to reduce syscall attack surface",
+2025-08-29T05:34:09.6994085Z           "points": 1
+2025-08-29T05:34:09.6994267Z         },
+2025-08-29T05:34:09.6994528Z         {
+2025-08-29T05:34:09.6994710Z           "id": "ReadOnlyRootFilesystem",
+2025-08-29T05:34:09.6995078Z           "selector": "containers[] .securityContext .readOnlyRootFilesystem == true",
+2025-08-29T05:34:09.6995659Z           "reason": "An immutable root filesystem can prevent malicious binaries being added to PATH and increase attack cost",
+2025-08-29T05:34:09.6996175Z           "points": 1
+2025-08-29T05:34:09.6996345Z         },
+2025-08-29T05:34:09.6996495Z         {
+2025-08-29T05:34:09.6996650Z           "id": "RunAsNonRoot",
+2025-08-29T05:34:09.6996942Z           "selector": "containers[] .securityContext .runAsNonRoot == true",
+2025-08-29T05:34:09.6997380Z           "reason": "Force the running image to run as a non-root user to ensure least privilege",
+2025-08-29T05:34:09.6997838Z           "points": 1
+2025-08-29T05:34:09.6998006Z         },
+2025-08-29T05:34:09.6998143Z         {
+2025-08-29T05:34:09.6998305Z           "id": "RunAsUser",
+2025-08-29T05:34:09.6998589Z           "selector": "containers[] .securityContext .runAsUser -gt 10000",
+2025-08-29T05:34:09.6999004Z           "reason": "Run as a high-UID user to avoid conflicts with the host's user table",
+2025-08-29T05:34:09.6999325Z           "points": 1
+2025-08-29T05:34:09.6999519Z         }
+2025-08-29T05:34:09.6999657Z       ]
+2025-08-29T05:34:09.6999801Z     }
+2025-08-29T05:34:09.6999955Z   }
+2025-08-29T05:34:09.7000115Z ]
+2025-08-29T05:34:09.7147937Z Post job cleanup.
+2025-08-29T05:34:09.8072945Z [command]/usr/bin/git version
+2025-08-29T05:34:09.8110046Z git version 2.51.0
+2025-08-29T05:34:09.8152901Z Temporarily overriding HOME='/home/runner/work/_temp/cbefe83e-441b-4458-994a-525561dbbd6e' before making global git config changes
+2025-08-29T05:34:09.8153822Z Adding repository directory to the temporary git global config as a safe directory
+2025-08-29T05:34:09.8166567Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/espocrm-standalone/espocrm-standalone
+2025-08-29T05:34:09.8200861Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-08-29T05:34:09.8233653Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-08-29T05:34:09.8477709Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-08-29T05:34:09.8499595Z http.https://github.com/.extraheader
+2025-08-29T05:34:09.8512433Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-08-29T05:34:09.8542726Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-08-29T05:34:09.8888831Z Cleaning up orphan processes

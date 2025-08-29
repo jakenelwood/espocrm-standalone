@@ -1,0 +1,23 @@
+apiVersion: v1
+data:
+  compute-full-forwarded-for: "true"
+  use-forwarded-headers: "true"
+  use-proxy-protocol: "true"
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: nginx
+    meta.helm.sh/release-namespace: nginx
+  creationTimestamp: "2025-08-27T02:45:43Z"
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: nginx
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/version: 1.13.1
+    helm.sh/chart: ingress-nginx-4.13.1
+  name: nginx-ingress-nginx-controller
+  namespace: nginx
+  resourceVersion: "1124"
+  uid: 39164a59-34ee-48f0-9df0-0bee4f72ca98

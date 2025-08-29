@@ -1,0 +1,126 @@
+================================================================================
+K3S CLUSTER TECHNICAL SPECIFICATIONS
+Date: 2025-08-29
+================================================================================
+
+CLUSTER OVERVIEW
+--------------------------------------------------------------------------------
+Kubernetes Version: v1.31.12+k3s1
+Container Runtime: containerd://2.0.5-k3s2.32
+Total Nodes: 4 (3 control-plane, 1 worker)
+
+================================================================================
+NODE SPECIFICATIONS
+================================================================================
+
+CONTROL PLANE NODES
+--------------------------------------------------------------------------------
+
+Node 1: ai-consigliere-dev-cp-ash-a-swj
+----------------------------------------
+Role: control-plane, etcd, master
+Status: Ready
+Architecture: amd64 (x86_64)
+Operating System: linux
+OS Image: openSUSE MicroOS
+Kernel Version: 6.16.3-1-default
+Container Runtime: containerd://2.0.5-k3s2.32
+CPU: 2 cores
+Memory: 7.75 GB (7934408 Ki)
+Allocatable CPU: 1500m
+Allocatable Memory: 5.81 GB (6091208 Ki)
+Internal IP: 10.64.0.101
+External IP: 178.156.206.174
+
+Node 2: ai-consigliere-dev-cp-ash-b-dxw
+----------------------------------------
+Role: control-plane, etcd, master
+Status: Ready
+Architecture: amd64 (x86_64)
+Operating System: linux
+OS Image: openSUSE MicroOS
+Kernel Version: 6.16.3-1-default
+Container Runtime: containerd://2.0.5-k3s2.32
+CPU: 2 cores
+Memory: 7.75 GB (7934404 Ki)
+Allocatable CPU: 1500m
+Allocatable Memory: 5.81 GB (6091204 Ki)
+Internal IP: 10.64.64.101
+External IP: 178.156.207.4
+
+Node 3: ai-consigliere-dev-cp-ash-c-fbh
+----------------------------------------
+Role: control-plane, etcd, master
+Status: Ready
+Architecture: amd64 (x86_64)
+Operating System: linux
+OS Image: openSUSE MicroOS
+Kernel Version: 6.16.3-1-default
+Container Runtime: containerd://2.0.5-k3s2.32
+CPU: 2 cores
+Memory: 7.75 GB (7934420 Ki)
+Allocatable CPU: 1500m
+Allocatable Memory: 5.81 GB (6091220 Ki)
+Internal IP: 10.64.128.101
+External IP: 5.161.75.72
+
+WORKER NODE
+--------------------------------------------------------------------------------
+
+Node 4: ai-consigliere-dev-workload-slz
+----------------------------------------
+Role: worker
+Status: Ready
+Architecture: amd64 (x86_64)
+Operating System: linux
+OS Image: openSUSE MicroOS
+Kernel Version: 6.16.3-1-default
+Container Runtime: containerd://2.0.5-k3s2.32
+CPU: 8 cores
+Memory: 31.33 GB (32086140 Ki)
+Allocatable CPU: 7700m
+Allocatable Memory: 30.00 GB (31471740 Ki)
+Internal IP: 10.0.0.101
+External IP: 178.156.142.204
+
+================================================================================
+CLUSTER SUMMARY
+================================================================================
+
+Total Resources:
+- Control Plane: 6 CPU cores, 23.25 GB memory
+- Worker Nodes: 8 CPU cores, 31.33 GB memory
+- Total Cluster: 14 CPU cores, 54.58 GB memory
+
+Architecture: x86_64 (amd64) - All nodes
+Operating System Base: openSUSE MicroOS (All nodes)
+Container Runtime: containerd 2.0.5-k3s2.32
+
+Network Configuration:
+- Control Plane Subnet: 10.64.x.101
+- Worker Node Subnet: 10.0.0.101
+- External IPs Available: Yes (All nodes have public IPs)
+
+High Availability:
+- 3 control plane nodes with etcd for HA
+- Multi-zone deployment across Ashburn regions
+
+================================================================================
+DEPLOYMENT COMPATIBILITY
+================================================================================
+
+Docker Image Requirements:
+- Architecture: linux/amd64 (x86_64)
+- Base Image Compatibility: Any Linux-based image supporting x86_64
+- Recommended Base Images:
+  * Alpine Linux (lightweight)
+  * Debian/Ubuntu (broad compatibility)
+  * openSUSE (matches host OS)
+  * RHEL/CentOS (enterprise)
+
+Container Runtime Features:
+- containerd 2.0.5 with full OCI compliance
+- Supports Docker images from any registry
+- CRI-O compatible workloads
+
+================================================================================

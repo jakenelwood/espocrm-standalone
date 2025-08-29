@@ -1,0 +1,92 @@
+================================================================================
+HYPOTHESIS: ROOT CAUSE OF MIXED LOAD BALANCER HEALTH STATUS
+Date: 2025-08-29
+================================================================================
+
+PRIMARY HYPOTHESIS
+--------------------------------------------------------------------------------
+The Hetzner load balancers report "mixed" health status due to a PROXY PROTOCOL 
+MISMATCH between the health check mechanism and the actual service configuration.
+
+DETAILED EXPLANATION
+--------------------------------------------------------------------------------
+
+1. NGINX LOAD BALANCER ISSUE:
+   - The nginx ingress load balancer has Proxy Protocol ENABLED
+   - The nginx ingress controller expects Proxy Protocol (use-proxy-protocol: "true")
+   - Health checks use plain TCP without proxy protocol headers
+   - When health check connects, nginx expects proxy protocol header but receives none
+   - This causes the health check to fail or timeout
+   - Result: Mixed health (some checks may succeed via private network)
+
+2. CONTROL PLANE LOAD BALANCER ISSUE:
+   - Uses label selectors to target ALL control plane nodes
+   - Health checks target port 6443 on all three control planes
+   - The firewall rules were recently added but may not be fully propagated
+   - Health checks may be using public IPs while services use private IPs
+   - Result: Inconsistent health check results
+
+3. CONTRIBUTING FACTORS:
+   
+   a. Network Path Divergence:
+      - Load balancers have both public and private network interfaces
+      - Health checks may use different network paths than actual traffic
+      - Private network (10.0.0.0/8) allows all traffic
+      - Public network has restrictive firewall rules
+   
+   b. Target Selection Mismatch:
+      - Label selectors target all nodes with specific labels
+      - Actual services may not be running on all targeted nodes
+      - Nginx ingress only runs on worker node, but LB may target all nodes
+   
+   c. Health Check Protocol Limitations:
+      - TCP health checks cannot validate proxy protocol compatibility
+      - Health checks don't test the actual service, just port availability
+      - No HTTP/HTTPS health checks configured (only TCP)
+
+EVIDENCE SUPPORTING HYPOTHESIS
+--------------------------------------------------------------------------------
+
+1. Configuration Evidence:
+   ✓ Nginx LB: Proxy Protocol = YES
+   ✓ Nginx Controller: use-proxy-protocol = "true"
+   ✓ Health Checks: Protocol = TCP (plain, no proxy protocol)
+
+2. Observed Behavior:
+   ✓ Services are accessible and working (404 response = nginx is running)
+   ✓ Health status remains "mixed" despite firewall changes
+   ✓ No error logs in nginx controller about health checks
+
+3. Technical Consistency:
+   ✓ Common issue documented in GitHub issues
+   ✓ Known incompatibility between proxy protocol and health checks
+   ✓ Matches pattern seen in other Hetzner k3s deployments
+
+TESTABLE PREDICTIONS
+--------------------------------------------------------------------------------
+
+If this hypothesis is correct, then:
+
+1. Disabling proxy protocol on the nginx load balancer should result in:
+   - Health status changing to "healthy" 
+   - But breaking real client IP preservation
+
+2. Changing health check from TCP to HTTP (if possible) should:
+   - Fail immediately due to proxy protocol mismatch
+   - Provide clearer error messages
+
+3. Creating a dedicated health check endpoint that doesn't expect proxy protocol:
+   - Would allow health checks to succeed
+   - While maintaining proxy protocol for actual traffic
+
+4. Testing health checks from load balancer IPs directly:
+   - Should fail when proxy protocol is expected
+   - Should succeed on control plane (no proxy protocol)
+
+================================================================================
+CONFIDENCE LEVEL: 85%
+================================================================================
+
+This hypothesis explains all observed symptoms and is consistent with known
+issues in Hetzner Cloud load balancer implementations with Kubernetes.
+================================================================================

@@ -1,0 +1,150 @@
+================================================================================
+TESTING PLAN: VALIDATING PROXY PROTOCOL HYPOTHESIS
+Date: 2025-08-29
+================================================================================
+
+OBJECTIVE
+--------------------------------------------------------------------------------
+Systematically test whether proxy protocol mismatch is causing the mixed health
+status on Hetzner load balancers through a series of controlled experiments.
+
+================================================================================
+TEST SUITE
+================================================================================
+
+TEST 1: BASELINE HEALTH CHECK VERIFICATION
+-------------------------------------------
+Purpose: Establish current state and verify mixed status
+Steps:
+1. Document current LB health status
+2. Capture health check logs from target servers
+3. Test connectivity from LB IPs to targets
+4. Record proxy protocol configuration state
+
+Expected Result: Confirm mixed health status persists
+Risk Level: None (read-only test)
+Rollback: N/A
+
+TEST 2: DIRECT PROXY PROTOCOL VALIDATION
+-----------------------------------------
+Purpose: Verify proxy protocol is causing health check failures
+Steps:
+1. Send plain TCP connection to nginx NodePort from external
+2. Send TCP connection with proxy protocol header to nginx NodePort
+3. Compare responses and connection success
+4. Check nginx error logs for proxy protocol errors
+
+Expected Result: Plain TCP fails/times out, proxy protocol succeeds
+Risk Level: None (diagnostic only)
+Rollback: N/A
+
+TEST 3: HEALTH CHECK SIMULATION FROM LB IPS
+--------------------------------------------
+Purpose: Simulate exact health check behavior
+Steps:
+1. Create a script that mimics LB health checks
+2. Run from load balancer private IPs (10.64.0.254, 10.0.0.254)
+3. Test both with and without proxy protocol headers
+4. Monitor target server responses
+
+Expected Result: Health checks fail without proxy protocol on nginx LB
+Risk Level: Low (simulation only)
+Rollback: Remove test scripts
+
+TEST 4: TEMPORARY PROXY PROTOCOL DISABLE (NGINX)
+-------------------------------------------------
+Purpose: Validate hypothesis by disabling proxy protocol
+Steps:
+1. Backup current nginx configmap
+2. Set use-proxy-protocol to "false" in nginx config
+3. Restart nginx pods
+4. Wait 2-3 minutes for health checks
+5. Check LB health status
+6. Restore original configuration
+
+Expected Result: Nginx LB health changes from "mixed" to "healthy"
+Risk Level: Medium (temporary service disruption)
+Rollback: Restore configmap, restart pods
+
+TEST 5: HEALTH CHECK ENDPOINT CREATION
+---------------------------------------
+Purpose: Create dedicated health check endpoint
+Steps:
+1. Deploy a simple HTTP service on a different NodePort
+2. Configure it without proxy protocol
+3. Update LB to health check this endpoint
+4. Monitor health status change
+
+Expected Result: Health checks succeed on dedicated endpoint
+Risk Level: Low (additional service only)
+Rollback: Remove test service
+
+TEST 6: NETWORK PATH ANALYSIS
+------------------------------
+Purpose: Understand health check routing
+Steps:
+1. Trace network path from LB to targets
+2. Capture packets during health checks
+3. Analyze whether public or private IPs are used
+4. Check firewall logs for blocked attempts
+
+Expected Result: Identify exact network path and any blocks
+Risk Level: None (monitoring only)
+Rollback: N/A
+
+================================================================================
+EXECUTION ORDER AND DEPENDENCIES
+================================================================================
+
+Phase 1: Non-Invasive Tests (Tests 1, 2, 3, 6)
+- Can run in parallel
+- No service impact
+- Gather baseline data
+
+Phase 2: Controlled Validation (Test 4)
+- Requires maintenance window
+- Proves/disproves hypothesis
+- Quick rollback capability
+
+Phase 3: Solution Implementation (Test 5)
+- Based on Phase 2 results
+- Implements long-term fix
+- Can run alongside production
+
+================================================================================
+SUCCESS CRITERIA
+================================================================================
+
+Hypothesis CONFIRMED if:
+✓ Test 2 shows proxy protocol requirement
+✓ Test 4 changes health from "mixed" to "healthy"
+✓ Test 5 provides working alternative
+
+Hypothesis REJECTED if:
+✗ Test 4 shows no health status change
+✗ Test 2 shows no proxy protocol involvement
+✗ Health checks fail regardless of proxy protocol
+
+================================================================================
+SAFETY MEASURES
+================================================================================
+
+1. All configuration backups before changes
+2. Test in order of increasing risk
+3. Rollback procedures documented for each test
+4. Monitor service availability during tests
+5. Execute during low-traffic period if possible
+6. Document all changes in audit log
+
+================================================================================
+ESTIMATED TIMELINE
+================================================================================
+
+Total Duration: 45-60 minutes
+
+- Phase 1: 15 minutes (parallel execution)
+- Phase 2: 20 minutes (including observation time)
+- Phase 3: 10-15 minutes (if needed)
+- Documentation: 5 minutes
+
+================================================================================

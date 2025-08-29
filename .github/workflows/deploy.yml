@@ -157,10 +157,14 @@ jobs:
     - name: Push image to registry
       if: github.event_name != 'pull_request'
       run: |
-        # Push all tags
-        echo "${{ steps.meta.outputs.tags }}" | while read tag; do
-          echo "Pushing $tag..."
-          docker push $tag
+        # Get first tag for primary push
+        FIRST_TAG=$(echo "${{ steps.meta.outputs.tags }}" | head -n1)
+        echo "Primary tag: $FIRST_TAG"
+        docker push $FIRST_TAG
+        
+        # Push remaining tags
+        echo "${{ steps.meta.outputs.tags }}" | tail -n +2 | while read tag; do
+          [ -n "$tag" ] && echo "Additional tag: $tag" && docker push $tag
         done
 
   deploy-staging:
@@ -215,8 +219,8 @@ jobs:
   deploy-production:
     name: Deploy to Production
     runs-on: ubuntu-latest
-    needs: [build-and-test, deploy-staging]
-    if: github.ref == 'refs/heads/main' || github.event.inputs.environment == 'production'
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     environment: production
     steps:
     - uses: actions/checkout@v4
@@ -228,8 +232,12 @@ jobs:
     
     - name: Configure kubeconfig
       run: |
+        # Note: KUBECONFIG_PRODUCTION secret must be set in GitHub repository settings
+        # Get it from: base64 -w0 < /home/brian/Dev/consigliere-dev-pack/ai-consigliere-dev_kubeconfig.yaml
         echo "${{ secrets.KUBECONFIG_PRODUCTION }}" | base64 -d > kubeconfig
         export KUBECONFIG=kubeconfig
+        # Test connection
+        kubectl get nodes || exit 1
     
     - name: Create deployment manifest
       run: |
@@ -244,29 +252,40 @@ jobs:
         export KUBECONFIG=kubeconfig
         export NAMESPACE="espocrm"
         
-        # Apply all configurations
+        echo "🚀 Starting deployment to production..."
+        
+        # Apply namespace and RBAC
         kubectl apply -f k3s/namespace.yaml
         kubectl apply -f k3s/rbac.yaml
+        
+        # Apply configurations
         kubectl apply -f k3s/configmap.yaml
         kubectl apply -f k3s/pvc.yaml
         
-        # Deploy MySQL if not exists
-        kubectl apply -f k3s/mysql/
+        # Deploy MySQL (skip if already exists)
+        kubectl apply -f k3s/mysql/ || echo "MySQL resources updated"
         
-        # Wait for MySQL to be ready
-        kubectl wait --for=condition=ready pod -l app=espocrm-mysql -n $NAMESPACE --timeout=300s
+        # Wait for MySQL to be ready (if it was just created)
+        if ! kubectl get pods -n $NAMESPACE -l app=espocrm-mysql --no-headers 2>/dev/null | grep -q Running; then
+          echo "Waiting for MySQL to be ready..."
+          kubectl wait --for=condition=ready pod -l app=espocrm-mysql -n $NAMESPACE --timeout=300s
+        else
+          echo "MySQL is already running"
+        fi
         
-        # Deploy application
+        # Deploy application with new image
         kubectl apply -f k3s/service.yaml
-        kubectl apply -f k3s/deployment.yaml
+        kubectl set image deployment/espocrm espocrm=$IMAGE_TAG -n $NAMESPACE || kubectl apply -f k3s/deployment.yaml
         kubectl apply -f k3s/ingress.yaml
         
         # Wait for rollout to complete
+        echo "Waiting for deployment rollout..."
         kubectl rollout status deployment/espocrm -n $NAMESPACE --timeout=10m
         
         # Verify deployment
-        kubectl get pods -n $NAMESPACE
-        kubectl describe deployment/espocrm -n $NAMESPACE
+        echo "Deployment status:"
+        kubectl get pods -n $NAMESPACE -l app=espocrm
+        kubectl get deployment/espocrm -n $NAMESPACE
     
     - name: Run production tests
       run: |

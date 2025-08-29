@@ -1,0 +1,154 @@
+================================================================================
+LOAD BALANCER HEALTH INVESTIGATION REPORT
+Date: 2025-08-29
+Status: MIXED HEALTH EXPLAINED
+================================================================================
+
+EXECUTIVE SUMMARY
+--------------------------------------------------------------------------------
+The "mixed" health status on both load balancers is caused by firewall restrictions
+that prevent the load balancers from directly health-checking the backend servers.
+The load balancers themselves are functioning correctly, but cannot reach the
+target servers for health checks due to missing firewall rules.
+
+================================================================================
+ROOT CAUSE ANALYSIS
+================================================================================
+
+1. CONTROL PLANE LOAD BALANCER (ai-consigliere-dev-control-plane)
+   -------------------------------------------------------------
+   Status: MIXED
+   
+   Issue Identified:
+   - The firewall only allows port 6443 access from IP 68.235.46.69/32
+   - Load balancer (5.161.38.104) cannot reach control plane nodes on port 6443
+   - Health checks are failing because the LB IP is not in the allowed source IPs
+   
+   Evidence:
+   - Control plane nodes are Ready in k3s
+   - API is accessible through the load balancer (port 6443 is open on LB)
+   - Direct connection to control plane nodes on port 6443 times out
+   - Firewall rule shows: Port 6443 only allows source IP 68.235.46.69/32
+
+2. NGINX INGRESS LOAD BALANCER (ai-consigliere-dev-nginx)
+   ------------------------------------------------------
+   Status: MIXED (but shows some healthy targets)
+   
+   Issue Identified:
+   - NodePorts 31874 (HTTP) and 32611 (HTTPS) are not allowed in firewall
+   - Load balancer cannot reach worker node on these ports for health checks
+   - The LB shows the worker node as healthy (possibly using private network)
+   
+   Evidence:
+   - nginx-ingress-controller pod is Running (1/1 Ready)
+   - Service endpoints are properly configured (10.42.1.10:80,443)
+   - NodePorts are allocated (31874/TCP, 32611/TCP)
+   - Direct connection to NodePorts times out from external IPs
+   - No firewall rules exist for ports 31874 or 32611
+
+================================================================================
+FIREWALL CONFIGURATION ISSUES
+================================================================================
+
+Current Firewall Rules (ai-consigliere-dev):
+--------------------------------------------
+INBOUND Rules:
+✓ Port 22 (SSH) - Only from 68.235.46.69/32
+✓ Port 6443 (K8s API) - Only from 68.235.46.69/32
+✓ ICMP (Ping) - From anywhere
+
+OUTBOUND Rules:
+✓ Port 53 (DNS) - TCP/UDP
+✓ Port 80 (HTTP) - TCP
+✓ Port 443 (HTTPS) - TCP
+✓ Port 123 (NTP) - UDP
+✓ ICMP (Ping)
+
+MISSING RULES:
+✗ Port 6443 - Not allowed from Load Balancer IPs
+✗ Port 31874 (HTTP NodePort) - Not allowed at all
+✗ Port 32611 (HTTPS NodePort) - Not allowed at all
+✗ Private network communication rules
+
+================================================================================
+IMPACT ASSESSMENT
+================================================================================
+
+1. Control Plane Load Balancer:
+   - Health checks are failing but traffic is still routed
+   - The LB uses label selectors to find targets
+   - API access works through the LB despite "mixed" status
+
+2. Nginx Ingress Load Balancer:
+   - Some health checks may be working via private network
+   - Public health checks are likely failing
+   - HTTP/HTTPS traffic routing may be impacted
+
+3. Overall Cluster Health:
+   - All nodes are Ready and functioning
+   - Internal cluster communication is working
+   - External access is restricted by firewall
+
+================================================================================
+RECOMMENDED FIXES
+================================================================================
+
+To resolve the "mixed" health status, add the following firewall rules:
+
+1. For Control Plane Load Balancer:
+   ```
+   # Allow LB to health check control plane nodes
+   Direction: in
+   Protocol: tcp
+   Port: 6443
+   Source IPs: 
+     - 5.161.38.104/32  # Control plane LB IP
+     - 10.64.0.254/32   # Control plane LB private IP
+   ```
+
+2. For Nginx Ingress Load Balancer:
+   ```
+   # Allow LB to health check NodePorts
+   Direction: in
+   Protocol: tcp
+   Port: 31874,32611
+   Source IPs:
+     - 5.161.35.135/32  # Nginx LB IP
+     - 10.0.0.254/32    # Nginx LB private IP
+   ```
+
+3. Alternative: Allow private network communication:
+   ```
+   # Allow all private network traffic
+   Direction: in
+   Protocol: tcp
+   Port: any
+   Source IPs:
+     - 10.0.0.0/16     # Private network range
+     - 10.64.0.0/16    # Private network range
+   ```
+
+================================================================================
+VERIFICATION STEPS
+================================================================================
+
+After applying firewall changes:
+
+1. Wait 30-60 seconds for health checks to update
+2. Check load balancer status: `hcloud load-balancer list`
+3. Verify health should change from "mixed" to "healthy"
+4. Test connectivity:
+   - Control plane: `curl -k https://5.161.38.104:6443/healthz`
+   - Nginx: `curl http://5.161.35.135`
+
+================================================================================
+CONCLUSION
+================================================================================
+
+The "mixed" health status is not a critical issue but indicates that the load
+balancers cannot properly health-check their targets due to firewall restrictions.
+The cluster is operational, but health monitoring is impaired. Implementing the
+recommended firewall rules will resolve this issue and provide proper health
+status visibility.
+
+================================================================================
