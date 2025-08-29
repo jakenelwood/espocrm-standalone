@@ -3,6 +3,33 @@
 **Date:** 2025-08-29  
 **Status:** Configuration Complete - Awaiting Secret Setup
 
+## ⚠️ REQUIRED: GitHub Secret Configuration
+
+**The deployment will NOT work without this step!**
+
+### Quick Setup (Recommended)
+```bash
+# Run the automated setup script:
+./scripts/setup-github-secrets.sh
+```
+
+### Manual Setup
+1. Generate the secret value:
+   ```bash
+   base64 -w0 /home/brian/Dev/consigliere-dev-pack/ai-consigliere-dev_kubeconfig.yaml
+   ```
+
+2. Add to GitHub:
+   - Go to: https://github.com/jakenelwood/espocrm-standalone/settings/secrets/actions
+   - Click "New repository secret"
+   - Name: `KUBECONFIG_PRODUCTION`
+   - Value: [paste the base64 output]
+
+3. Verify configuration:
+   ```bash
+   gh workflow run validate-secrets.yml --repo jakenelwood/espocrm-standalone
+   ```
+
 ## Overview
 
 The EspoCRM deployment pipeline has been configured for automatic deployment to production when code is pushed to the `main` branch. This integrates with the existing k3s cluster managed by the `consigliere-dev-pack` infrastructure.

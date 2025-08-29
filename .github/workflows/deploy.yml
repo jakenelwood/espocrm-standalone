@@ -230,20 +230,96 @@ jobs:
       with:
         version: 'v1.28.0'
     
-    - name: Validate secrets
+    - name: Pre-flight Checks
+      id: preflight
       run: |
+        echo "🚀 Running pre-flight checks for production deployment..."
+        echo ""
+        
+        # Initialize status tracking
+        PREFLIGHT_PASSED=true
+        
+        # Check 1: Validate secrets
+        echo "1️⃣ Checking secrets..."
         if [ -z "${{ secrets.KUBECONFIG_PRODUCTION }}" ]; then
-          echo "❌ ERROR: KUBECONFIG_PRODUCTION secret is not configured!"
+          echo "   ❌ KUBECONFIG_PRODUCTION secret is not configured!"
+          echo "      Fix: Run scripts/setup-github-secrets.sh or see docs/cicd-auto-deployment-setup.md"
+          PREFLIGHT_PASSED=false
+        else
+          echo "   ✅ KUBECONFIG_PRODUCTION is configured (${#KUBECONFIG_PRODUCTION} chars)"
+        fi
+        
+        # Check 2: Validate image tag
+        echo ""
+        echo "2️⃣ Checking image tag..."
+        IMAGE_TAG="${{ needs.build-and-test.outputs.image-tag }}"
+        if [ -z "$IMAGE_TAG" ]; then
+          echo "   ❌ No image tag from build stage!"
+          PREFLIGHT_PASSED=false
+        else
+          FIRST_TAG=$(echo "$IMAGE_TAG" | head -n1)
+          echo "   ✅ Image tag: $FIRST_TAG"
+          echo "::set-output name=image_tag::$FIRST_TAG"
+        fi
+        
+        # Check 3: Validate manifests exist
+        echo ""
+        echo "3️⃣ Checking Kubernetes manifests..."
+        REQUIRED_MANIFESTS=(
+          "k3s/namespace.yaml"
+          "k3s/deployment.yaml"
+          "k3s/service.yaml"
+          "k3s/configmap.yaml"
+        )
+        
+        for manifest in "${REQUIRED_MANIFESTS[@]}"; do
+          if [ ! -f "$manifest" ]; then
+            echo "   ❌ Missing manifest: $manifest"
+            PREFLIGHT_PASSED=false
+          else
+            echo "   ✅ Found: $manifest"
+          fi
+        done
+        
+        # Check 4: Validate YAML syntax
+        echo ""
+        echo "4️⃣ Validating YAML syntax..."
+        for manifest in k3s/*.yaml k3s/mysql/*.yaml; do
+          if [ -f "$manifest" ]; then
+            if ! kubectl apply --dry-run=client -f "$manifest" &> /dev/null; then
+              echo "   ⚠️  Invalid YAML in: $manifest"
+              kubectl apply --dry-run=client -f "$manifest" 2>&1 | grep -E "error|Error" | head -2
+            fi
+          fi
+        done
+        
+        # Check 5: Environment readiness
+        echo ""
+        echo "5️⃣ Checking environment variables..."
+        if [ -z "${{ github.sha }}" ]; then
+          echo "   ❌ Missing github.sha for version tracking"
+          PREFLIGHT_PASSED=false
+        else
+          echo "   ✅ Version: ${{ github.sha }}"
+        fi
+        
+        # Summary
+        echo ""
+        echo "======================================="
+        if [ "$PREFLIGHT_PASSED" = true ]; then
+          echo "✅ All pre-flight checks passed!"
+          echo "Proceeding with deployment..."
+        else
+          echo "❌ Pre-flight checks failed!"
           echo ""
-          echo "To fix this issue:"
-          echo "1. Run: base64 -w0 /home/brian/Dev/consigliere-dev-pack/ai-consigliere-dev_kubeconfig.yaml"
-          echo "2. Go to: https://github.com/${{ github.repository }}/settings/secrets/actions"
-          echo "3. Add a new secret named KUBECONFIG_PRODUCTION with the base64 value"
+          echo "Please fix the issues above before deployment can proceed."
           echo ""
-          echo "See docs/cicd-auto-deployment-setup.md for detailed instructions"
+          echo "Quick fixes:"
+          echo "- For secrets: ./scripts/setup-github-secrets.sh"
+          echo "- For manifests: Check k3s/ directory"
+          echo "- For build issues: Check previous job logs"
           exit 1
         fi
-        echo "✅ KUBECONFIG_PRODUCTION secret is configured"
     
     - name: Configure kubeconfig
       run: |
