@@ -116,7 +116,7 @@ jobs:
       run: |
         FIRST_TAG=$(echo "${{ steps.meta.outputs.tags }}" | head -n1)
         echo "First tag: $FIRST_TAG"
-        echo "::set-output name=first-tag::$FIRST_TAG"
+        echo "first-tag=$FIRST_TAG" >> $GITHUB_OUTPUT
     
     - name: Test application
       run: |
@@ -266,7 +266,7 @@ jobs:
         else
           FIRST_TAG=$(echo "$IMAGE_TAG" | head -n1)
           echo "   ✅ Image tag: $FIRST_TAG"
-          echo "::set-output name=image_tag::$FIRST_TAG"
+          echo "image_tag=$FIRST_TAG" >> $GITHUB_OUTPUT
         fi
         
         # Check 3: Validate manifests exist
@@ -352,8 +352,13 @@ jobs:
       run: |
         export KUBECONFIG=kubeconfig
         export NAMESPACE="espocrm"
+        export IMAGE_TAG="${{ needs.build-and-test.outputs.image-tag }}"
+        
+        # Ensure IMAGE_TAG is a single line
+        IMAGE_TAG=$(echo "$IMAGE_TAG" | head -n1)
         
         echo "🚀 Starting deployment to production..."
+        echo "Using image: $IMAGE_TAG"
         
         # Apply namespace and RBAC
         kubectl apply -f k3s/namespace.yaml
