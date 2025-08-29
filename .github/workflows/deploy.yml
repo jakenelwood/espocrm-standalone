@@ -68,7 +68,7 @@ jobs:
       packages: write
       security-events: write
     outputs:
-      image-tag: ${{ steps.meta.outputs.tags }}
+      image-tag: ${{ steps.extract-tag.outputs.first-tag }}
       image-digest: ${{ steps.build.outputs.digest }}
     steps:
     - uses: actions/checkout@v4
@@ -110,6 +110,13 @@ jobs:
         build-args: |
           VERSION=${{ github.sha }}
           BUILD_DATE=${{ github.event.head_commit.timestamp }}
+    
+    - name: Extract first tag
+      id: extract-tag
+      run: |
+        FIRST_TAG=$(echo "${{ steps.meta.outputs.tags }}" | head -n1)
+        echo "First tag: $FIRST_TAG"
+        echo "::set-output name=first-tag::$FIRST_TAG"
     
     - name: Test application
       run: |
@@ -332,6 +339,11 @@ jobs:
       run: |
         export VERSION="${{ github.sha }}"
         export IMAGE_TAG="${{ needs.build-and-test.outputs.image-tag }}"
+        
+        # Ensure IMAGE_TAG is a single line (defensive programming)
+        IMAGE_TAG=$(echo "$IMAGE_TAG" | head -n1)
+        
+        echo "Using image tag: $IMAGE_TAG"
         
         # Update deployment manifest with new image
         sed -i "s|image: .*|image: $IMAGE_TAG|g" k3s/deployment.yaml
