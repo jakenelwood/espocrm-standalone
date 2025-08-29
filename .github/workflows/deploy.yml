@@ -253,7 +253,8 @@ jobs:
             echo "export PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
           fi
         fi
-        kubectl version --client --short || echo "kubectl still not working"
+        # Test kubectl (--short flag was removed in newer versions)
+        kubectl version --client || echo "kubectl version check failed"
     
     - name: Pre-flight Checks
       id: preflight
@@ -315,8 +316,17 @@ jobs:
           echo "   PATH: $PATH"
         else
           echo "   ℹ️  Using kubectl: $(which kubectl)"
-          echo "   ℹ️  kubectl version: $(kubectl version --client --short 2>/dev/null || echo 'version check failed')"
+          # Safer version check that won't exit on failure
+          KUBECTL_VERSION=$(kubectl version --client 2>&1 || true)
+          if [ -n "$KUBECTL_VERSION" ]; then
+            echo "   ℹ️  kubectl version: $KUBECTL_VERSION" | head -1
+          else
+            echo "   ⚠️  kubectl version check failed"
+          fi
         fi
+        
+        # Add instrumentation to track script progress
+        echo "   ✅ kubectl check completed, proceeding to YAML validation..."
         
         YAML_VALIDATION_PASSED=true
         for manifest in k3s/*.yaml k3s/mysql/*.yaml; do
