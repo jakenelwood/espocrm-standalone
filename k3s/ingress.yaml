@@ -23,10 +23,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - crm.example.com
+    - quotennica.com
     secretName: espocrm-tls
   rules:
-  - host: crm.example.com
+  - host: quotennica.com
     http:
       paths:
       - path: /

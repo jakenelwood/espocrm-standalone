@@ -84,7 +84,7 @@ spec:
               key: password
       containers:
       - name: espocrm
-        image: ghcr.io/brian/espocrm-standalone:latest
+        image: ghcr.io/jakenelwood/espocrm-standalone:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
@@ -125,7 +125,7 @@ spec:
               key: password
         # Site configuration
         - name: ESPOCRM_SITE_URL
-          value: https://crm.example.com
+          value: https://quotennica.com
         # Pod information
         - name: POD_NAME
           valueFrom:

@@ -46,3 +46,4 @@ backups/
 
 # Docker
 .dockerignore.local
+k3s/secrets.yaml
