@@ -1,0 +1,89 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: espocrm-config
+  namespace: espocrm
+  labels:
+    app: espocrm
+data:
+  # EspoCRM configuration
+  ESPOCRM_DEFAULT_LANGUAGE: "en_US"
+  ESPOCRM_DEFAULT_TIMEZONE: "UTC"
+  ESPOCRM_CURRENCY: "USD"
+  ESPOCRM_DATE_FORMAT: "MM/DD/YYYY"
+  ESPOCRM_TIME_FORMAT: "HH:mm"
+  ESPOCRM_WEEK_START: "1"
+  
+  # Performance settings
+  ESPOCRM_MASS_EMAIL_MAX_PER_HOUR: "1000"
+  ESPOCRM_RECORD_LIST_MAX_SIZE: "200"
+  ESPOCRM_MAX_UPLOAD_SIZE: "50"
+  
+  # Security settings
+  ESPOCRM_PASSWORD_MIN_LENGTH: "8"
+  ESPOCRM_AUTH_TOKEN_LIFETIME: "720"
+  ESPOCRM_AUTH_TOKEN_IDLE_LIFETIME: "120"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: espocrm-php-config
+  namespace: espocrm
+  labels:
+    app: espocrm
+data:
+  espocrm.ini: |
+    ; PHP configuration for EspoCRM
+    upload_max_filesize = 50M
+    post_max_size = 50M
+    max_execution_time = 180
+    max_input_time = 180
+    memory_limit = 256M
+    
+    ; Session settings
+    session.gc_maxlifetime = 7200
+    session.cookie_lifetime = 0
+    
+    ; Timezone
+    date.timezone = UTC
+    
+    ; Error reporting
+    display_errors = Off
+    log_errors = On
+    error_log = /var/www/html/data/logs/php_errors.log
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: espocrm-mysql-config
+  namespace: espocrm
+  labels:
+    app: espocrm-mysql
+    component: database
+data:
+  my.cnf: |
+    [mysqld]
+    # InnoDB settings for better performance
+    innodb_buffer_pool_size = 1G
+    innodb_log_file_size = 256M
+    innodb_flush_log_at_trx_commit = 2
+    innodb_flush_method = O_DIRECT
+    innodb_file_per_table = 1
+    
+    # Connection settings
+    max_connections = 151
+    max_allowed_packet = 64M
+    
+    # Query cache
+    query_cache_type = 1
+    query_cache_size = 64M
+    query_cache_limit = 2M
+    
+    # Character set
+    character-set-server = utf8mb4
+    collation-server = utf8mb4_unicode_ci
+    
+    # Slow query log
+    slow_query_log = 1
+    slow_query_log_file = /var/lib/mysql/slow_query.log
+    long_query_time = 2

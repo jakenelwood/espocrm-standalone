@@ -1,0 +1,48 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.crt
+.env.master
+
+# Data directories
+/data/cache/
+/data/logs/
+/data/upload/
+/custom/Espo/Custom/Resources/
+
+# Cache and temporary files
+*.log
+*.cache
+*.tmp
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*~
+
+# Kubernetes secrets
+k3s/secrets.yaml
+k3s/secret-*.yaml
+kubeconfig
+*.kubeconfig
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+
+# Backup files
+*.backup
+*.bak
+backup/
+backups/
+
+# Docker
+.dockerignore.local

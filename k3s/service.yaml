@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: espocrm
+  namespace: espocrm
+  labels:
+    app: espocrm
+    app.kubernetes.io/name: espocrm
+    app.kubernetes.io/component: crm
+spec:
+  type: ClusterIP
+  selector:
+    app: espocrm
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    protocol: TCP

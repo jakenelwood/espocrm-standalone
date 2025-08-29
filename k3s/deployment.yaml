@@ -1,0 +1,198 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: espocrm
+  namespace: espocrm
+  labels:
+    app: espocrm
+    version: v1.0.0
+    environment: production
+    app.kubernetes.io/name: espocrm
+    app.kubernetes.io/component: crm
+    app.kubernetes.io/part-of: espocrm-standalone
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: espocrm
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: espocrm
+        version: v1.0.0
+      annotations:
+        # Prometheus monitoring
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "80"
+        prometheus.io/path: "/api/v1/App/health"
+        # Force restart on config changes
+        kubectl.kubernetes.io/restartedAt: "2024-01-01T00:00:00Z"
+    spec:
+      serviceAccountName: espocrm-sa
+      nodeSelector:
+        workload: app
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 33  # www-data user
+        runAsGroup: 33
+        fsGroup: 33
+        fsGroupChangePolicy: "OnRootMismatch"
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+      # Initialize permissions for persistent volumes
+      - name: init-permissions
+        image: busybox:1.35
+        command: ['sh', '-c']
+        args:
+        - |
+          mkdir -p /var/www/html/data /var/www/html/custom /var/www/html/upload
+          chown -R 33:33 /var/www/html
+          chmod -R 775 /var/www/html/data /var/www/html/custom /var/www/html/upload
+          echo "Permissions initialized successfully"
+        volumeMounts:
+        - name: espocrm-data
+          mountPath: /var/www/html
+        securityContext:
+          runAsUser: 0
+      # Wait for MySQL to be ready
+      - name: wait-for-mysql
+        image: mysql:8.0
+        command: ['sh', '-c']
+        args:
+        - |
+          until mysql -h espocrm-mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "SELECT 1" 2>/dev/null; do 
+            echo "Waiting for MySQL to be ready..."
+            sleep 2
+          done
+          echo "MySQL is ready!"
+        env:
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: espocrm-mysql-secret
+              key: username
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: espocrm-mysql-secret
+              key: password
+      containers:
+      - name: espocrm
+        image: ghcr.io/brian/espocrm-standalone:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        env:
+        # Application configuration
+        - name: APP_NAME
+          value: "espocrm"
+        - name: APP_VERSION
+          value: "v1.0.0"
+        - name: ENVIRONMENT
+          value: "production"
+        # Database configuration
+        - name: ESPOCRM_DATABASE_HOST
+          value: espocrm-mysql
+        - name: ESPOCRM_DATABASE_PORT
+          value: "3306"
+        - name: ESPOCRM_DATABASE_NAME
+          value: espocrm
+        - name: ESPOCRM_DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: espocrm-mysql-secret
+              key: username
+        - name: ESPOCRM_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: espocrm-mysql-secret
+              key: password
+        # Admin configuration
+        - name: ESPOCRM_ADMIN_USERNAME
+          value: admin
+        - name: ESPOCRM_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: espocrm-admin-secret
+              key: password
+        # Site configuration
+        - name: ESPOCRM_SITE_URL
+          value: https://crm.example.com
+        # Pod information
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        envFrom:
+        - configMapRef:
+            name: espocrm-config
+            optional: true
+        volumeMounts:
+        - name: espocrm-data
+          mountPath: /var/www/html
+        - name: php-config
+          mountPath: /usr/local/etc/php/conf.d/espocrm.ini
+          subPath: espocrm.ini
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+            ephemeral-storage: "1Gi"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+            ephemeral-storage: "5Gi"
+        livenessProbe:
+          httpGet:
+            path: /api/v1/App/health
+            port: 80
+            httpHeaders:
+            - name: Host
+              value: localhost
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
+          successThreshold: 1
+        readinessProbe:
+          httpGet:
+            path: /api/v1/App/health
+            port: 80
+            httpHeaders:
+            - name: Host
+              value: localhost
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false  # PHP needs write access
+          runAsNonRoot: true
+          runAsUser: 33
+          runAsGroup: 33
+          capabilities:
+            drop:
+            - ALL
+            add: []
+      volumes:
+      - name: espocrm-data
+        persistentVolumeClaim:
+          claimName: espocrm-data-pvc
+      - name: php-config
+        configMap:
+          name: espocrm-php-config
+          defaultMode: 0644

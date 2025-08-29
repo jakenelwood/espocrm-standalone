@@ -1,0 +1,122 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: espocrm-mysql
+  namespace: espocrm
+  labels:
+    app: espocrm-mysql
+    component: database
+    app.kubernetes.io/name: mysql
+    app.kubernetes.io/component: database
+    app.kubernetes.io/part-of: espocrm-standalone
+spec:
+  serviceName: espocrm-mysql-headless
+  replicas: 1
+  selector:
+    matchLabels:
+      app: espocrm-mysql
+  template:
+    metadata:
+      labels:
+        app: espocrm-mysql
+        component: database
+    spec:
+      serviceAccountName: espocrm-sa
+      nodeSelector:
+        workload: app
+      securityContext:
+        runAsUser: 999
+        runAsGroup: 999
+        fsGroup: 999
+        fsGroupChangePolicy: "OnRootMismatch"
+      containers:
+      - name: mysql
+        image: mysql:8.0.35
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: espocrm-mysql-secret
+              key: root-password
+        - name: MYSQL_DATABASE
+          value: espocrm
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: espocrm-mysql-secret
+              key: username
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: espocrm-mysql-secret
+              key: password
+        # MySQL configuration for better performance
+        - name: MYSQL_INITDB_SKIP_TZINFO
+          value: "1"
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-data
+          mountPath: /var/lib/mysql
+        - name: mysql-config
+          mountPath: /etc/mysql/conf.d
+        - name: mysql-init
+          mountPath: /docker-entrypoint-initdb.d
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+            ephemeral-storage: "2Gi"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+            ephemeral-storage: "5Gi"
+        livenessProbe:
+          exec:
+            command:
+            - mysqladmin
+            - ping
+            - -h
+            - localhost
+            - -u
+            - root
+            - -p${MYSQL_ROOT_PASSWORD}
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command:
+            - mysql
+            - -h
+            - localhost
+            - -u
+            - root
+            - -p${MYSQL_ROOT_PASSWORD}
+            - -e
+            - "SELECT 1"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+      volumes:
+      - name: mysql-config
+        configMap:
+          name: espocrm-mysql-config
+          optional: true
+      - name: mysql-init
+        configMap:
+          name: espocrm-mysql-init
+          optional: true
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-data
+      labels:
+        app: espocrm-mysql
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: hcloud-volumes
+      resources:
+        requests:
+          storage: 20Gi

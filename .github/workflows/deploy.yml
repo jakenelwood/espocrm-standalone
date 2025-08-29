@@ -1,0 +1,280 @@
+name: Deploy EspoCRM to k3s
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  APP_NAME: espocrm
+
+jobs:
+  validate:
+    name: Validate Manifests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup validation tools
+      run: |
+        # Install kubeval for manifest validation
+        curl -L https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz | tar xz
+        sudo mv kubeval /usr/local/bin/
+        
+        # Install kubesec for security scanning
+        curl -sSL https://github.com/controlplaneio/kubesec/releases/download/v2.13.0/kubesec_linux_amd64.tar.gz | tar xz
+        sudo mv kubesec /usr/local/bin/
+    
+    - name: Validate k3s manifests
+      run: |
+        echo "📋 Validating Kubernetes manifests..."
+        for file in k3s/*.yaml k3s/mysql/*.yaml; do
+          echo "Validating $file..."
+          kubeval --strict --ignore-missing-schemas $file
+        done
+    
+    - name: Security scan manifests
+      run: |
+        echo "🔒 Security scanning manifests..."
+        for file in k3s/deployment.yaml k3s/mysql/statefulset.yaml; do
+          echo "Scanning $file..."
+          kubesec scan $file
+        done
+
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    needs: validate
+    permissions:
+      contents: read
+      packages: write
+      security-events: write
+    outputs:
+      image-tag: ${{ steps.meta.outputs.tags }}
+      image-digest: ${{ steps.build.outputs.digest }}
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=sha,prefix={{branch}}-
+          type=raw,value=latest,enable={{is_default_branch}}
+    
+    - name: Build Docker image
+      id: build
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: false
+        load: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        build-args: |
+          VERSION=${{ github.sha }}
+          BUILD_DATE=${{ github.event.head_commit.timestamp }}
+    
+    - name: Test application
+      run: |
+        echo "🧪 Running application tests..."
+        # Start container for testing
+        docker run -d --name espocrm-test \
+          -e ESPOCRM_DATABASE_HOST=localhost \
+          -e ESPOCRM_DATABASE_NAME=test \
+          -e ESPOCRM_DATABASE_USER=test \
+          -e ESPOCRM_DATABASE_PASSWORD=test \
+          ${{ steps.meta.outputs.tags }}
+        
+        # Wait for application to start
+        sleep 30
+        
+        # Check if application is healthy
+        docker exec espocrm-test curl -f http://localhost/api/v1/App/health || exit 1
+        
+        # Clean up
+        docker stop espocrm-test
+        docker rm espocrm-test
+    
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ steps.meta.outputs.tags }}
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        severity: 'CRITICAL,HIGH'
+    
+    - name: Upload Trivy scan results to GitHub Security
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+    
+    - name: Push image to registry
+      if: github.event_name != 'pull_request'
+      run: |
+        docker push ${{ steps.meta.outputs.tags }}
+
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: github.ref == 'refs/heads/develop' || github.event.inputs.environment == 'staging'
+    environment: staging
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'v1.28.0'
+    
+    - name: Configure kubeconfig
+      run: |
+        echo "${{ secrets.KUBECONFIG_STAGING }}" | base64 -d > kubeconfig
+        export KUBECONFIG=kubeconfig
+    
+    - name: Deploy to staging
+      run: |
+        export KUBECONFIG=kubeconfig
+        export NAMESPACE="espocrm-staging"
+        export VERSION="${{ github.sha }}"
+        export IMAGE_TAG="${{ needs.build-and-test.outputs.image-tag }}"
+        
+        # Update image in deployment
+        kubectl set image deployment/espocrm espocrm=$IMAGE_TAG -n $NAMESPACE
+        
+        # Wait for rollout to complete
+        kubectl rollout status deployment/espocrm -n $NAMESPACE --timeout=5m
+        
+        # Verify deployment
+        kubectl get pods -n $NAMESPACE
+        kubectl describe deployment/espocrm -n $NAMESPACE
+    
+    - name: Run smoke tests
+      run: |
+        export KUBECONFIG=kubeconfig
+        echo "🔥 Running smoke tests..."
+        
+        # Get ingress URL
+        STAGING_URL=$(kubectl get ingress -n espocrm-staging espocrm -o jsonpath='{.spec.rules[0].host}')
+        
+        # Test health endpoint
+        curl -f https://$STAGING_URL/api/v1/App/health || exit 1
+        
+        echo "✅ Staging deployment successful!"
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [build-and-test, deploy-staging]
+    if: github.ref == 'refs/heads/main' || github.event.inputs.environment == 'production'
+    environment: production
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'v1.28.0'
+    
+    - name: Configure kubeconfig
+      run: |
+        echo "${{ secrets.KUBECONFIG_PRODUCTION }}" | base64 -d > kubeconfig
+        export KUBECONFIG=kubeconfig
+    
+    - name: Create deployment manifest
+      run: |
+        export VERSION="${{ github.sha }}"
+        export IMAGE_TAG="${{ needs.build-and-test.outputs.image-tag }}"
+        
+        # Update deployment manifest with new image
+        sed -i "s|image: .*|image: $IMAGE_TAG|g" k3s/deployment.yaml
+    
+    - name: Deploy to production
+      run: |
+        export KUBECONFIG=kubeconfig
+        export NAMESPACE="espocrm"
+        
+        # Apply all configurations
+        kubectl apply -f k3s/namespace.yaml
+        kubectl apply -f k3s/rbac.yaml
+        kubectl apply -f k3s/configmap.yaml
+        kubectl apply -f k3s/pvc.yaml
+        
+        # Deploy MySQL if not exists
+        kubectl apply -f k3s/mysql/
+        
+        # Wait for MySQL to be ready
+        kubectl wait --for=condition=ready pod -l app=espocrm-mysql -n $NAMESPACE --timeout=300s
+        
+        # Deploy application
+        kubectl apply -f k3s/service.yaml
+        kubectl apply -f k3s/deployment.yaml
+        kubectl apply -f k3s/ingress.yaml
+        
+        # Wait for rollout to complete
+        kubectl rollout status deployment/espocrm -n $NAMESPACE --timeout=10m
+        
+        # Verify deployment
+        kubectl get pods -n $NAMESPACE
+        kubectl describe deployment/espocrm -n $NAMESPACE
+    
+    - name: Run production tests
+      run: |
+        export KUBECONFIG=kubeconfig
+        echo "🔥 Running production smoke tests..."
+        
+        # Get production URL
+        PROD_URL=$(kubectl get ingress -n espocrm espocrm -o jsonpath='{.spec.rules[0].host}')
+        
+        # Test health endpoint
+        curl -f https://$PROD_URL/api/v1/App/health || exit 1
+        
+        # Test API endpoints
+        curl -f https://$PROD_URL/api/v1/Settings || exit 1
+        
+        echo "✅ Production deployment successful!"
+    
+    - name: Create deployment notification
+      if: success()
+      run: |
+        echo "🚀 EspoCRM deployed successfully to production!"
+        echo "Version: ${{ github.sha }}"
+        echo "URL: https://$(kubectl get ingress -n espocrm espocrm -o jsonpath='{.spec.rules[0].host}')"

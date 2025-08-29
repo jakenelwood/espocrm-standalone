@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0.35
+    container_name: espocrm-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password_change_me
+      MYSQL_DATABASE: espocrm
+      MYSQL_USER: espocrm
+      MYSQL_PASSWORD: espocrm_password_change_me
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./k3s/mysql/init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - espocrm-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  espocrm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: espocrm
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      ESPOCRM_DATABASE_HOST: mysql
+      ESPOCRM_DATABASE_PORT: 3306
+      ESPOCRM_DATABASE_NAME: espocrm
+      ESPOCRM_DATABASE_USER: espocrm
+      ESPOCRM_DATABASE_PASSWORD: espocrm_password_change_me
+      ESPOCRM_ADMIN_USERNAME: admin
+      ESPOCRM_ADMIN_PASSWORD: admin_password_change_me
+      ESPOCRM_SITE_URL: http://localhost:8080
+      ESPOCRM_INIT_DATABASE: "true"
+    volumes:
+      - espocrm_data:/var/www/html/data
+      - espocrm_custom:/var/www/html/custom
+      - espocrm_upload:/var/www/html/upload
+    ports:
+      - "8080:80"
+    networks:
+      - espocrm-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/api/v1/App/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  mysql_data:
+    driver: local
+  espocrm_data:
+    driver: local
+  espocrm_custom:
+    driver: local
+  espocrm_upload:
+    driver: local
+
+networks:
+  espocrm-network:
+    driver: bridge
