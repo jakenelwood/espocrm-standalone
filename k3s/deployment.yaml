@@ -49,9 +49,10 @@ spec:
         command: ['sh', '-c']
         args:
         - |
-          until mysql -h espocrm-mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "SELECT 1" 2>/dev/null; do 
+          echo "Attempting to connect to MySQL at espocrm-mysql.espocrm.svc.cluster.local"
+          until mysql -h espocrm-mysql.espocrm.svc.cluster.local -P 3306 -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "SELECT 1" 2>/dev/null; do 
             echo "Waiting for MySQL to be ready..."
-            sleep 2
+            sleep 5
           done
           echo "MySQL is ready!"
         env:
