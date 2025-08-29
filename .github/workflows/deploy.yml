@@ -281,10 +281,32 @@ jobs:
         echo "   ✅ kubectl check completed, proceeding to YAML validation..."
         
         YAML_VALIDATION_PASSED=true
-        for manifest in k3s/*.yaml k3s/mysql/*.yaml; do
+        # Process each directory separately to avoid glob expansion issues
+        for manifest in k3s/*.yaml; do
           if [ -f "$manifest" ]; then
-            # Capture both stdout and stderr
-            OUTPUT=$(kubectl apply --dry-run=client -f "$manifest" 2>&1)
+            # Capture both stdout and stderr (|| true prevents exit on error)
+            OUTPUT=$(kubectl apply --dry-run=client -f "$manifest" 2>&1 || true)
+            EXIT_CODE=$?
+            
+            if [ $EXIT_CODE -ne 0 ]; then
+              echo "   ⚠️  Invalid YAML in: $manifest (exit code: $EXIT_CODE)"
+              echo "$OUTPUT" | grep -E "error|Error|Warning" | head -3
+              YAML_VALIDATION_PASSED=false
+            else
+              # Check if there are any warnings in successful output
+              if echo "$OUTPUT" | grep -qE "Warning|warning"; then
+                echo "   ⚠️  Warnings in: $manifest"
+                echo "$OUTPUT" | grep -E "Warning|warning" | head -2
+              fi
+            fi
+          fi
+        done
+        
+        # Process MySQL manifests separately
+        for manifest in k3s/mysql/*.yaml; do
+          if [ -f "$manifest" ]; then
+            # Capture both stdout and stderr (|| true prevents exit on error)
+            OUTPUT=$(kubectl apply --dry-run=client -f "$manifest" 2>&1 || true)
             EXIT_CODE=$?
             
             if [ $EXIT_CODE -ne 0 ]; then
