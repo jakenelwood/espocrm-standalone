@@ -45,27 +45,34 @@ spec:
       initContainers:
       # Wait for MySQL to be ready
       - name: wait-for-mysql
-        image: mysql:8.0
+        image: busybox:1.36
         command: ['sh', '-c']
         args:
         - |
           echo "Attempting to connect to MySQL at espocrm-mysql.espocrm.svc.cluster.local"
-          until mysql -h espocrm-mysql.espocrm.svc.cluster.local -P 3306 -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "SELECT 1" 2>/dev/null; do 
+          until nc -zv espocrm-mysql.espocrm.svc.cluster.local 3306; do 
             echo "Waiting for MySQL to be ready..."
             sleep 5
           done
           echo "MySQL is ready!"
-        env:
-        - name: MYSQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: espocrm-mysql-secret
-              key: username
-        - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: espocrm-mysql-secret
-              key: password
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 33
+          runAsGroup: 33
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+          seccompProfile:
+            type: RuntimeDefault
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
+          requests:
+            memory: "32Mi"
+            cpu: "50m"
       containers:
       - name: espocrm
         image: ghcr.io/jakenelwood/espocrm-standalone:latest
