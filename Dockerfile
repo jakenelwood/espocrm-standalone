@@ -53,6 +53,11 @@ COPY --from=builder /usr/local/etc/php/conf.d/ /usr/local/etc/php/conf.d/
 # Enable Apache modules
 RUN a2enmod rewrite headers expires deflate
 
+# Configure Apache to run on port 8080 (non-privileged)
+RUN sed -i 's/Listen 80/Listen 8080/g' /etc/apache2/ports.conf && \
+    sed -i 's/<VirtualHost \*:80>/<VirtualHost *:8080>/g' /etc/apache2/sites-available/000-default.conf && \
+    sed -i 's/<VirtualHost \*:80>/<VirtualHost *:8080>/g' /etc/apache2/sites-available/default-ssl.conf
+
 # Configure Apache
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
@@ -98,10 +103,10 @@ RUN echo "* * * * * www-data cd /var/www/html && php cron.php > /dev/null 2>&1" 
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD curl -f http://localhost/api/v1/App/health || exit 1
+    CMD curl -f http://localhost:8080/api/v1/App/health || exit 1
 
-# Expose port
-EXPOSE 80
+# Expose port 8080 (non-privileged)
+EXPOSE 8080
 
 # Set working directory
 WORKDIR /var/www/html
