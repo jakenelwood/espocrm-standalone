@@ -41,8 +41,6 @@ spec:
         runAsUser: 33  # www-data user
         runAsGroup: 33
         fsGroup: 33
-        seccompProfile:
-          type: RuntimeDefault
         fsGroupChangePolicy: "OnRootMismatch"
       initContainers:
       # Wait for MySQL to be ready
@@ -66,8 +64,6 @@ spec:
           capabilities:
             drop:
             - ALL
-          seccompProfile:
-            type: RuntimeDefault
         resources:
           limits:
             memory: "64Mi"
@@ -181,8 +177,6 @@ spec:
             drop:
             - ALL
             add: []
-          seccompProfile:
-            type: RuntimeDefault
       volumes:
       - name: espocrm-data
         persistentVolumeClaim:
